@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('head')
+<title>{{trans('app.My_profile_section',['name' => Auth::user()->name])}}</title>
 @endsection
 @section('body')
 <header id="home" class="hero-area">
@@ -11,7 +12,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Manage Resumes</h3>
+                    <h3>{{trans('app.My_profile_section',['name' => Auth::user()->name])}}</h3>
                 </div>
             </div>
         </div>
@@ -21,21 +22,7 @@
 <div id="content">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-xs-12">
-                <div class="right-sideabr">
-                    <h4>Manage Account</h4>
-                    <ul class="list-item">
-                        <li><a href="resume.html">My Resume</a></li>
-                        <li><a href="bookmarked.html">Bookmarked Jobs</a></li>
-                        <li><a href="notifications.html">Notifications <span class="notinumber">2</span></a></li>
-                        <li><a href="manage-applications.html">Manage Applications</a></li>
-                        <li><a class="active" href="manage-resumes.html">Manage Resume</a></li>
-                        <li><a href="job-alerts.html">Job Alerts</a></li>
-                        <li><a href="change-password.html">Change Password</a></li>
-                        <li><a href="index.html">Sing Out</a></li>
-                    </ul>
-                </div>
-            </div>
+            @include('layouts.prof-nav')
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="job-alerts-item candidates">
                     <h3 class="alerts-title">Manage Resumes</h3>

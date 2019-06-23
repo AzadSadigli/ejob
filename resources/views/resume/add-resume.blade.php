@@ -17,175 +17,78 @@
         </div>
     </div>
 </div>
-
-<section id="content">
+<section class="section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9 col-md-12 col-xs-12">
-                <div class="add-resume box">
-                    <!-- <div class="post-header">
-                        <p>Already have an account? <a href="register.html">Click here to login</a></p>
-                    </div> -->
-                    <form class="form-ad">
-                        <h3>Basic information</h3>
-                        <div class="form-group">
-                            <label class="control-label">Name</label>
-                            <input type="text" class="form-control" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label"></label>
-                            <label class="control-label">Email</label>
-                            <input type="text" class="form-control" placeholder="Your@domain.com">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Profession Title</label>
-                            <input type="text" class="form-control" placeholder="Headline (e.g. Front-end developer)">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Location</label>
-                            <input type="text" class="form-control" placeholder="Location, e.g">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Web</label>
-                            <input type="text" class="form-control" placeholder="Website address">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Pre Hour</label>
-                            <input type="text" class="form-control" placeholder="Salary, e.g. 85">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Age</label>
-                            <input type="text" class="form-control" placeholder="Years old">
-                        </div>
-                        <div class="form-group">
-                            <div class="button-group">
-                                <div class="action-buttons">
-                                    <div class="upload-button">
-                                        <button class="btn btn-common">Choose a cover image</button>
-                                        <input id="cover_img_file_2" type="file">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3>Education</h3>
-                        <div class="form-group">
-                            <label class="control-label">Degree</label>
-                            <input type="text" class="form-control" placeholder="Degree, e.g. Bachelor">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Field of Study</label>
-                            <input type="text" class="form-control" placeholder="Major, e.g Computer Science">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">School</label>
-                            <input type="text" class="form-control" placeholder="School name, e.g. Massachusetts Institute of Technology">
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="control-label">From</label>
-                                    <input type="text" class="form-control" placeholder="e.g 2014">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">To</label>
-                                    <input type="text" class="form-control" placeholder="e.g 2020">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Description</label>
-                            <textarea class="form-control" rows="7"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <div class="button-group">
-                                <div class="action-buttons">
-                                    <div class="upload-button">
-                                        <button class="btn btn-common">Choose a cover Logo</button>
-                                        <input id="cover_img_file_3" type="file">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="add-post-btn">
-                            <div class="float-left">
-                                <a href="#" class="btn-added"><i class="ti-plus"></i> Add New Education</a>
-                            </div>
-                            <div class="float-right">
-                                <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
-                            </div>
-                        </div>
-                        <div class="divider">
-                            <h3>Work Experience</h3></div>
-                        <div class="form-group">
-                            <label class="control-label">Company Name</label>
-                            <input type="text" class="form-control" placeholder="Company name">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Title</label>
-                            <input type="text" class="form-control" placeholder="e.g UI/UX Researcher">
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="control-label">Date Form</label>
-                                    <input type="text" class="form-control" placeholder="e.g 2014">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">Date To</label>
-                                    <input type="text" class="form-control" placeholder="e.g 2020">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Description</label>
-                        </div>
-                        <section id="editor" style="margin-bottom: 30px;">
-                            <div id="summernote">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quia aut modi fugit, ratione saepe perferendis odio optio repellat dolorum voluptas excepturi possimus similique veritatis nobis. Provident cupiditate delectus, optio?</p>
-                            </div>
-                        </section>
-                        <div class="form-group">
-                            <div class="button-group">
-                                <div class="action-buttons">
-                                    <div class="upload-button">
-                                        <button class="btn btn-common">Choose a cover Logo</button>
-                                        <input id="cover_img_file_1" type="file">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="add-post-btn">
-                            <div class="float-left">
-                                <a href="#" class="btn-added"><i class="ti-plus"></i> Add New Experience</a>
-                            </div>
-                            <div class="float-right">
-                                <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
-                            </div>
-                        </div>
-                        <div class="divider">
-                            <h3>Skills</h3></div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="control-label">Skill Name</label>
-                                    <input class="form-control" placeholder="Skill name, e.g. HTML" type="text">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">% (1-100)</label>
-                                    <input class="form-control" placeholder="Skill proficiency, e.g. 90" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="add-post-btn">
-                            <div class="float-left">
-                                <a href="#" class="btn-added"><i class="ti-plus"></i> Add New Skills</a>
-                            </div>
-                            <div class="float-right">
-                                <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
-                            </div>
+                <div class="post-job box">
+                    <form method="POST" action="/create-resume" class="form-ad">
+                      @csrf
+                        @include('layouts.alerts')
+                          <h4>{{__('app.Information')}}</h4>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Name')}}</label>
+                              <input type="text" class="form-control" name="full_name" value="{{Auth::user()->name}} {{Auth::user()->surname}}" placeholder="{{__('app.Name')}}..." required>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label"></label>
+                              <label class="control-label">{{__('app.Email')}}</label>
+                              <input type="text" class="form-control" name="official_email" value="{{Auth::user()->email}}" placeholder="{{__('app.Email')}}..." required>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Profession_title')}}</label>
+                              <input type="text" class="form-control" name="title" placeholder="{{__('app.Profession_title')}}..." required>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">{{__('app.Location')}}</label>
+                              <div class="search-category-container">
+                                <label class="styled-select">
+                                @include('layouts.az_districts')
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Personal_website')}} ({{__('app.optional')}})</label>
+                              <input type="text" class="form-control" name="website" placeholder="{{__('app.Personal_website')}}...">
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Contact_number')}}</label>
+                              <input type="text" class="form-control" name="phone_number" placeholder="{{__('app.Contact_number')}}...">
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.About_me')}}</label>
+                              <textarea name="about" rows="8" class="form-control" placeholder="{{__('app.About_me')}}..." required></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Age')}}</label>
+                              <input type="text" class="form-control" value="{{\Carbon\Carbon::parse(Auth::user()->birthdate)->age}}" disabled>
+                          </div>
+                          <div class="divider"><h4>{{__('app.Skills')}}</h4></div>
+                          <div class="form-group">
+                            <input type="hidden" id="skill" value="{{__('app.Skill')}}">
+                              <div class="row">
+                                  <div class="col-md-6" id="skills">
+                                      <label class="control-label">{{__('app.Skill')}}</label>
+                                      <input class="form-control" placeholder="{{__('app.Skill')}}..." type="text">
+                                  </div>
+                                  <div class="col-md-6" id="skill_range">
+                                      <label class="control-label">% (1-100)</label>
+                                      <input type="range" class="form-control" name="skill" min="0" max="100">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="add-post-btn">
+                              <div class="float-left">
+                                  <a class="extra-btn" id="skill_btn">{{__('app.Add_skill')}}</a>
+                              </div>
+                              <div class="float-right">
+                                  <a class="rmv-btn"> <i class="fa fa-trash"></i> </a>
+                              </div>
+                          </div>
+                        <div class="pull-right" style="height:50px;">
+                          <button type="submit" class="btn btn-common">{{__('app.Next')}} <i class="fa fa-chevron-right"></i> </button>
                         </div>
                     </form>
-                    <a href="resume.html" class="btn btn-common">Save</a>
                 </div>
             </div>
         </div>
@@ -193,4 +96,34 @@
 </section>
 @endsection
 @section('foot')
+<script type="text/javascript">
+(function() {
+  var counter = 0;
+  var btn = document.getElementById('skill_btn');
+  var skills = document.getElementById('skills');
+  var skill_range = document.getElementById('skill_range');
+  var addInput = function() {
+    counter++;
+    var input = document.createElement("input");
+    input.id = 'input-' + counter;
+    input.type = 'range';
+    input.name = 'skill'+ counter;
+    skill_range.appendChild(input);
+  };
+  var addInput2 = function() {
+    counter++;
+    var input = document.createElement("input");
+    input.id = 'input-' + counter;
+    input.type = 'text';
+    input.name = 'skill_range'+ counter;
+    input.placeholder = document.getElementById('skill').value + ' ' + counter;
+    skills.appendChild(input);
+  }
+  btn.addEventListener('click', function() {
+    addInput();
+    addInput2();
+    $('input').addClass('form-control');
+  }.bind(this));
+})();
+</script>
 @endsection

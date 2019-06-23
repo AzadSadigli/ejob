@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Resume extends Model
+class Socnet extends Model
 {
-    protected $table = 'resumes';
+    protected $table = 'socnet';
 }

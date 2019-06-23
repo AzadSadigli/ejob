@@ -3,32 +3,6 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <title>{{__('app.Add_vacancy')}} - E-Job</title>
-<style media="screen">
-   .input-group select{
-      border: 1px solid #ececec;
-      width: 100px;
-      -webkit-appearance: none;
-      padding-left: 15px;
-   }
-   .input-group .type{
-     border-top-left-radius: 19px;
-     border-bottom-left-radius: 19px;
-     border-top-right-radius: 0;
-     border-bottom-right-radius: 0;
-   }
-   .input-group .curr{
-     border-top-left-radius: 0;
-     border-bottom-left-radius: 0;
-     border-top-right-radius: 19px;
-     border-bottom-right-radius: 19px;
-   }
-   .input-group select:hover{
-      border: 1px solid #ececec;
-   }
-   .form-group input[type=radio]{
-     margin-right: 15px;
-   }
-</style>
 @endsection
 @section('body')
 <header id="home" class="hero-area">
@@ -39,7 +13,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Post A Job</h3>
+                    <h3>{{__('app.Add_vacancy')}}</h3>
                 </div>
             </div>
         </div>
@@ -85,74 +59,7 @@
                           <label class="control-label">{{__('app.Location')}}</label>
                             <div class="search-category-container">
                               <label class="styled-select">
-                              <select class="dropdown-product selectpicker" name="location">
-                                <option value="1">Ağcabədi</option>
-                                <option value="2">Ağdam</option>
-                                <option value="3">Ağdaş</option>
-                                <option value="4">Ağstafa</option>
-                                <option value="5">Ağsu</option>
-                                <option value="6">Astara</option>
-                                <option value="7">Bakı</option>
-                                <option value="8">Balakən</option>
-                                <option value="9">Beyləqan</option>
-                                <option value="10">Bərdə</option>
-                                <option value="11">Biləsuvar</option>
-                                <option value="12">Cəbrayıl</option>
-                                <option value="13">Cəlilabad</option>
-                                <option value="14">Daşkəsən</option>
-                                <option value="15">Dəliməmmədli</option>
-                                <option value="16">Füzuli</option>
-                                <option value="17">Gədəbəy</option>
-                                <option value="18">Gəncə</option>
-                                <option value="19">Goranboy</option>
-                                <option value="20">Göyçay</option>
-                                <option value="21">Göygöl</option>
-                                <option value="22">Hacıqabul</option>
-                                <option value="23">Horadiz</option>
-                                <option value="24">İmişli</option>
-                                <option value="25">İsmayıllı</option>
-                                <option value="26">Kəlbəcər</option>
-                                <option value="27">Kürdəmir</option>
-                                <option value="28">Lerik</option>
-                                <option value="29">Lənkəran</option>
-                                <option value="30">Masallı</option>
-                                <option value="31">Mingəçevir</option>
-                                <option value="32">Naftalan</option>
-                                <option value="33">Naxçıvan</option>
-                                <option value="34">Neftçala</option>
-                                <option value="35">Oğuz</option>
-                                <option value="36">Ordubad</option>
-                                <option value="37">Qax</option>
-                                <option value="38">Qazax</option>
-                                <option value="39">Qəbələ</option>
-                                <option value="40">Qobustan</option>
-                                <option value="41">Quba</option>
-                                <option value="42">Qusar</option>
-                                <option value="43">Saatlı</option>
-                                <option value="44">Sabirabad</option>
-                                <option value="45">Şabran</option>
-                                <option value="46">Salyan</option>
-                                <option value="47">Şamaxı</option>
-                                <option value="48">Samux</option>
-                                <option value="72">Şəki</option>
-                                <option value="49">Şəmkir</option>
-                                <option value="50">Şərur</option>
-                                <option value="51">Şirvan</option>
-                                <option value="52">Siyəzən</option>
-                                <option value="53">Sumqayıt</option>
-                                <option value="54">Şuşa</option>
-                                <option value="55">Tərtər</option>
-                                <option value="56">Tovuz</option>
-                                <option value="57">Ucar</option>
-                                <option value="58">Xaçmaz</option>
-                                <option value="59">Xırdalan</option>
-                                <option value="60">Xızı</option>
-                                <option value="61">Xudat</option>
-                                <option value="62">Yardımlı</option>
-                                <option value="63">Yevlax</option>
-                                <option value="64">Zaqatala</option>
-                                <option value="65">Zərdab</option>
-                              </select>
+                              @include('layouts.az_districts')
                               </label>
                             </div>
                         </div>
@@ -240,6 +147,8 @@
         </div>
     </div>
 </section>
+@endsection
+@section('foot')
 <script type="text/javascript">
 $('form').on('focus', 'input[type=number]', function (e) {
   $(this).on('mousewheel.disableScroll', function (e) {

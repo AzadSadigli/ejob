@@ -16,15 +16,18 @@ class CreateResumesTable extends Migration
         Schema::create('resumes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
+            $table->string('full_name');
             $table->string('username')->unique();
             $table->string('title');
+            $table->string('email'); //official email
             $table->text('about_me');
+            $table->string('image')->default('default.png');
+            $table->string('resume')->nullable();
+            $table->string('cover_letter')->nullable();
             $table->string('website')->nullable();
             $table->string('location')->nullable();
-            $table->string('email'); //official email
             $table->string('phone_number')->nullable();
             $table->integer('status')->default(1); //0 is not active, 1 is active
-            $table->string('full_name');
             $table->timestamps();
         });
     }

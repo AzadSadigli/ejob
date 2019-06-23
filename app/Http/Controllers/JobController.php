@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vacancy;
 use Auth;
+use Lang;
 class JobController extends Controller
 {
     public function jobdetails($id){
       $vac = Vacancy::where('vac_id',$id)->first();
       return view('job.jobdetails',compact('vac'));
+    }
+    public function all_my_vacancies(){
+      $vacs = Vacancy::where('user_id',Auth::user()->id)->get();
+      return view('job.myjobs',compact('vacs'));
     }
     public function addvacancy(){
       return view('job.addvacancy');
@@ -30,12 +35,12 @@ class JobController extends Controller
     }
     public function addjob(Request $req){
       $vac = new Vacancy;
+      $vac->user_id = Auth::user()->id;
       $vac->lang = config('app.locale');
         $num = rand(10000000,20000000);
-        // $vacs = Vacancy::where('vac_id',$num)->get();
-        // while (!empty($vacs)) {
-        //   $num = rand(10000000,20000000);
-        // }
+        while (Vacancy::where('vac_id',$num)->count() != 0) {
+          $num = rand(10000000,20000000);
+        }
       $vac->vac_id = $num;
       $vac->token = md5(microtime());
       $vac->title = $req->title;
@@ -55,6 +60,6 @@ class JobController extends Controller
       $vac->salary = $req->salary;
       $vac->salary_type = $req->salary_type;
       $vac->save();
-      return redirect()->back()->with('success','Added!');
+      return redirect('/all-vacancies')->with('success',Lang::get('app.Added'));
     }
 }

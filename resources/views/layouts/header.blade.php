@@ -9,7 +9,7 @@
                     <span class="lni-menu"></span>
                     <span class="lni-menu"></span>
                 </button>
-                <a href="/" class="navbar-brand"><img src="/assets/img/logo.png" alt=""></a>
+                <a href="/" class="navbar-brand logo-nav"><span>eJob</span></a>
             </div>
             <div class="collapse navbar-collapse" id="main-navbar">
                 <ul class="navbar-nav mr-auto w-100 justify-content-end">
@@ -63,15 +63,14 @@
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="/home">Profile</a></li>
                           <li><a class="dropdown-item" href="/add-vacancy">Add vacancy</a></li>
-                          <li><a class="dropdown-item" href="/create-resume">Add resume</a></li>
-                          <li><a class="dropdown-item" href="/user/resumes">My resumes</a></li>
-                          <li><a class="dropdown-item" href="/user/settings">Account settings</a></li>
+                          <li><a class="dropdown-item" href="/start/resume/personal-information">Add resume</a></li>
+                          <li><a class="dropdown-item" href="/all-resumes">My resumes</a></li>
+                          <li><a class="dropdown-item" href="/account-settings">Account settings</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                                document.getElementById('logout-form').submit();">
                                   {{ __('Logout') }}
                               </a>
-
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                   @csrf
                               </form></li>
