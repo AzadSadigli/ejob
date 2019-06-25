@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('head')
 <title>{{__('app.Create_resume')}}</title>
+<link rel="stylesheet" href="/css/select2.css">
 @endsection
 @section('body')
 <header id="home" class="hero-area">
@@ -65,16 +66,19 @@
                           </div>
                           <div class="divider"><h4>{{__('app.Skills')}}</h4></div>
                           <div class="form-group">
-                            <input type="hidden" id="skill" value="{{__('app.Skill')}}">
-                              <div class="row">
-                                  <div class="col-md-6" id="skills">
-                                      <label class="control-label">{{__('app.Skill')}}</label>
-                                      <input class="form-control" placeholder="{{__('app.Skill')}}..." type="text">
-                                  </div>
-                                  <div class="col-md-6" id="skill_range">
-                                      <label class="control-label">% (1-100)</label>
-                                      <input type="range" class="form-control" name="skill" min="0" max="100">
-                                  </div>
+                            <label class="control-label">{{__('app.Add_skill')}}</label>
+                            <div class="search-category-container">
+                                <label class="styled-select">
+                                  <select class="dropdown-product selectpicker select2" name="skills[]" multiple="multiple" data-placeholder="{{__('app.Skills')}}...">
+                                    <option value="php">PHP</option>
+                                    <option value="laravel">Laravel</option>
+                                    <option value="javascript">Javascript</option>
+                                    <option value="css">CSS</option>
+                                    <option value="html">HTML</option>
+                                    <option value="bpmn">BPMN</option>
+                                    <option value="mysql">MySQL</option>
+                                  </select>
+                                </label>
                               </div>
                           </div>
                           <div class="add-post-btn">
@@ -96,34 +100,10 @@
 </section>
 @endsection
 @section('foot')
+<script src="/js/select2.full.min.js"></script>
 <script type="text/javascript">
-(function() {
-  var counter = 0;
-  var btn = document.getElementById('skill_btn');
-  var skills = document.getElementById('skills');
-  var skill_range = document.getElementById('skill_range');
-  var addInput = function() {
-    counter++;
-    var input = document.createElement("input");
-    input.id = 'input-' + counter;
-    input.type = 'range';
-    input.name = 'skill'+ counter;
-    skill_range.appendChild(input);
-  };
-  var addInput2 = function() {
-    counter++;
-    var input = document.createElement("input");
-    input.id = 'input-' + counter;
-    input.type = 'text';
-    input.name = 'skill_range'+ counter;
-    input.placeholder = document.getElementById('skill').value + ' ' + counter;
-    skills.appendChild(input);
-  }
-  btn.addEventListener('click', function() {
-    addInput();
-    addInput2();
-    $('input').addClass('form-control');
-  }.bind(this));
-})();
+$(function () {
+  $('.select2').select2()
+})
 </script>
 @endsection

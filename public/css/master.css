@@ -15803,6 +15803,7 @@ box-shadow: 1px 0px 6px 4px rgba(28,196,247,0.46);
 }
 
 .job-listings {
+    background: white;
     display: inline-block;
     width: 100%;
     margin-bottom: 20px;
@@ -15869,9 +15870,10 @@ box-shadow: 1px 0px 6px 4px rgba(28,196,247,0.46);
 }
 
 .job-listings .btn-apply {
-    color: #1cc4f7;
+    background: #1cc4f7;
     text-transform: uppercase;
     line-height: 50px;
+    color: white;
     border: 2px solid #1cc4f7;
     padding: 7px 21px;
     border-radius: 30px;
@@ -15883,14 +15885,16 @@ box-shadow: 1px 0px 6px 4px rgba(28,196,247,0.46);
 }
 
 .job-listings .btn-apply:hover {
-    color: #fff;
-    background: #1cc4f7
+    color: #1cc4f7;
+    background: white;
 }
 
 .job-listings:hover {
     background: #fff;
     border-color: #fff;
-    box-shadow: 11px 0 20px rgba(102, 102, 102, .08)
+    -webkit-box-shadow: 0px 0px 9px 2px rgba(28,196,247,0.5);
+-moz-box-shadow: 0px 0px 9px 2px rgba(28,196,247,0.5);
+box-shadow: 0px 0px 9px 2px rgba(28,196,247,0.5);
 }
 
 .single-team:hover .team-details {
@@ -16399,13 +16403,17 @@ box-shadow: 1px 0px 6px 4px rgba(28,196,247,0.46);
     margin-bottom: 30px;
     box-shadow: 0 0 14px rgba(191, 191, 191, .24)
 }
+.right-sideabr a.cogs{
+  color:white;
+  float: right;
+}
 
 .right-sideabr h4 {
     font-size: 18px;
-    color: #333;
+    color: white;
     padding: 15px 20px;
     font-weight: 500;
-    background: #f2f7fb;
+    background: #1cc4f7;
     margin-bottom: 0
 }
 
@@ -19085,4 +19093,35 @@ box-shadow: 0px 0px 11px 2px rgba(28,196,247,0.5);
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+}
+.cont-head{
+  border-bottom: 3px solid #1cc4f7;
+  margin-bottom: 15px;
+}
+.skills .add{
+  font-size: 15px;
+  cursor: pointer;
+}
+.skills .add:hover{
+  color: red !important;
+}
+.skills-list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.skill-item {
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 11px 2px rgb(159,159,159,0.1);
+  -moz-box-shadow: 0px 0px 11px 2px rgb(159,159,159,0.1);
+  box-shadow: 0px 0px 11px 2px rgb(159,159,159,0.1);
+  margin-top: 5px;
+  margin-right: 5px;
+}
+.skill-item:hover{
+  -webkit-box-shadow: 0px 0px 11px 2px rgba(28,196,247,0.5);
+    -moz-box-shadow: 0px 0px 11px 2px rgba(28,196,247,0.5);
+    box-shadow: 0px 0px 11px 2px rgba(28,196,247,0.5);
 }

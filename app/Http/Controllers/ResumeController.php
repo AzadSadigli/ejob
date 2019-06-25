@@ -12,6 +12,7 @@ use Session;
 use DB;
 use Hash;
 use App\Socnet;
+use App\Skill;
 class ResumeController extends Controller
 {
     public function addresume(){
@@ -85,7 +86,25 @@ class ResumeController extends Controller
       $res->resume = $req->resume;
       $res->cover_letter = $req->cover_letter;
       $res->save();
+      $skills  = $req->get('skills');
+      foreach($skills as $skill) {
+        Skill::create([
+          'skill' => $skill,
+          'res_id' => $res->id,
+        ]);
+      }
       return redirect('my-resume/'.$res->id)->with('primary',Lang::get('app.Resume_created'));
+    }
+    public function addskill(Request $req){
+      $skill = new Skill;
+      $skill->skill = $req->skill;
+      $skill->res_id = $req->res_id;
+      $skill->save();
+      return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+    }
+    public function deleteskill($id){
+      Skill::find($id)->delete($id);
+      return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
     }
     public function addexperience(Request $req){
         $exp = new Exp;

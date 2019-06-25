@@ -7,7 +7,7 @@
 <header id="home" class="hero-area">
 @include('layouts.header')
 </header>
-<div class="page-header">
+<!-- <div class="page-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="section">
     <div class="container">
@@ -83,8 +83,8 @@
             </div>
             @elseif(Request::is('my-resume/*'))
             <div class="col-lg-8 col-md-8 col-xs-12">
-              @include('layouts.alerts')
                 <div class="inner-box my-resume">
+                  @include('layouts.alerts')
                     <div class="author-resume">
                         <div class="thumb">
                             <img src="/img/resume/img-1.png" alt="">
@@ -106,6 +106,19 @@
                         <h3>{{__('app.About')}}</h3>
                         <p>{{$res->about_me}} </p>
                     </div>
+                    <div class="skills item">
+                        <h3>{{__('app.Skills')}} <a class="add" data-toggle="modal" data-target="#addskillpop" title="{{__('app.Add_skill')}}" onclick="skilladdfunc()"><i class="fa fa-plus"></i> </a></h3>
+                        <div class="skills-list" id="mySkilllist">
+                        @foreach($skills = App\Skill::where('res_id',$res->id)->get() as $skill)
+                          <div class="skill-item">
+                            <h4>{{$skill->skill}}  <a class="float-right rmv-section" data-toggle="modal" data-target="#deleteskillpop" onclick="getskilldelete({{$skill->id}})"> <i class="fa fa-trash"></i></a>
+                              <a class="float-right edit-section" data-toggle="modal" data-target="#editskillpop" onclick="skilleditfunc({{$skill->id}})"> <i class="fa fa-edit"></i>  </a> </h4>
+                          </div>
+                        @endforeach
+                      </div>
+                      <div id="editskillpop" class="modal fade" role="dialog"></div>
+                      <div id="addskillpop" class="modal fade" role="dialog"></div>
+                      <div id="deleteskillpop" class="modal fade" role="dialog"></div>
                     <div class="work-experence item">
                         <h3>{{__('app.Work_Experience')}}</h3>
                         <div id="myExplist">
@@ -158,11 +171,6 @@
                                 <div class="form-group">
                                     <label class="control-label">{{__('app.Description')}}</label>
                                     <textarea name="name" class="form-control" id="job_description" placeholder="{{__('app.Description')}}..." rows="3"></textarea>
-                                </div>
-                                <div class="add-post-btn">
-                                  <div class="float-right">
-                                      <a class="rmv-btn"> <i class="fa fa-trash"></i> </a>
-                                  </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
@@ -280,36 +288,39 @@ jQuery(document).ready(function(){
   jQuery('#addnewexp').click(function(e){
     e.preventDefault();
     $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-    jQuery.ajax({
-      url: "/create-resume-experience",
-      method: 'POST',
-      data: {
-        company: jQuery('#company').val(),
-        position: jQuery('#position').val(),
-        // from: $("input[name='commenter_rating']:checked").val(),
-        start_date: jQuery('#date_from').val(),
-        end_date: jQuery('#date_to').val(),
-        description: jQuery('#job_description').val(),
-        res_id: jQuery('#res_id').val(),
-      },
-      error: function(result){
-          if (!$('#company').val()) {jQuery('#company').css('border','1px solid red');}
-          if(!$('#position').val()) {jQuery('#position').css('border','1px solid red');}
-          if(!$('#date_from').val()){jQuery('#date_from').css('border','1px solid red');}
-          if(!$('#date_to').val()){jQuery('#date_to').css('border','1px solid red');}
-          if(!$('#job_description').val()){jQuery('#job_description').css('border','1px solid red');}
-          console.log('error');
-      },
-      success: function(result){
-          jQuery('#company').css('border','1px solid #ccc').val("");
-          jQuery('#position').css('border','1px solid #ccc').val("");
-          jQuery('#date_from').css('border','1px solid #ccc').val("");
-          jQuery('#date_to').css('border','1px solid #ccc').val("");
-          jQuery('#job_description').css('border','1px solid #ccc').val("");
-          $('#addexp').modal('toggle');
-          $("#myExplist").load(location.href+" #myExplist>*","");
-          console.log('success');
-    }});
+    if ($('#company').val() != '' && $('#position').val() != '' && $('#date_from').val() != '' && $('#date_to').val() != '' && $('#job_description').val() !='' ) {
+      jQuery.ajax({
+        url: "/create-resume-experience",
+        method: 'POST',
+        data: {
+          company: jQuery('#company').val(),
+          position: jQuery('#position').val(),
+          // from: $("input[name='commenter_rating']:checked").val(),
+          start_date: jQuery('#date_from').val(),
+          end_date: jQuery('#date_to').val(),
+          description: jQuery('#job_description').val(),
+          res_id: jQuery('#res_id').val(),
+        },
+        error: function(result){
+            console.log('error');
+        },
+        success: function(result){
+            jQuery('#company').css('border','1px solid #ccc').val("");
+            jQuery('#position').css('border','1px solid #ccc').val("");
+            jQuery('#date_from').css('border','1px solid #ccc').val("");
+            jQuery('#date_to').css('border','1px solid #ccc').val("");
+            jQuery('#job_description').css('border','1px solid #ccc').val("");
+            $('#addexp').modal('toggle');
+            $("#myExplist").load(location.href+" #myExplist>*","");
+            console.log('success');
+      }});
+    }else{
+      if (!$('#company').val()) {jQuery('#company').css('border','1px solid red');}
+      if(!$('#position').val()) {jQuery('#position').css('border','1px solid red');}
+      if(!$('#date_from').val()){jQuery('#date_from').css('border','1px solid red');}
+      if(!$('#date_to').val()){jQuery('#date_to').css('border','1px solid red');}
+      if(!$('#job_description').val()){jQuery('#job_description').css('border','1px solid red');}
+    }
   });
 });
 
@@ -356,7 +367,25 @@ function getexperiencedelete(e_id){
   document.getElementById('deleteexp').innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Delete_experience')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'><p>{{__('app.Are_you_sure_to_delete')}}</p></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.No')}}</button><button type='button' class='btn btn-primary' onclick='deleteexp_function("+e_id+")'>{{__('app.Yes')}}</button></div></div></div>";
   console.log(e_id);
 }
-
+function add_skill_func(){
+  $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+  if ($('#skill').val() != '') {
+    jQuery.ajax({
+      url: "/add-new-skill",
+      method: 'POST',
+      data: {
+        skill: $('#skill').val(),
+        res_id: $('#res_id').val(),
+      },
+      error: function(result){
+      },
+      success: function(result){
+          $('#skill').css('border','1px solid #ccc').val("");
+          $('#addskillpop').modal('toggle');
+          $("#mySkilllist").load(location.href+" #mySkilllist>*","");
+    }});
+  }else{$('#skill').css('border','1px solid red');}
+}
 function add_new_socnet(){
     if (jQuery('#socnet_site').val() != "" & jQuery('#socnet_url').val() != "" & jQuery('#res_id').val() != "") {
       $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
@@ -398,7 +427,33 @@ function deleteexp_function(id){
        // }
     });
 }
-
+function deleteskill_function(id){
+  $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    $.ajax({
+        url: "/skill/delete/"+id,
+        type: 'GET',
+        dataType: "JSON",
+        data: {"id": id },
+        success: function (response){
+            $('#deleteskillpop').modal('toggle');
+            $("#mySkilllist").load(location.href+" #mySkilllist>*","");
+            // console.log(response);
+        },
+       //  error: function(xhr) {
+       //   console.log('failed ' + id);
+       // }
+    });
+}
+function skilladdfunc(){
+  document.getElementById("addskillpop").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Delete_skill')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <div class='form-group'><label class='control-label'>{{__('app.Skill')}}</label><input type='text' id='skill' class='form-control' placeholder='{{__('app.Skill')}}...'></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='add_skill_func()'>{{__('app.Update')}}</a></div></div></div>";
+}
+function skilleditfunc(id){
+  document.getElementById("editskillpop").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Delete_skill')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <div class='form-group'><label class='control-label'>{{__('app.Skill')}}</label><input type='text' id='skill' class='form-control' placeholder='{{__('app.Skill')}}...'></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='add_skill_func()'>{{__('app.Add')}}</a></div></div></div>";
+}
+function getskilldelete(e_id){
+  document.getElementById("deleteskillpop").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Delete_skill')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'><p>{{__('app.Are_you_sure_to_delete')}}</p></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.No')}}</button><a class='btn btn-primary' onclick='deleteskill_function("+e_id+")'>{{__('app.Yes')}}</a></div></div></div>";
+  console.log(e_id);
+}
 function add_new_sn(){
   document.getElementById("add_sn").innerHTML = "<div class='input-group-prepend'><select class='type' id='socnet_site'><option value='facebook'>Facebook</option><option value='instagram'>Instagram</option><option value='linkedin'>LinkedIn</option><option value='google-plus'>Google Plus</option><option value='twitter'>Twitter</option></select></div><input type='text' class='form-control' id='socnet_url' placeholder='URL...'><button type='button' onclick='add_new_socnet()'>{{__('app.Add')}}</button>";
 }

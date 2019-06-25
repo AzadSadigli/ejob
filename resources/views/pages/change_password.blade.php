@@ -23,9 +23,9 @@
             @include('layouts.prof-nav')
             <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="job-alerts-item">
-                  @include('layouts.alerts')
                   @if(Request::is('account-settings'))
                     <h3 class="alerts-title">   {{__('app.Account_settings')}} </h3>
+                      @include('layouts.alerts')
                     <form action="/edit-user-profile" method="POST" class="form">
                       @csrf
                         <div class="form-group is-empty">
@@ -67,6 +67,7 @@
                     </form>
                   @else
                     <h3 class="alerts-title">   {{__('app.Change_password')}} </h3>
+                      @include('layouts.alerts')
                     <form action="/change-pass" method="POST" class="form">
                       @csrf
                         <div class="form-group is-empty">

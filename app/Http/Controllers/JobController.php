@@ -35,7 +35,11 @@ class JobController extends Controller
     }
     public function addjob(Request $req){
       $vac = new Vacancy;
-      $vac->user_id = Auth::user()->id;
+      if (Auth::check()) {
+        $vac->user_id = Auth::user()->id;
+      }else{
+        $vac->user_id = 0;
+      }
       $vac->lang = config('app.locale');
         $num = rand(10000000,20000000);
         while (Vacancy::where('vac_id',$num)->count() != 0) {

@@ -1,6 +1,6 @@
 <div class="col-lg-4 col-md-4 col-xs-12">
     <div class="right-sideabr">
-        <h4>Manage Account</h4>
+        <h4>Manage Account <a class="cogs" href="/account-settings"><i class="fa fa-cogs"></i></a> </h4>
         <ul class="list-item">
             <li><a @if(Request::is('all-resumes')) class="active" @endif href="/all-resumes">{{__('app.My_resumes')}}</a></li>
             <li><a @if(Request::is('all-vacancies')) class="active" @endif href="/all-vacancies">{{__('app.My_vacancies')}}</a></li>

@@ -142,5 +142,8 @@ return [
     'Profile_settings_changed' => 'Profile settings changed',
     'Username' => 'Username',
     'Surname' => 'Surname',
+    'Allowed_images_formats' => '.png,.svg, .jpeg, .ico are only allowed to use',
+    'Company_logo' => 'Company logo',
+    'Delete_skill' => 'Delete skill'
 
 ];

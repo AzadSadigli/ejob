@@ -25,7 +25,9 @@
         <div class="row justify-content-center">
             <div class="col-lg-9 col-md-12 col-xs-12">
                 <div class="post-job box">
-                    <h3 class="job-title">{{__('app.Add_vacancy')}}</h3>
+                    <div class="cont-head">
+                      <h3 class="job-title">{{__('app.Add_vacancy')}}</h3>
+                    </div>
                     @include('layouts.alerts')
                     <form class="form-ad" method="POST" action="/add-new-vacancy">
                       @csrf
@@ -120,12 +122,18 @@
                             <input type="number" class="form-control" placeholder="{{__('app.Contact_number')}}...." name="contact_number">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">{{__('app.Contact_type')}}</label> <br>
-                            <input type="radio" name="contact_type" value="0" checked> <span>{{__('app.By_portal')}}</span>
-                            <input type="radio" name="contact_type" value="1"> <span>{{__('app.By_phone')}}</span>
-                            <input type="radio" name="contact_type" value="2"> <span>{{__('app.By_email')}}</span>
-                            <input type="radio" name="contact_type" value="3"> <span>{{__('app.By_website')}}</span>
-                            <input type="radio" name="contact_type" value="4"> <span>{{__('app.By_any')}}</span>
+                            <label class="control-label">{{__('app.Contact_type')}}</label>
+                            <div class="search-category-container">
+                                <label class="styled-select">
+                                  <select class="dropdown-product selectpicker" name="contact_type">
+                                    <option value="0" selected> {{__('app.By_portal')}}</option>
+                                    <option value="1"> {{__('app.By_phone')}}</option>
+                                    <option value="2"> {{__('app.By_email')}}</option>
+                                    <option value="3"> {{__('app.By_website')}}</option>
+                                    <option value="4"> {{__('app.By_any')}}</option>
+                                  </select>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Website')}} <span>({{__('app.optional')}})</span></label>
@@ -134,12 +142,17 @@
                         <div class="form-group">
                             <label class="control-label">Job Tags <span>({{__('app.optional')}})</span></label>
                             <input type="text" class="form-control" placeholder="e.g.PHP,Social Media,Management">
-                            <p class="note">Comma separate tags, such as required skills or technologies, for this job.</p>
                         </div>
-                        <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" name="image" id="validatedCustomFile">
-                            <label class="custom-file-label form-control" for="validatedCustomFile">{{__('app.Choose_image')}}...</label>
+                        @if(Auth::check())
+                        @else
+                        <div class="form-group">
+                          <label class="control-label">{{__('app.Company_logo')}} <span>({{__('app.Allowed_images_formats')}})</span></label>
+                          <div class="custom-file mb-3">
+                              <input type="file" class="custom-file-input" name="image" id="validatedCustomFile">
+                              <label class="custom-file-label form-control" for="validatedCustomFile">{{__('app.Choose_image')}}...</label>
+                          </div>
                         </div>
+                        @endif
                         <center><button type="submit" class="btn btn-common">{{__('app.Add_vacancy')}}</button></center>
                     </form>
                 </div>

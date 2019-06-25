@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/change-pass','UserController@changepass');
 
 
+    Route::post('/add-new-skill','ResumeController@addskill');
+    Route::get('/skill/delete/{id}','ResumeController@deleteskill');
+
     Route::post('/edit-user-profile','UserController@edituser');
     Route::get('/account-settings','UserController@acc_settings');
     Route::get('/all-vacancies','JobController@all_my_vacancies');
@@ -45,6 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/experience/delete/{id}','ResumeController@deletexp');
 });
 
+
+Route::get('sendbasicemail','Controller@basic_email');
+Route::get('sendhtmlemail','Controller@html_email');
+Route::get('sendattachmentemail','Controller@attachment_email');
 
 Route::group(['middleware' => 'auth'], function () {
 

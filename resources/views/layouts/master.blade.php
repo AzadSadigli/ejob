@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="eJob">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @section('head')
-    @show
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/line-icons.css">
@@ -18,6 +16,8 @@
     <link rel="stylesheet" href="/assets/css/responsive.css">
 
     <link rel="stylesheet" href="/css/master.css">
+    @section('head')
+    @show
     <link rel="shortcut icon" type="image/x-icon" href="http://chittagongit.com/download/328250">
 </head>
 <body>
