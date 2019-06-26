@@ -28,13 +28,13 @@ class ResumeController extends Controller
       $sn->user_id = $req->user_id;
       $sn->res_id = $req->res_id;
       if ($req->site == 'facebook'){
-        $sn->icon = 'lni-facebook-filled';
+        $sn->icon = 'fa fa-facebook';
       }
       if ($req->site == 'whatsapp'){
         $sn->icon = 'fa fa-whatsapp';
       }
       if ($req->site == 'instagram'){
-        $sn->icon = 'lni-instagram-filled';
+        $sn->icon = 'fa fa-instagram';
       }
       if ($req->site == 'linkedin'){
         $sn->icon = 'fa fa-linkedin';
@@ -43,10 +43,10 @@ class ResumeController extends Controller
         $sn->icon = 'fa fa-telegram';
       }
       if ($req->site == 'google-plus'){
-        $sn->icon = 'lni-google-plus';
+        $sn->icon = 'fa fa-google-plus';
       }
       if ($req->site == 'twitter') {
-        $sn->icon = 'lni-twitter-filled';
+        $sn->icon = 'fa fa-twitter';
       }
       $sn->company_id = $req->company_id;
       $sn->link = $req->link;

@@ -10,7 +10,7 @@
 <div class="row">
 <div class="col-lg-12">
 <div class="inner-header">
-<h3>Login</h3>
+<h3>{{__('app.Login')}}</h3>
 </div>
 </div>
 </div>
@@ -24,11 +24,10 @@
 <div class="col-lg-5 col-md-6 col-xs-12">
 <div class="page-login-form box">
 <h3>
-Login
+{{__('app.Login')}}
 </h3>
 <form method="POST" action="{{ route('login') }}">
     @csrf
-
     <div class="form-group row">
         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -84,7 +83,7 @@ Login
     </div>
 </form>
 <ul class="form-links">
-<li class="text-center"><a href="register.html">Don't have an account?</a></li>
+<li class="text-center"><a href="/register">Don't have an account?</a></li>
 </ul>
 </div>
 </div>

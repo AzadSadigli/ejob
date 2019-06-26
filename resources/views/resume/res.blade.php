@@ -7,8 +7,16 @@
 <meta name="keywords" content="personal, vcard, portfolio">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" type="image/x-icon" href="http://chittagongit.com/download/328250">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="/css/res.css">
+<style media="screen">
+  .scnet{
+    display: inline;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+  }
+</style>
 </head>
 <body>
 <div id="preloader"><div class="spinner"></div></div>
@@ -21,7 +29,7 @@
             <span class="job">{{$res->title}}</span>
         </div>
         <figure class="profile-image">
-            <img src="/images/profile.jpg" alt="">
+            <img src="/img/default.png" alt="{{$res->full_name}}">
         </figure>
         <ul class="profile-information">
             <li></li>
@@ -29,7 +37,11 @@
             <li><p><span>{{__('app.Birthday')}}:</span> @php($user = App\User::find($res->user_id)) {{\Carbon\Carbon::parse($user->birthdate)->format('d M Y')}}</p></li>
             <li><p><span>{{__('app.Current_Job')}}:</span> {{__('app.None')}}</p></li>
             <li><p><span>{{__('app.Email')}}:</span> {{$res->email}}</p></li>
-            <li><p><span>Skype:</span> henryrooney85</p></li>
+            <li>
+              @foreach($sns = App\Socnet::where('res_id',$res->id)->get() as $sn)
+                <a class="scnet" href="{{$sn->link}}" target="_blank"><i class="{{$sn->icon}}" aria-hidden="true"></i></a>
+              @endforeach
+            </li>
         </ul>
         @if(!empty($res->resume))
         <div class="col-md-12">
@@ -54,7 +66,6 @@
                         <li class="tab"><a href="#contact">{{__('app.Contact')}}</a></li>
                         @if(Auth::check())
                           @if($res->user_id == Auth::user()->id)
-                            <li class="tab"><a href="/home">{{__('app.Profile')}}</a></li>
                           @endif
                         @endif
                     </ul>
@@ -62,12 +73,6 @@
                 <div class="col-md-4 col-sm-4 col-xs-8 dynamic">
                     <a href="mailto:{{$res->email}}?subject={{__('app.Hire_From_eJob')}}" class="pull-right site-btn hidden-xs">{{__('app.Hire_Me')}}</a>
                     <div class="hamburger pull-right hidden-lg hidden-md"><i class="fa fa-bars" aria-hidden="true"></i></div>
-                    <div class="hidden-md social-icons pull-right">
-                        <a class="fb" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a class="tw" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a class="ins" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                        <a class="dr" href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                    </div>
                 </div>
             </div>
         </nav>
@@ -203,36 +208,24 @@
                         <div class="row">
                             <div class="working-history col-md-6 padding_15 padbot_30">
                                 <ul class="timeline col-md-12 top_30">
-                                    <li><i class="fa fa-suitcase" aria-hidden="true"></i><h2 class="timeline-title">Working History</h2></li>
-                                    <li><h3 class="line-title">Art Director - Facebook Inc</h3>
-                                        <span>2010 - Present</span>
-                                        <p class="little-text">Expenses as material breeding insisted building to in. Continual so distrusts pronounce by unwilling listening. Thing do taste on we manor.</p>
+                                    <li><i class="fa fa-suitcase" aria-hidden="true"></i><h2 class="timeline-title">{{__('app.Working_History')}}</h2></li>
+                                    @foreach($exps = App\Exp::where('res_id',$res->id)->get() as $exp)
+                                    <li><h3 class="line-title">{{$exp->position}} - {{$exp->company}}</h3>
+                                        <span>{{$exp->start_date}} - {{$exp->end_date}}</span>
+                                        <p class="little-text">{{$exp->description}}</p>
                                     </li>
-                                    <li><h3 class="line-title">Senior Designer - Google</h3>
-                                        <span>2008 - 2010</span>
-                                        <p class="little-text">So insisted received is occasion advanced honoured. Among ready to which up. Attacks smiling and may out assured moments man nothing outward.</p>
-                                    </li>
-                                    <li><h3 class="line-title">Junior Designer - Creative Shake</h3>
-                                        <span>2005 - 2008</span>
-                                        <p class="little-text">Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract.</p>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="education-history col-md-6 padding_15 padbot_30">
                                 <ul class="timeline col-md-12 top_30">
-                                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><h2 class="timeline-title">Education History</h2></li>
-                                    <li><h3 class="line-title">Abc University of Los Angeles</h3>
-                                        <span>2004 - 2009</span>
-                                        <p class="little-text">Expenses as material breeding insisted building to in. Continual so distrusts pronounce by unwilling listening. Thing do taste on we manor.</p>
+                                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><h2 class="timeline-title">{{__('app.Education_History')}}</h2></li>
+                                    @foreach($edus = App\Edu::where('res_id',$res->id)->get() as $edu)
+                                    <li><h3 class="line-title">{{$edu->school}}</h3>
+                                        <span>{{$edu->start_date}} - {{$edu->end_date}}</span>
+                                        <p class="little-text">{{$res->description}}</p>
                                     </li>
-                                    <li><h3 class="line-title">Drawing Course</h3>
-                                        <span>2003 - 2004</span>
-                                        <p class="little-text">So insisted received is occasion advanced honoured. Among ready to which up. Attacks smiling and may out assured moments man nothing outward.</p>
-                                    </li>
-                                    <li><h3 class="line-title">Abc High School</h3>
-                                        <span>2000 - 2003</span>
-                                        <p class="little-text">Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract.</p>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -637,7 +630,7 @@
                                     <textarea class="site-area" placeholder="Message"></textarea>
                                 </div>
                                 <div class="col-md-12 top_15 bottom_30">
-                                    <button class="site-btn" type="submit">Submit</button>
+                                    <button class="site-btn" type="submit">{{__('app.Send')}}</button>
                                 </div>
                             </div>
                         </form>
@@ -645,24 +638,16 @@
                     <section class="contact-info col-md-6 padding_30 padbot_45">
                         <div class="section-title top_15 bottom_30"><span></span><h2>Contact Informations</h2></div>
                         <ul>
-                            <li><span>Address:</span> 107727 Santa Monica Boulevard Los Angeles</li>
-                            <li><span>Phone:</span> +38 012-3456-7890</li>
-                            <li><span>Job:</span> Freelancer</li>
-                            <li><span>E-mail:</span> chris@domain.com</li>
-                            <li><span>Skype:</span> chrisjohnson85</li>
+                            <li><span>{{__('app.Phone')}}:</span> {{$res->phone_number}}</li>
+                            <li><span>{{__('app.Email')}}:</span> {{$res->email}}</li>
                             <li>
                                 <div class="social-icons top_15">
-                                    <a class="fb" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    <a class="tw" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    <a class="ins" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                    <a class="dr" href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                                  @foreach($sns = App\Socnet::where('res_id',$res->id)->get() as $sn)
+                                    <a class="scnet" href="{{$sn->link}}" target="_blank"><i class="{{$sn->icon}}" aria-hidden="true"></i></a>
+                                  @endforeach
                                 </div>
                             </li>
                         </ul>
-                    </section>
-                    <section class="contact-map col-md-12 top_15 bottom_15">
-                        <div class="section-title bottom_30"><span></span><h2>Contact Map.</h2></div>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24396.455763004884!2d-115.13108354428735!3d36.18912977254862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos+Angeles%2C+Kaliforniya%2C+Birle%C5%9Fik+Devletler!5e0!3m2!1str!2str!4v1509525039851" height="350" style="border:0" allowfullscreen></iframe>
                     </section>
                 </div>
             </div>
@@ -679,14 +664,14 @@
 </div>
 </div>
 </div>
-<!-- <script src="js/jquery-2.1.4.min.js"></script> -->
-<!-- <script src="cubeportfolio/js/jquery.cubeportfolio.min.js"></script> -->
-<!-- <script src="js/bootstrap.min.js"></script> -->
-<!-- <script src="js/jquery.easytabs.min.js"></script> -->
-<!-- <script src="js/owl.carousel.min.js"></script> -->
-<!-- <script src="js/main.js"></script> -->
-<!-- <script src="js/jquery.cookie-1.4.1.min.js"></script> -->
-<!-- <script src="js/Demo.js"></script> -->
+<!-- <script src="/assets/res/js/jquery-2.1.4.min.js"></script>
+<script src="/assets/res/js/jquery.cubeportfolio.min.js"></script>
+<script src="/assets/res/js/bootstrap.min.js"></script>
+<script src="/assets/res/js/jquery.easytabs.min.js"></script>
+<script src="/assets/res/js/owl.carousel.min.js"></script>
+<script src="/assets/res/js/main.js"></script>
+<script src="/assets/res/js/jquery.cookie-1.4.1.min.js"></script>
+<script src="/assets/res/js/Demo.js"></script> -->
 <!-- <link rel="stylesheet" href="css/Demo.min.css" /> -->
 <script src="/js/res.js"></script>
 </body>

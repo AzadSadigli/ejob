@@ -35,6 +35,21 @@ class JobController extends Controller
       echo $num;
     }
     public function addjob(Request $req){
+      $this->validate($req,[
+        'title' => 'string|required',
+        'description' => 'required',
+        'requirements' => 'required',
+        'company' => 'string|required',
+        'type' => 'required',
+        'location' => 'integer|required',
+        'category' => 'integer|required',
+        'website' => 'string',
+        'contact_type' => 'required',
+        'contact_email' => 'string|required',
+        'contact_number' => 'required',
+        'salary' => 'required',
+        'salary_type' => 'required',
+      ]);
       $vac = new Vacancy;
       if (Auth::check()) {
         $vac->user_id = Auth::user()->id;

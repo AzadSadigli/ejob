@@ -149,5 +149,9 @@ return [
     'Edit_resume' => 'Edit resume',
     'Not_active' => 'Not active',
     'Active' => 'Active',
+    'Working_History' => 'Working History',
+    'Education_History' => 'Education History',
+    'Send' => 'Send',
+    'Phone' => 'Phone',
 
 ];

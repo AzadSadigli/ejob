@@ -50,11 +50,11 @@
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.Personal_website')}} ({{__('app.optional')}})</label>
-                              <input type="text" class="form-control" name="website" placeholder="{{__('app.Personal_website')}}...">
+                              <input type="text" class="form-control" name="website" value="http://" placeholder="{{__('app.Personal_website')}}...">
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.Contact_number')}}</label>
-                              <input type="text" class="form-control" name="phone_number" placeholder="{{__('app.Contact_number')}}...">
+                              <input type="text" class="form-control" id="phoneNumber" name="phone_number" placeholder="{{__('app.Contact_number')}}...">
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.About_me')}}</label>
@@ -96,9 +96,30 @@
 @endsection
 @section('foot')
 <script src="/js/select2.full.min.js"></script>
+<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
 <script type="text/javascript">
 $(function () {
   $('.select2').select2()
 })
+$('#phoneNumber').inputmask("(+999) 99 999-99-99");
+// $(function() {
+// 	$('#website').inputmask('url');
+//   Inputmask.extendAliases({
+//     url: {
+//       definitions: {
+//         i: {
+//           validator: ".",
+//           cardinality: 1
+//         }
+//       },
+//       mask: "(\\http\\s://)|(\\http://)|(ftp://)|(ftp\\s://)i{+}",
+//       insertMode: !1,
+//       autoUnmask: !1
+//     }
+//   });
+//   $('#test2').inputmask('url');
+// });
+
 </script>
 @endsection

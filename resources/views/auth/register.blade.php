@@ -1,4 +1,7 @@
-@extends('layouts.master') @section('head') @endsection @section('body')
+@extends('layouts.master')
+@section('head')
+@endsection
+@section('body')
 <header id="home" class="hero-area">
     @include('layouts.header')
 </header>
@@ -7,7 +10,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Create Your account</h3>
+                    <h3>{{__('app.Create_account')}}</h3>
                 </div>
             </div>
         </div>
@@ -27,10 +30,12 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-8">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> @error('name')
-                                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span> @enderror
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                @error('name')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">

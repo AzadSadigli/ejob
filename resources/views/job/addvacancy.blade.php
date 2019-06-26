@@ -33,14 +33,16 @@
                       @csrf
                         <div class="form-group">
                             <label class="control-label">{{__('app.Company')}}</label>
-                            <input type="text" class="form-control" name="company" placeholder="Write company name">
+                            <input type="text" class="form-control" name="company" placeholder="{{__('app.Company')}}..." required>
+                            @error('company')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Category')}}</label>
                             <div class="search-category-container">
                                 <label class="styled-select">
-                                    <select class="dropdown-product selectpicker" name="category">
-                                        <!-- <option value="0">{{__('app.All_categories')}}</option> -->
+                                    <select class="dropdown-product selectpicker" name="category" required>
                                         <option value="1">{{__('app.Finance')}}</option>
                                         <option value="2">{{__('app.IT_and_Engineering')}}</option>
                                         <option value="3">{{__('app.Education_or_Training')}}</option>
@@ -52,10 +54,16 @@
                                     </select>
                                 </label>
                             </div>
+                            @error('category')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Job_title')}}</label>
-                            <input type="text" name="title" class="form-control" placeholder="Write job title">
+                            <input type="text" name="title" class="form-control" placeholder="{{__('app.Job_title')}}..." required>
+                            @error('title')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                           <label class="control-label">{{__('app.Location')}}</label>
@@ -69,7 +77,7 @@
                           <label class="control-label" for="salary">{{__('app.Salary')}}</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <select class="type" name="salary_type">
+                              <select class="type" name="salary_type" required>
                                 <option value="1">{{__('app.Hourly')}}</option>
                                 <option value="2">{{__('app.Daily')}}</option>
                                 <option value="3">{{__('app.Weekly')}}</option>
@@ -77,9 +85,9 @@
                                 <option value="5">{{__('app.Annual')}}</option>
                               </select>
                             </div>
-                            <input type="number" class="form-control" name="salary" min="0" placeholder="{{__('app.Salary')}}...">
+                            <input type="number" class="form-control" name="salary" min="0" placeholder="{{__('app.Salary')}}..." required>
                             <div class="input-group-prepend">
-                              <select class="curr" name="salary_currency">
+                              <select class="curr" name="salary_currency" required>
                                 <option value="1">AZN</option>
                                 <option value="2">USD</option>
                                 <option value="3">EURO</option>
@@ -87,12 +95,15 @@
                               </select>
                             </div>
                           </div>
+                          @error('salary')
+                            <span class="warning-text" role="alert">{{ $message }} </span>
+                          @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Job_type')}}</label>
                             <div class="search-category-container">
                                 <label class="styled-select">
-                                    <select class="dropdown-product selectpicker" name="type">
+                                    <select class="dropdown-product selectpicker" name="type" required>
                                         <option value="2">{{__('app.Full_time')}}</option>
                                         <option value="1">{{__('app.Part_time')}}</option>
                                         <option value="3">{{__('app.Remote')}}</option>
@@ -100,32 +111,50 @@
                                     </select>
                                 </label>
                             </div>
+                            @error('type')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Description')}}</label>
-                            <textarea name="description" class="form-control" placeholder="Enter describtion"></textarea>
+                            <textarea name="description" class="form-control" placeholder="{{__('app.Description')}}..." required></textarea>
+                            @error('description')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Requirements')}}</label>
-                            <textarea name="requirements" rows="6" class="form-control" placeholder="Enter requirements"></textarea>
+                            <textarea name="requirements" rows="6" class="form-control" placeholder="{{__('app.Requirements')}}..." required></textarea>
+                            @error('requirements')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.End_date')}}</label>
-                            <input type="date" class="form-control" min="{{date('Y-m-d')}}">
+                            <input type="date" name="end_date" class="form-control" min="{{date('Y-m-d')}}">
+                            @error('end_date')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Email')}}</label>
-                            <input type="email" class="form-control"  name="contact_email" placeholder="Email...">
+                            <input type="email" class="form-control"  name="contact_email" placeholder="{{__('app.Email')}}..." required>
+                            @error('contact_email')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Contact_number')}}</label>
-                            <input type="number" class="form-control" placeholder="{{__('app.Contact_number')}}...." name="contact_number">
+                            <input type="number" class="form-control" placeholder="{{__('app.Contact_number')}}...." name="contact_number" required>
+                            @error('contact_number')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Contact_type')}}</label>
                             <div class="search-category-container">
                                 <label class="styled-select">
-                                  <select class="dropdown-product selectpicker" name="contact_type">
+                                  <select class="dropdown-product selectpicker" name="contact_type" required>
                                     <option value="0" selected> {{__('app.By_portal')}}</option>
                                     <option value="1"> {{__('app.By_phone')}}</option>
                                     <option value="2"> {{__('app.By_email')}}</option>
@@ -134,10 +163,16 @@
                                   </select>
                                 </label>
                             </div>
+                            @error('contact_type')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('app.Website')}} <span>({{__('app.optional')}})</span></label>
                             <input type="text" name="website" class="form-control" placeholder="http://">
+                            @error('website')
+                              <span class="warning-text" role="alert">{{ $message }} </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">Job Tags <span>({{__('app.optional')}})</span></label>
