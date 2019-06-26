@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/change-password','UserController@changepassword');
     Route::post('/change-pass','UserController@changepass');
 
+    Route::post('/edit-resume/{id}','ResumeController@editresume');
 
     Route::post('/add-new-skill','ResumeController@addskill');
     Route::get('/skill/delete/{id}','ResumeController@deleteskill');
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/account-settings','UserController@acc_settings');
     Route::get('/all-vacancies','JobController@all_my_vacancies');
     Route::post('/add-social-network','ResumeController@addsocnet');
+    Route::get('/socnet/delete/{id}','ResumeController@deletesocnet');
 
     Route::post('/delete/resume/{id}','ResumeController@deleteresume');
     Route::get('/education/delete/{id}','ResumeController@deletedu');

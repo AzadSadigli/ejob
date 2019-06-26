@@ -20,7 +20,8 @@ class JobController extends Controller
       return view('job.addvacancy');
     }
     public function jobs(){
-      return view('job.joblist');
+      $vacs = Vacancy::orderBy('created_at','desc')->paginate(1);
+      return view('job.joblist',compact('vacs'));
     }
     public function test(){
       $num = rand(10000000,20000000);

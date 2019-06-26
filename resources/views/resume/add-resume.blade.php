@@ -77,16 +77,11 @@
                                     <option value="html">HTML</option>
                                     <option value="bpmn">BPMN</option>
                                     <option value="mysql">MySQL</option>
+                                    @foreach($skills = App\Skill::all() as $skill)
+                                    <option value="{{$skill->skill}}">{{$skill->skill}}</option>
+                                    @endforeach
                                   </select>
                                 </label>
-                              </div>
-                          </div>
-                          <div class="add-post-btn">
-                              <div class="float-left">
-                                  <a class="extra-btn" id="skill_btn">{{__('app.Add_skill')}}</a>
-                              </div>
-                              <div class="float-right">
-                                  <a class="rmv-btn"> <i class="fa fa-trash"></i> </a>
                               </div>
                           </div>
                         <div class="pull-right" style="height:50px;">

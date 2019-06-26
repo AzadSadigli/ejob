@@ -18,6 +18,10 @@ class ResumeController extends Controller
     public function addresume(){
       return view('resume.add-resume');
     }
+    public function deletesocnet($id){
+      Socnet::find($id)->delete($id);
+      return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+    }
     public function addsocnet(Request $req){
       $sn = new Socnet;
       $sn->site = $req->site;
@@ -27,16 +31,16 @@ class ResumeController extends Controller
         $sn->icon = 'lni-facebook-filled';
       }
       if ($req->site == 'whatsapp'){
-        $sn->icon = 'lni-whatsapp-filled';
+        $sn->icon = 'fa fa-whatsapp';
       }
       if ($req->site == 'instagram'){
         $sn->icon = 'lni-instagram-filled';
       }
       if ($req->site == 'linkedin'){
-        $sn->icon = 'lni-linkedin-filled';
+        $sn->icon = 'fa fa-linkedin';
       }
       if ($req->site == 'telegram'){
-        $sn->icon = 'lni-telegram-filled';
+        $sn->icon = 'fa fa-telegram';
       }
       if ($req->site == 'google-plus'){
         $sn->icon = 'lni-google-plus';
@@ -60,6 +64,34 @@ class ResumeController extends Controller
     public function myresume($id){
       $res = Resume::find($id);
       return view('resume.resume',compact('res'));
+    }
+    public function editresume(Request $req, $id){
+      $res = Resume::find($id);
+      if ($res->user_id == Auth::user()->id) {
+        $res->title = $req->title;
+        $res->full_name = $req->full_name;
+        if ($req->status == 0) {
+          $res->status = 0;
+        }else{
+          $res->status = 1;
+        }
+        if (empty($req->username)) {
+          $num = rand(10000000,20000000);
+          while (Resume::where('username',$num)->where('user_id','!=',Auth::user()->id)->count() != 0) {
+            $num = rand(10000000,20000000);
+          }
+          $res->username = $num;
+        }else{
+          $res->username = $req->username;
+        }
+        $res->email = $req->official_email;
+        $res->about_me = $req->about;
+        $res->website = $req->website;
+        $res->location = $req->location;
+        $res->phone_number = $req->phone_number;
+        $res->update();
+      }
+      return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
     }
     public function addnewresume(Request $req){
       $res = new Resume;

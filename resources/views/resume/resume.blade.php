@@ -7,7 +7,7 @@
 <header id="home" class="hero-area">
 @include('layouts.header')
 </header>
-<!-- <div class="page-header">
+<div class="page-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <div class="section">
     <div class="container">
@@ -31,7 +31,7 @@
                     @foreach($resumes as $resume)
                     <div class="manager-resumes-item">
                         <div class="manager-content">
-                            <a href="/my-resume/{{$resume->id}}"><img class="resume-thumb" src="/img/jobs/avatar-1.jpg" alt=""></a>
+                            <a href="/my-resume/{{$resume->id}}"><img class="resume-thumb" src="/img/default.png" alt="{{$resume->full_name}}"></a>
                             <div class="manager-info">
                                 <div class="manager-name">
                                     <h4><a href="/my-resume/{{$resume->id}}">{{$resume->full_name}}</a> </h4>
@@ -85,23 +85,31 @@
             <div class="col-lg-8 col-md-8 col-xs-12">
                 <div class="inner-box my-resume">
                   @include('layouts.alerts')
-                    <div class="author-resume">
+                    <div class="author-resume" id="myResCh">
                         <div class="thumb">
-                            <img src="/img/resume/img-1.png" alt="">
+                            <img src="/img/default.png" alt="{{$res->full_name}}">
                         </div>
                         <div class="author-info">
-                            <h3>{{$res->full_name}} <a class="float-right" href="/r/{{$res->username}}">{{__('app.Preview')}}</a></h3>
+                            <h3>{{$res->full_name}} <small style="text-transform:lowercase;"> ({{$res->email}}) </small> <span class="float-right"><a class="btn btn-common" href="/r/{{$res->username}}" title="{{__('app.Preview')}}"><i class="fa fa-eye"></i> </a>
+                              <a class="btn btn-common" data-toggle="modal" data-target="#edit_res"><i class="fa fa-edit"></i></a></span></h3>
                             <p class="sub-title">{{$res->title}}</p>
                             <p><span class="address"><i class="lni-map-marker"></i>{{$res->location}}</span> <span><i class="ti-phone"></i>{{$res->phone_number}}</span></p>
                             <div class="social-link" id="social_link">
                                 @foreach($sns = App\Socnet::where('res_id',$res->id)->get() as $sn)
-                                <a href="{{$sn->link}}" target="_blank"><i class="{{$sn->icon}}"></i></a>
+                                <span class="dropdown">
+                                  <a class="dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="{{$sn->icon}}"></i></a>
+                                  <div class="dropdown-menu dropdown-primary">
+                                    <a class="dropdown-item" href="{{$sn->link}}" target="_blank">{{__('app.View')}}</a>
+                                    <a class="dropdown-item" href="#">{{__('app.Edit')}}</a>
+                                    <a class="dropdown-item" onclick="deletesocnet({{$sn->id}})">{{__('app.Delete')}}</a>
+                                  </div>
+                                </span>
                                 @endforeach
                                 <a onclick="add_new_sn()" id="add_new_id" class="add-sn-btn"><i class="fa fa-plus"></i></a>
+                                <a onclick="add_new_sn_close()" id="add_new_id_close" class="add-sn-btn" style="display:none;"><i class="fa fa-times"></i></a>
                             </div>
                         </div>
-                          <div class="input-group addsn" id="add_sn"></div>
-                    </div>
+                        <div class="input-group addsn" id="add_sn"></div>
                     <div class="about-me item">
                         <h3>{{__('app.About')}}</h3>
                         <p>{{$res->about_me}} </p>
@@ -245,9 +253,79 @@
                     </div>
                 </div>
             </div>
+            <div id="edit_res" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5>{{__('app.Edit_resume')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                    <div class="modal-body" id="res_modal_div">
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Name')}}</label>
+                              <input type="text" class="form-control" id="full_name" value="{{$res->full_name}}" placeholder="{{__('app.Name')}}..." required>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label"></label>
+                              <label class="control-label">{{__('app.Email')}}</label>
+                              <input type="text" class="form-control" id="official_email" value="{{$res->email}}" placeholder="{{__('app.Email')}}..." required>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Profession_title')}}</label>
+                              <input type="text" class="form-control" id="title" value="{{$res->title}}" placeholder="{{__('app.Profession_title')}}..." required>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">{{__('app.Location')}}</label>
+                              <div class="search-category-container">
+                                <label class="styled-select">
+                                  @include('layouts.az_districts')
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Personal_website')}} ({{__('app.optional')}})</label>
+                              <input type="text" class="form-control" id="website" value="{{$res->website}}" placeholder="{{__('app.Personal_website')}}...">
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Username')}}</label>
+                              <input type="text" class="form-control" id="username" value="{{$res->username}}" placeholder="{{__('app.Username')}}...">
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Contact_number')}}</label>
+                              <input type="text" class="form-control" id="phone_number" value="{{$res->phone_number}}" placeholder="{{__('app.Contact_number')}}...">
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">{{__('app.Location')}}</label>
+                              <div class="search-category-container">
+                                <label class="styled-select">
+                                  <select class="dropdown-product selectpicker" id="status">
+                                    <option value="0">{{__('app.Not_active')}}</option>
+                                    <option value="1">{{__('app.Active')}}</option>
+                                  </select>
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.About_me')}}</label>
+                              <textarea id="about_me" rows="8" class="form-control" placeholder="{{__('app.About_me')}}..." required>{{$res->about_me}}</textarea>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Age')}}</label>
+                              <input type="text" class="form-control" value="{{\Carbon\Carbon::parse(Auth::user()->birthdate)->age}}" disabled>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('app.Close')}}</button>
+                            <button type="button" class="btn btn-common" onclick="editres_f()">{{__('app.Update')}}</button>
+                          </div>
+                </div>
+              </div>
+            </div>
+            </div>
             @endif
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
 @section('foot')
@@ -322,8 +400,48 @@ jQuery(document).ready(function(){
       if(!$('#job_description').val()){jQuery('#job_description').css('border','1px solid red');}
     }
   });
-});
+  jQuery('#editres').click(function(e){
 
+  });
+});
+function editres_f(){
+  $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+  var id = jQuery('#res_id').val();
+  jQuery.ajax({
+    url: "/edit-resume/"+id,
+    method: 'POST',
+    data: {
+      full_name: jQuery('#full_name').val(),
+      official_email: jQuery('#official_email').val(),
+      title: jQuery('#title').val(),
+      website: jQuery('#website').val(),
+      username: jQuery('#username').val(),
+      status: jQuery('#status').val(),
+      about: jQuery('#about_me').val(),
+      phone_number: jQuery('#phone_number').val(),
+      location: jQuery('#location').val(),
+    },
+      error: function(result){
+        if(!$('#full_name').val()) {$('#full_name').css('border','1px solid red');}
+        if(!$('#official_email').val()){$('#official_email').css('border','1px solid red');}
+        if(!$('#title').val()){$('#title').css('border','1px solid red');}
+        if(!$('#username').val()){$('#username').css('border','1px solid red');}
+        if(!$('#about_me').val()){$('#about_me').css('border','1px solid red');}
+        if(!$('#location').val()){$('#location').css('border','1px solid red');}
+    },
+    success: function(result){
+        $('#full_name').css('border','1px solid #ccc').val("");
+        $('#official_email').css('border','1px solid #ccc').val("");
+        $('#title').css('border','1px solid #ccc').val("");
+        $('#username').css('border','1px solid #ccc').val("");
+        $('#about_me').css('border','1px solid #ccc').val("");
+        $('#location').css('border','1px solid #ccc').val("");
+
+        $('#edit_res').modal('toggle');
+        $("#myResCh").load(location.href+" #myResCh>*","");
+        $("#res_modal_div").load(location.href+" #res_modal_div>*","");
+  }});
+}
 function deleteedu_function(id){
   $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
     $.ajax({
@@ -334,11 +452,19 @@ function deleteedu_function(id){
         success: function (response){
             $('#deleteedupop').modal('toggle');
             $("#myEdulist").load(location.href+" #myEdulist>*","");
-            // console.log(response);
         },
-       //  error: function(xhr) {
-       //   console.log('failed');
-       // }
+    });
+}
+function deletesocnet(id){
+  $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    $.ajax({
+        url: "/socnet/delete/"+id,
+        type: 'GET',
+        dataType: "JSON",
+        data: {"id": id },
+        success: function (response){
+            $("#social_link").load(location.href+" #social_link>*","");
+        },
     });
 }
 function deleteexp_function(id){
@@ -409,7 +535,6 @@ function add_new_socnet(){
       }});
     }
 }
-
 function deleteexp_function(id){
   $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
     $.ajax({
@@ -445,7 +570,7 @@ function deleteskill_function(id){
     });
 }
 function skilladdfunc(){
-  document.getElementById("addskillpop").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Delete_skill')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <div class='form-group'><label class='control-label'>{{__('app.Skill')}}</label><input type='text' id='skill' class='form-control' placeholder='{{__('app.Skill')}}...'></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='add_skill_func()'>{{__('app.Update')}}</a></div></div></div>";
+  document.getElementById("addskillpop").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Add_skill')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <div class='form-group'><label class='control-label'>{{__('app.Skill')}}</label><input type='text' maxlength='50' id='skill' class='form-control' placeholder='{{__('app.Skill')}}...'></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='add_skill_func()'>{{__('app.Add')}}</a></div></div></div>";
 }
 function skilleditfunc(id){
   document.getElementById("editskillpop").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Delete_skill')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <div class='form-group'><label class='control-label'>{{__('app.Skill')}}</label><input type='text' id='skill' class='form-control' placeholder='{{__('app.Skill')}}...'></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='add_skill_func()'>{{__('app.Add')}}</a></div></div></div>";
@@ -456,6 +581,13 @@ function getskilldelete(e_id){
 }
 function add_new_sn(){
   document.getElementById("add_sn").innerHTML = "<div class='input-group-prepend'><select class='type' id='socnet_site'><option value='facebook'>Facebook</option><option value='instagram'>Instagram</option><option value='linkedin'>LinkedIn</option><option value='google-plus'>Google Plus</option><option value='twitter'>Twitter</option></select></div><input type='text' class='form-control' id='socnet_url' placeholder='URL...'><button type='button' onclick='add_new_socnet()'>{{__('app.Add')}}</button>";
+  document.getElementById("add_new_id").style.display = "none";
+  document.getElementById("add_new_id_close").style.display = "";
+}
+function add_new_sn_close(){
+  document.getElementById("add_sn").innerHTML = "";
+  document.getElementById("add_new_id").style.display = "";
+  document.getElementById("add_new_id_close").style.display = "none";
 }
 </script>
 @endsection

@@ -144,6 +144,10 @@ return [
     'Surname' => 'Surname',
     'Allowed_images_formats' => '.png,.svg, .jpeg, .ico are only allowed to use',
     'Company_logo' => 'Company logo',
-    'Delete_skill' => 'Delete skill'
+    'Delete_skill' => 'Delete skill',
+    'View' => 'View',
+    'Edit_resume' => 'Edit resume',
+    'Not_active' => 'Not active',
+    'Active' => 'Active',
 
 ];

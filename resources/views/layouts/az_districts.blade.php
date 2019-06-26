@@ -1,4 +1,4 @@
-<select class="dropdown-product selectpicker" name="location">
+<select class="dropdown-product selectpicker" name="location" id="location">
   <option value="1">Ağcabədi</option>
   <option value="2">Ağdam</option>
   <option value="3">Ağdaş</option>

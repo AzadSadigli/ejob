@@ -3,7 +3,7 @@
 <head>
 <title>{{$res->full_name}}</title>
 <meta charset="UTF-8">
-<meta name="description" content="Mat - Resume & vCard HTML Template">
+<meta name="description" content="{{$res->full_name}}: {{$res->about_me}}">
 <meta name="keywords" content="personal, vcard, portfolio">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" type="image/x-icon" href="http://chittagongit.com/download/328250">
@@ -11,10 +11,7 @@
 <link rel="stylesheet" href="/css/res.css">
 </head>
 <body>
-<div id="preloader">
-    <div class="spinner">
-    </div>
-</div>
+<div id="preloader"><div class="spinner"></div></div>
 <div class="wrapper top_60 container">
 <div class="row">
 <div class="col-lg-3 col-md-4">
@@ -88,7 +85,6 @@
                     <section class="featured-properties graybg padding_50 padbot_50">
                         <div class="section-title bottom_45"><span></span><h2>Featured Properties</h2></div>
                         <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                     <figure>
@@ -105,7 +101,6 @@
                                     </figure>
                                 </a>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                     <figure>
@@ -122,7 +117,6 @@
                                     </figure>
                                 </a>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                     <figure>
@@ -139,7 +133,6 @@
                                     </figure>
                                 </a>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                     <figure>
@@ -159,12 +152,10 @@
                         </div>
                     </section>
                 </div>
-                <!-- My Services Section -->
                 <div class="row">
                     <section class="services line col-md-12 padding_50 padbot_50">
                     <div class="section-title bottom_45"><span></span><h2>My Services</h2></div>
                     <div class="row">
-                        <!-- a service -->
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="service">
                                 <div class="icon">
@@ -174,7 +165,6 @@
                                 <p class="little-text">Gregor then turned to look out the window at the dull weather.</p>
                             </div>
                         </div>
-                        <!-- a service -->
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="service">
                                 <div class="icon">
@@ -184,7 +174,6 @@
                                 <p class="little-text">A collection of textile samples lay spread out on the table.</p>
                             </div>
                         </div>
-                        <!-- a service -->
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="service">
                                 <div class="icon">
@@ -194,7 +183,6 @@
                                 <p class="little-text">One morning, when Gregor Samsa woke from troubled dreams.</p>
                             </div>
                         </div>
-                        <!-- a service -->
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="service">
                                 <div class="icon">
@@ -208,51 +196,39 @@
                 </section>
                 </div>
             </div>
-
-            <!-- Resume Page
-            ================================================== -->
             <div id="resume">
-                <!-- Resume Section -->
                 <div class="row">
                     <section class="education">
                     <div class="section-title top_30"><span></span><h2>Resume</h2></div>
                         <div class="row">
-                            <!-- Working History -->
                             <div class="working-history col-md-6 padding_15 padbot_30">
                                 <ul class="timeline col-md-12 top_30">
                                     <li><i class="fa fa-suitcase" aria-hidden="true"></i><h2 class="timeline-title">Working History</h2></li>
-                                    <!-- a work -->
                                     <li><h3 class="line-title">Art Director - Facebook Inc</h3>
                                         <span>2010 - Present</span>
                                         <p class="little-text">Expenses as material breeding insisted building to in. Continual so distrusts pronounce by unwilling listening. Thing do taste on we manor.</p>
                                     </li>
-                                   <!-- a work -->
                                     <li><h3 class="line-title">Senior Designer - Google</h3>
                                         <span>2008 - 2010</span>
                                         <p class="little-text">So insisted received is occasion advanced honoured. Among ready to which up. Attacks smiling and may out assured moments man nothing outward.</p>
                                     </li>
-                                   <!-- a work -->
                                     <li><h3 class="line-title">Junior Designer - Creative Shake</h3>
                                         <span>2005 - 2008</span>
                                         <p class="little-text">Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract.</p>
                                     </li>
                                 </ul>
                             </div>
-                            <!-- Education History -->
                             <div class="education-history col-md-6 padding_15 padbot_30">
                                 <ul class="timeline col-md-12 top_30">
                                     <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><h2 class="timeline-title">Education History</h2></li>
-                                    <!-- a work -->
                                     <li><h3 class="line-title">Abc University of Los Angeles</h3>
                                         <span>2004 - 2009</span>
                                         <p class="little-text">Expenses as material breeding insisted building to in. Continual so distrusts pronounce by unwilling listening. Thing do taste on we manor.</p>
                                     </li>
-                                   <!-- a work -->
                                     <li><h3 class="line-title">Drawing Course</h3>
                                         <span>2003 - 2004</span>
                                         <p class="little-text">So insisted received is occasion advanced honoured. Among ready to which up. Attacks smiling and may out assured moments man nothing outward.</p>
                                     </li>
-                                   <!-- a work -->
                                     <li><h3 class="line-title">Abc High School</h3>
                                         <span>2000 - 2003</span>
                                         <p class="little-text">Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract.</p>
@@ -262,7 +238,6 @@
                         </div>
                     </section>
                 </div>
-                <!-- Clients Section -->
                 <div class="row">
                     <section class="clients col-md-12 graybg padding_45 padbot_45">
                         <div class="section-title bottom_30"><span></span><h2>Clients</h2></div>
@@ -290,12 +265,10 @@
                         </div>
                     </section>
                 </div>
-                <!-- Testimonials -->
                 <div class="row">
                     <section class="testimonials bottom_30">
                         <div class="section-title top_60 bottom_30"><span></span><h2>Testimonials</h2></div>
                         <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -311,7 +284,6 @@
                                     <p>Great designer! he finished our work wonderfully and just in time. thanks for everything.</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -327,7 +299,6 @@
                                     <p>Our logo and business card design look great. Thanks Henry</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -343,7 +314,6 @@
                                     <p>Henry is a very creative and talented designer. I do not hesitate to work again.</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -359,7 +329,6 @@
                                     <p>Great designer! he finished our work wonderfully and just in time. thanks for everything.</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -375,7 +344,6 @@
                                     <p>Our logo and business card design look great. Thanks Henry</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -391,7 +359,6 @@
                                     <p>Henry is a very creative and talented designer. I do not hesitate to work again.</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -407,7 +374,6 @@
                                     <p>Great designer! he finished our work wonderfully and just in time. thanks for everything.</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -423,7 +389,6 @@
                                     <p>Our logo and business card design look great. Thanks Henry</p>
                                 </div>
                             </div>
-                            <!-- a item -->
                             <div class="col-md-12 item">
                                 <div class="comment">
                                     <div class="top-section">
@@ -443,21 +408,17 @@
                     </section>
                 </div>
             </div>
-            <!-- portfolio Page
-            ================================================== -->
             <div id="portfolio" class="row bottom_45">
                 <section class="col-md-12">
                     <div class="col-md-12 content-header bottom_15">
                         <div class="section-title top_30 bottom_30"><span></span><h2>Portfolio</h2></div>
                         <div id="filters-container">
-                            <!-- '*' means shows all item elements -->
                             <div data-filter="*" class="cbp-filter-item cbp-filter-item-active">All</div>
                             <div data-filter=".sale" class="cbp-filter-item">For Sale</div>
                             <div data-filter=".rent" class="cbp-filter-item">For Rent</div>
                         </div>
                     </div>
                     <div id="grid-container" class="top_60">
-                        <!-- a work -->
                         <div class="cbp-item rent">
                             <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                 <figure>
@@ -474,7 +435,6 @@
                                 </figure>
                             </a>
                         </div>
-                        <!-- a work -->
                         <div class="cbp-item sale">
                             <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                 <figure>
@@ -491,7 +451,6 @@
                                 </figure>
                             </a>
                         </div>
-                        <!-- a work -->
                         <div class="cbp-item rent">
                             <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                 <figure>
@@ -508,7 +467,6 @@
                                 </figure>
                             </a>
                         </div>
-                        <!-- a work -->
                         <div class="cbp-item rent">
                             <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                 <figure>
@@ -525,7 +483,6 @@
                                 </figure>
                             </a>
                         </div>
-                        <!-- a work -->
                         <div class="cbp-item sale">
                             <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                 <figure>
@@ -542,7 +499,6 @@
                                 </figure>
                             </a>
                         </div>
-                        <!-- a work -->
                         <div class="cbp-item rent">
                             <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
                                 <figure>
@@ -560,7 +516,6 @@
                             </a>
                         </div>
                     </div>
-                    <!-- load more button -->
                     <div id="js-loadMore-agency" class="cbp-l-loadMore-button top_30">
                         <a href="load-more/portfolio.html" class="cbp-l-loadMore-link site-btn" rel="nofollow">
                             <span class="cbp-l-loadMore-defaultText">Load More (<span class="cbp-l-loadMore-loadItems">3</span>)</span>
@@ -577,7 +532,6 @@
                             <div class="section-title top_30 bottom_15"><span></span><h2>Blog Posts</h2></div>
                         </div>
                         <div id="grid-blog" class="row">
-                            <!-- a blog -->
                             <div class="cbp-item">
                                 <a href="blog-posts/blog-1.html" class="blog-box">
                                     <div class="blog-img">
@@ -591,7 +545,6 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- a blog -->
                             <div class="cbp-item">
                                 <a href="blog-posts/blog-video-version.html" class="blog-box">
                                     <div class="blog-img">
@@ -605,7 +558,6 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- a blog -->
                             <div class="cbp-item">
                                 <a href="blog-posts/blog-music-version.html" class="blog-box">
                                     <div class="blog-img">
@@ -619,7 +571,6 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- a blog -->
                             <div class="cbp-item">
                                 <a href="blog-posts/blog-video-version.html" class="blog-box">
                                     <div class="blog-img">
@@ -633,7 +584,6 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- a blog -->
                             <div class="cbp-item">
                                 <a href="blog-posts/blog-1.html" class="blog-box">
                                     <div class="blog-img">
@@ -647,7 +597,6 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- a blog -->
                             <div class="cbp-item">
                                 <a href="blog-posts/blog-1.html" class="blog-box">
                                     <div class="blog-img">
@@ -662,7 +611,6 @@
                                 </a>
                             </div>
                         </div>
-                        <!-- load more button -->
                         <div id="load-posts" class="cbp-l-loadMore-button top_60">
                             <a href="load-more/blog-posts.html" class="cbp-l-loadMore-link site-btn" rel="nofollow">
                                 <span class="cbp-l-loadMore-defaultText">Load More (<span class="cbp-l-loadMore-loadItems">3</span>)</span>
@@ -694,7 +642,6 @@
                             </div>
                         </form>
                     </section>
-                    <!-- Contact Informations -->
                     <section class="contact-info col-md-6 padding_30 padbot_45">
                         <div class="section-title top_15 bottom_30"><span></span><h2>Contact Informations</h2></div>
                         <ul>
@@ -713,17 +660,15 @@
                             </li>
                         </ul>
                     </section>
-                    <!-- Contact Map -->
                     <section class="contact-map col-md-12 top_15 bottom_15">
                         <div class="section-title bottom_30"><span></span><h2>Contact Map.</h2></div>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24396.455763004884!2d-115.13108354428735!3d36.18912977254862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos+Angeles%2C+Kaliforniya%2C+Birle%C5%9Fik+Devletler!5e0!3m2!1str!2str!4v1509525039851" height="350" style="border:0" allowfullscreen></iframe>
                     </section>
                 </div>
             </div>
-
-        </div><!-- Content - End -->
-     </div> <!-- col-md-12 end -->
-</div><!-- row end -->
+        </div>
+     </div>
+</div>
 <footer>
     <div class="footer col-md-12 top_30 bottom_30">
         <div class="name col-md-4 hidden-md hidden-sm hidden-xs">{{__('app.Online_Resume')}}</div>

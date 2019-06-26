@@ -209,7 +209,7 @@
             </div>
             @endforeach
             <div class="col-12 text-center mt-4">
-                <a href="job-page.html" class="btn btn-common">Browse All Jobs</a>
+                <a href="/jobs" class="btn btn-common">Browse All Jobs</a>
             </div>
         </div>
     </div>
@@ -526,7 +526,7 @@ AmazeSoft
                 <div class="counter-box">
                     <div class="icon"><i class="lni-home"></i></div>
                     <div class="fact-count">
-                        <h3><span class="counter">800</span></h3>
+                        <h3><span class="counter">{{App\Vacancy::all()->count()}}</span></h3>
                         <p>Jobs Posted</p>
                     </div>
                 </div>
@@ -546,7 +546,7 @@ AmazeSoft
                 <div class="counter-box">
                     <div class="icon"><i class="lni-pencil-alt"></i></div>
                     <div class="fact-count">
-                        <h3><span class="counter">900</span></h3>
+                        <h3><span class="counter">{{App\Resume::all()->count()}}</span></h3>
                         <p>Resumes</p>
                     </div>
                 </div>
@@ -562,67 +562,6 @@ AmazeSoft
                 </div>
             </div>
 
-        </div>
-    </div>
-</section>
-
-<section id="blog" class="section">
-
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Blog Post</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et
-                <br> metus effici turac fringilla lorem facilisis.</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-
-                <div class="blog-item-wrapper">
-                    <div class="blog-item-img">
-                        <a href="single-post.html">
-                            <img src="assets/img/blog/img1.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-item-text">
-                        <h3><a href="single-post.html">Tips to write an impressive resume online for beginner</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.</p>
-                    </div>
-                    <a class="readmore" href="#">Read More</a>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-
-                <div class="blog-item-wrapper">
-                    <div class="blog-item-img">
-                        <a href="single-post.html">
-                            <img src="assets/img/blog/img2.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-item-text">
-                        <h3><a href="single-post.html">Let's explore 5 cool new features in JobBoard theme</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.</p>
-                    </div>
-                    <a class="readmore" href="#">Read More</a>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-
-                <div class="blog-item-wrapper">
-                    <div class="blog-item-img">
-                        <a href="single-post.html">
-                            <img src="assets/img/blog/img3.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-item-text">
-                        <h3><a href="single-post.html">How to convince recruiters and get your dream job</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.</p>
-                    </div>
-                    <a class="readmore" href="#">Read More</a>
-                </div>
-
-            </div>
         </div>
     </div>
 </section>
