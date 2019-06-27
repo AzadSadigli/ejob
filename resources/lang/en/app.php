@@ -153,6 +153,14 @@ return [
     'Education_History' => 'Education History',
     'Send' => 'Send',
     'Phone' => 'Phone',
-    'Show' => 'Show'
+    'Show' => 'Show',
+    'Portfolio' => 'Portfolio',
+    'Message' => 'Message',
+    'Contact_via_resume' => 'Contact via resume',
+    'Contact_name' => 'Contact name',
+    'Contact_email' => 'Contact email',
+    'Message_sent_successfully' => 'Message sent successfully',
+    'Companies' => 'Companies',
+    'Jobs' => 'Jobs',
 
 ];

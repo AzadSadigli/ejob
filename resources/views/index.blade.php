@@ -527,7 +527,7 @@ AmazeSoft
                     <div class="icon"><i class="lni-home"></i></div>
                     <div class="fact-count">
                         <h3><span class="counter">{{App\Vacancy::all()->count()}}</span></h3>
-                        <p>Jobs Posted</p>
+                        <p>{{__('app.Jobs')}}</p>
                     </div>
                 </div>
             </div>
@@ -536,8 +536,8 @@ AmazeSoft
                 <div class="counter-box">
                     <div class="icon"><i class="lni-briefcase"></i></div>
                     <div class="fact-count">
-                        <h3><span class="counter">80</span></h3>
-                        <p>All Companies</p>
+                        <h3><span class="counter">{{DB::table('vacancies')->distinct('company')->count('company')}}</span></h3>
+                        <p>{{__('app.Companies')}}</p>
                     </div>
                 </div>
             </div>
@@ -547,7 +547,7 @@ AmazeSoft
                     <div class="icon"><i class="lni-pencil-alt"></i></div>
                     <div class="fact-count">
                         <h3><span class="counter">{{App\Resume::all()->count()}}</span></h3>
-                        <p>Resumes</p>
+                        <p>{{__('app.Resumes')}}</p>
                     </div>
                 </div>
             </div>

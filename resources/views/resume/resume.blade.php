@@ -48,9 +48,9 @@
                             </p>
                             <div class="action-btn" id="resume_act{{$resume->id}}">
                                 @if($resume->status == 1)
-                                <a class="btn btn-xs btn-gray" onclick="hide_my_res({{$resume->id}})">{{__('app.Hide')}}</a>
+                                <a class="btn btn-xs btn-gray" onclick="hide_my_res({{$resume->id}})"><span id="loading{{$resume->id}}"></span> {{__('app.Hide')}}</a>
                                 @else
-                                <a class="btn btn-xs btn-gray" onclick="show_my_res({{$resume->id}})">{{__('app.Show')}}</a>
+                                <a class="btn btn-xs btn-gray" onclick="show_my_res({{$resume->id}})"><span id="loading{{$resume->id}}"></span> {{__('app.Show')}}</a>
                                 @endif
                                 <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteresume{{$resume->id}}">{{__('app.Delete')}}</a>
                             </div>
@@ -110,6 +110,7 @@
                                 @endforeach
                                 <a onclick="add_new_sn()" id="add_new_id" class="add-sn-btn"><i class="fa fa-plus"></i></a>
                                 <a onclick="add_new_sn_close()" id="add_new_id_close" class="add-sn-btn" style="display:none;"><i class="fa fa-times"></i></a>
+                                <img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:15px;display:none;'>
                             </div>
                         </div>
                         <div class="input-group addsn" id="add_sn"></div>
@@ -408,6 +409,7 @@ jQuery(document).ready(function(){
 });
 function editres_f(){
   $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+  $('#loading-image').show();
   var id = jQuery('#res_id').val();
   jQuery.ajax({
     url: "/edit-resume/"+id,
@@ -442,7 +444,11 @@ function editres_f(){
         $('#edit_res').modal('toggle');
         $("#myResCh").load(location.href+" #myResCh>*","");
         $("#res_modal_div").load(location.href+" #res_modal_div>*","");
-  }});
+    },
+    complete: function(){
+      $('#loading-image').hide();
+    }
+  });
 }
 function deleteedu_function(id){
   $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
@@ -459,6 +465,7 @@ function deleteedu_function(id){
 }
 function deletesocnet(id){
   $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+  $('#loading-image').show();
     $.ajax({
         url: "/socnet/delete/"+id,
         type: 'GET',
@@ -467,6 +474,9 @@ function deletesocnet(id){
         success: function (response){
             $("#social_link").load(location.href+" #social_link>*","");
         },
+        complete: function(){
+          $('#loading-image').hide();
+        }
     });
 }
 function deleteexp_function(id){
@@ -517,6 +527,7 @@ function add_skill_func(){
 function add_new_socnet(){
     if (jQuery('#socnet_site').val() != "" & jQuery('#socnet_url').val() != "" & jQuery('#res_id').val() != "") {
       $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+      $('#loading-image').show();
       jQuery.ajax({
         url: "/add-social-network",
         method: 'POST',
@@ -534,7 +545,11 @@ function add_new_socnet(){
             document.getElementById("add_sn").innerHTML = "";
             $("#social_link").load(location.href+" #social_link>*","");
             console.log('success');
-      }});
+        },
+        complete: function(){
+          $('#loading-image').hide();
+        }
+      });
     }
 }
 function deleteexp_function(id){
@@ -593,6 +608,8 @@ function add_new_sn_close(){
 }
 function hide_my_res(id){
     $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    document.getElementById("loading"+id).innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:15px;display:none;'>"
+    $('#loading-image').show();
     jQuery.ajax({
       url: "/hide-resume/"+id,
       method: 'POST',
@@ -600,10 +617,17 @@ function hide_my_res(id){
       },
       success: function(result){
         $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
-    }});
+      },
+      complete: function(){
+        $('#loading-image').hide();
+        document.getElementById("loading"+id).innerHTML = ""
+      }
+    });
 }
 function show_my_res(id){
   $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+  document.getElementById("loading"+id).innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:15px;display:none;'>"
+  $('#loading-image').show();
   jQuery.ajax({
     url: "/show-resume/"+id,
     method: 'POST',
@@ -611,7 +635,12 @@ function show_my_res(id){
     },
     success: function(result){
       $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
-  }});
+    },
+    complete: function(){
+      $('#loading-image').hide();
+      document.getElementById("loading"+id).innerHTML = ""
+    }
+  });
 }
 </script>
 @endsection

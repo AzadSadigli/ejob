@@ -12,6 +12,26 @@ class JobController extends Controller
       $vac = Vacancy::where('vac_id',$id)->first();
       return view('job.jobdetails',compact('vac'));
     }
+    public function hideres(Request $req,$id){
+      $vac = Vacancy::find($id);
+      if ($vac->user_id == Auth::user()->id) {
+        $vac->status = 0;
+        $vac->update();
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }else{
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }
+    }
+    public function showres(Request $req,$id){
+      $vac = Vacancy::find($id);
+      if ($vac->user_id == Auth::user()->id) {
+        $vac->status = 1;
+        $vac->update();
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }else{
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }
+    }
     public function all_my_vacancies(){
       $vacs = Vacancy::where('user_id',Auth::user()->id)->get();
       return view('job.myjobs',compact('vacs'));

@@ -20,6 +20,7 @@ Route::get('/jobs','JobController@jobs');
 Route::get('/add-vacancy','JobController@addvacancy');
 Route::post('/add-new-vacancy','JobController@addjob');
 Route::get('/r/{id}','ResumeController@getresume');
+Route::post('/send-resume-message','ResumeController@sendmess');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -38,6 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/hide-resume/{id}','ResumeController@hideres');
     Route::post('/show-resume/{id}','ResumeController@showres');
+
+    Route::post('/hide-vacancy/{id}','JobController@hideres');
+    Route::post('/show-vacancy/{id}','JobController@showres');
 
     Route::post('/add-new-skill','ResumeController@addskill');
     Route::get('/skill/delete/{id}','ResumeController@deleteskill');
@@ -63,3 +67,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Auth::routes();
+Route::get('{id}','ResumeController@getresume');

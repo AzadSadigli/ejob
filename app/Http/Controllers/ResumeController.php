@@ -13,10 +13,21 @@ use DB;
 use Hash;
 use App\Socnet;
 use App\Skill;
+use App\Mail\Contact;
+use Mail;
 class ResumeController extends Controller
 {
     public function addresume(){
       return view('resume.add-resume');
+    }
+    public function sendmess(Request $req){
+      $data = array(
+        'name' => $req->c_name,
+        'email' => $req->c_email,
+        'message' => $req->c_body,
+      );
+      Mail::to($req->official_email)->send(new Contact($data));
+      return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
     }
     public function deletesocnet($id){
       Socnet::find($id)->delete($id);

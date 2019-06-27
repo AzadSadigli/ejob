@@ -6,19 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
-class Welcome extends Mailable
+use Lang;
+class Contact extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +30,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('view.mails.job_seeker');
+        return $this->from(config("settings.contact_email"))->subject(Lang::get("app.Contact_via_resume"))->view("contact")->with("data",$this->data  );
     }
 }

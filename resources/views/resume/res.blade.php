@@ -6,6 +6,7 @@
 <meta name="description" content="{{$res->full_name}}: {{$res->about_me}}">
 <meta name="keywords" content="personal, vcard, portfolio">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="shortcut icon" type="image/x-icon" href="http://chittagongit.com/download/328250">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="/css/res.css">
@@ -18,7 +19,7 @@
   }
 </style>
 </head>
-<body>
+<body style="background-image: url('https://ak2.picdn.net/shutterstock/videos/5600852/thumb/1.jpg');background-color: #cccccc;">
 <div id="preloader"><div class="spinner"></div></div>
 <div class="wrapper top_60 container">
 <div class="row">
@@ -37,6 +38,7 @@
             <li><p><span>{{__('app.Birthday')}}:</span> @php($user = App\User::find($res->user_id)) {{\Carbon\Carbon::parse($user->birthdate)->format('d M Y')}}</p></li>
             <li><p><span>{{__('app.Current_Job')}}:</span> {{__('app.None')}}</p></li>
             <li><p><span>{{__('app.Email')}}:</span> {{$res->email}}</p></li>
+            <input type="hidden" id="official_email" value="{{$res->email}}">
             <li>
               @foreach($sns = App\Socnet::where('res_id',$res->id)->get() as $sn)
                 <a class="scnet" href="{{$sn->link}}" target="_blank"><i class="{{$sn->icon}}" aria-hidden="true"></i></a>
@@ -60,9 +62,9 @@
                         <li class="tab">
                             <a class="home-btn" href="#home"><i class="fa fa-home" aria-hidden="true"></i></a>
                         </li>
-                        <li class="tab"><a href="#resume">{{__('app.Resume')}}</a></li>
-                        <li class="tab"><a href="#portfolio">PORTFOLIO</a></li>
-                        <li class="tab"><a href="#blog">BLOG</a></li>
+                        <!-- <li class="tab"><a href="#resume">{{__('app.Resume')}}</a></li> -->
+                        <li class="tab"><a href="#portfolio">{{__('app.Portfolio')}}</a></li>
+                        <!-- <li class="tab"><a href="#blog">BLOG</a></li> -->
                         <li class="tab"><a href="#contact">{{__('app.Contact')}}</a></li>
                         @if(Auth::check())
                           @if($res->user_id == Auth::user()->id)
@@ -132,7 +134,7 @@
                 </div>
                 @endif
             </div>
-            <div id="resume">
+            <div id="">
                 <div class="row">
                     <section class="education">
                     <div class="section-title top_30"><span></span><h2>{{__('app.Resume')}}</h2></div>
@@ -285,18 +287,19 @@
                     <section class="contact-form col-md-6 padding_30 padbot_45">
                         <div class="section-title top_15 bottom_30"><span></span><h2>{{__('app.Contact')}}</h2></div>
                         <form class="site-form">
+                          <div class="alert alert-success" id="mlsent" role="alert" style="display:none;">{{__('app.Message_sent_successfully')}}</div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input class="site-input" placeholder="{{__('app.Name')}}...">
+                                    <input type="text" class="site-input" id="c_name" placeholder="{{__('app.Name')}}...">
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="site-input" placeholder="{{__('app.Email')}}...">
+                                    <input type="email" class="site-input" id="c_email" placeholder="{{__('app.Email')}}...">
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="site-area" placeholder="{{__('app.Message')}}..."></textarea>
+                                    <textarea class="site-area" id="c_body" placeholder="{{__('app.Message')}}..." maxlength="500"></textarea>
                                 </div>
                                 <div class="col-md-12 top_15 bottom_30">
-                                    <button class="site-btn" type="submit">{{__('app.Send')}}</button>
+                                    <button class="site-btn" type="button" onclick="sendmess()">{{__('app.Send')}}</button>
                                 </div>
                             </div>
                         </form>
@@ -340,5 +343,37 @@
 <script src="/assets/res/js/Demo.js"></script> -->
 <!-- <link rel="stylesheet" href="css/Demo.min.css" /> -->
 <script src="/js/res.js"></script>
+<script type="text/javascript">
+function sendmess(){
+    if (jQuery('#c_name').val() != "" & jQuery('#official_email').val() != "" & jQuery('#c_email').val() != "" & jQuery('#c_body').val() != "") {
+      $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+      jQuery.ajax({
+        url: "/send-resume-message",
+        method: 'POST',
+        data: {
+          c_name: jQuery('#c_name').val(),
+          c_email: jQuery('#c_email').val(),
+          official_email: jQuery('#official_email').val(),
+          c_body: jQuery('#c_body').val(),
+        },
+        error: function(result){
+            console.log('error');
+            $("#mlsent").css("display","none");
+        },
+        success: function(result){
+            jQuery('#c_email').css('border-bottom','1px solid #dfdfdf').val("");
+            jQuery('#c_name').css('border-bottom','1px solid #dfdfdf').val("");
+            jQuery('#c_body').css('border-bottom','1px solid #dfdfdf').val("");
+            $("#mlsent").css("display","");
+            console.log('success');
+      }});
+    }else{
+          if(!$('#c_name').val()){jQuery('#c_name').css('border-bottom','2px solid red');}
+          if(!$('#c_email').val()){jQuery('#c_email').css('border-bottom','2px solid red');}
+          if(!$('#c_body').val()){jQuery('#c_body').css('border-bottom','2px solid red');}
+    }
+}
+setTimeout( function(){$("#mlsent").hide();} , 4000);
+</script>
 </body>
 </html>
