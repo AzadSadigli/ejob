@@ -25,13 +25,9 @@ class JobController extends Controller
     }
     public function test(){
       $num = rand(10000000,20000000);
-      while ($num != 15000000) {
+      while (Vacancy::where('vac_id',$num)->count() != 0) {
         $num = rand(10000000,20000000);
       }
-      // $token = md5(microtime().Auth::user()->id);
-      // while ($token == '015e6dd94c52d8413db8ea8444912bdf') {
-      //   $token = md5(microtime());
-      // }
       echo $num;
     }
     public function addjob(Request $req){

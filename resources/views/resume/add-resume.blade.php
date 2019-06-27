@@ -30,15 +30,23 @@
                           <div class="form-group">
                               <label class="control-label">{{__('app.Name')}}</label>
                               <input type="text" class="form-control" name="full_name" value="{{Auth::user()->name}} {{Auth::user()->surname}}" placeholder="{{__('app.Name')}}..." required>
+                              @error('full_name')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
                           <div class="form-group">
-                              <label class="control-label"></label>
                               <label class="control-label">{{__('app.Email')}}</label>
                               <input type="text" class="form-control" name="official_email" value="{{Auth::user()->email}}" placeholder="{{__('app.Email')}}..." required>
+                              @error('official_email')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.Profession_title')}}</label>
                               <input type="text" class="form-control" name="title" placeholder="{{__('app.Profession_title')}}..." required>
+                              @error('title')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
                           <div class="form-group">
                             <label class="control-label">{{__('app.Location')}}</label>
@@ -47,18 +55,30 @@
                                 @include('layouts.az_districts')
                                 </label>
                               </div>
+                              @error('location')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.Personal_website')}} ({{__('app.optional')}})</label>
                               <input type="text" class="form-control" name="website" value="http://" placeholder="{{__('app.Personal_website')}}...">
+                              @error('website')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.Contact_number')}}</label>
                               <input type="text" class="form-control" id="phoneNumber" name="phone_number" placeholder="{{__('app.Contact_number')}}...">
+                              @error('phone_number')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.About_me')}}</label>
                               <textarea name="about" rows="8" class="form-control" placeholder="{{__('app.About_me')}}..." required></textarea>
+                              @error('about')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
                           <div class="form-group">
                               <label class="control-label">{{__('app.Age')}}</label>
@@ -83,8 +103,11 @@
                                   </select>
                                 </label>
                               </div>
+                              @error('skills')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
                           </div>
-                        <div class="pull-right" style="height:50px;">
+                        <div class="pull-right">
                           <button type="submit" class="btn btn-common">{{__('app.Next')}} <i class="fa fa-chevron-right"></i> </button>
                         </div>
                     </form>
@@ -103,23 +126,5 @@ $(function () {
   $('.select2').select2()
 })
 $('#phoneNumber').inputmask("(+999) 99 999-99-99");
-// $(function() {
-// 	$('#website').inputmask('url');
-//   Inputmask.extendAliases({
-//     url: {
-//       definitions: {
-//         i: {
-//           validator: ".",
-//           cardinality: 1
-//         }
-//       },
-//       mask: "(\\http\\s://)|(\\http://)|(ftp://)|(ftp\\s://)i{+}",
-//       insertMode: !1,
-//       autoUnmask: !1
-//     }
-//   });
-//   $('#test2').inputmask('url');
-// });
-
 </script>
 @endsection

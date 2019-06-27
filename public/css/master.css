@@ -16747,7 +16747,7 @@ box-shadow: 0px 0px 9px 2px rgba(28,196,247,0.5);
 }
 
 .manager-resumes-item .btn-gray {
-    color: #818a91
+    color: #818a91 !important;
 }
 
 .manager-resumes-item .btn-gray:hover {

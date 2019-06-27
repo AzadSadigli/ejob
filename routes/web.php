@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/edit-resume/{id}','ResumeController@editresume');
 
+    Route::post('/hide-resume/{id}','ResumeController@hideres');
+    Route::post('/show-resume/{id}','ResumeController@showres');
+
     Route::post('/add-new-skill','ResumeController@addskill');
     Route::get('/skill/delete/{id}','ResumeController@deleteskill');
 

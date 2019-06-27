@@ -35,10 +35,10 @@
                             <div class="manager-info">
                                 <div class="manager-name">
                                     <h4><a href="/my-resume/{{$resume->id}}">{{$resume->full_name}}</a> </h4>
-                                    <h5>{{$resume->position}}</h5>
+                                    <h5>{{$resume->title}}</h5>
                                 </div>
                                 <div class="manager-meta">
-                                    <span class="location"><i class="lni-map-marker"></i> {{$resume->title}}</span>
+                                    <span class="location"><i class="lni-map-marker"></i> {{$resume->location}}</span>
                                 </div>
                             </div>
                         </div>
@@ -46,9 +46,12 @@
                             <p class="status">
                                 {!! trans('app.Updated_on_resume',['date' => $resume->updated_at->format('M d, Y')]) !!}
                             </p>
-                            <div class="action-btn">
-                                <a class="btn btn-xs btn-gray" href="#">{{__('app.Hide')}}</a>
-                                <a class="btn btn-xs btn-gray" href="#">{{__('app.Edit')}}</a>
+                            <div class="action-btn" id="resume_act{{$resume->id}}">
+                                @if($resume->status == 1)
+                                <a class="btn btn-xs btn-gray" onclick="hide_my_res({{$resume->id}})">{{__('app.Hide')}}</a>
+                                @else
+                                <a class="btn btn-xs btn-gray" onclick="show_my_res({{$resume->id}})">{{__('app.Show')}}</a>
+                                @endif
                                 <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteresume{{$resume->id}}">{{__('app.Delete')}}</a>
                             </div>
                         </div>
@@ -401,7 +404,6 @@ jQuery(document).ready(function(){
     }
   });
   jQuery('#editres').click(function(e){
-
   });
 });
 function editres_f(){
@@ -588,6 +590,28 @@ function add_new_sn_close(){
   document.getElementById("add_sn").innerHTML = "";
   document.getElementById("add_new_id").style.display = "";
   document.getElementById("add_new_id_close").style.display = "none";
+}
+function hide_my_res(id){
+    $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    jQuery.ajax({
+      url: "/hide-resume/"+id,
+      method: 'POST',
+        error: function(result){console.log("error");
+      },
+      success: function(result){
+        $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
+    }});
+}
+function show_my_res(id){
+  $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+  jQuery.ajax({
+    url: "/show-resume/"+id,
+    method: 'POST',
+      error: function(result){console.log("error");
+    },
+    success: function(result){
+      $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
+  }});
 }
 </script>
 @endsection

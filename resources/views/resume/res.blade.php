@@ -86,77 +86,7 @@
                     <p class="top_30">{{$res->about_me}}</p>
                 </section>
                 </div>
-                <div class="row">
-                    <section class="featured-properties graybg padding_50 padbot_50">
-                        <div class="section-title bottom_45"><span></span><h2>Featured Properties</h2></div>
-                        <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
-                            <div class="col-md-12 item">
-                                <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
-                                    <figure>
-                                        <div class="imgout">
-                                            <span class="type">For Sale</span>
-                                            <span class="price">$720,000</span>
-                                            <img src="/images/works/work-05.jpg" alt="" >
-                                        </div>
-                                        <figcaption>
-                                            <span class="title">Royale Uptown</span><br/>
-                                            <span class="info"><i class="fa fa-map-marker" aria-hidden="true"></i> 6 bisshot Ave. Bronx, NY</span>
-                                            <div class="features"><span>Area:</span> 140 m2 <span>Beds:</span> 2 <span>Baht:</span> 1</div>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="col-md-12 item">
-                                <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
-                                    <figure>
-                                        <div class="imgout">
-                                            <span class="type">For Rent</span>
-                                            <span class="price">$900/mo</span>
-                                            <img src="/images/works/work-06.jpg" alt="" >
-                                        </div>
-                                        <figcaption>
-                                            <span class="title">Palladium Uptown</span><br/>
-                                            <span class="info"><i class="fa fa-map-marker" aria-hidden="true"></i> 6 bisshot Ave. Bronx, NY</span>
-                                            <div class="features"><span>Area:</span> 140 m2 <span>Beds:</span> 2 <span>Baht:</span> 1</div>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="col-md-12 item">
-                                <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
-                                    <figure>
-                                        <div class="imgout">
-                                            <span class="type">For Sale</span>
-                                            <span class="price">$420,000</span>
-                                            <img src="/images/works/work-02.jpg" alt="" >
-                                        </div>
-                                        <figcaption>
-                                            <span class="title">Meridian Apartment</span><br/>
-                                            <span class="info"><i class="fa fa-map-marker" aria-hidden="true"></i> 6 bisshot Ave. Bronx, NY</span>
-                                            <div class="features"><span>Area:</span> 140 m2 <span>Beds:</span> 2 <span>Baht:</span> 1</div>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="col-md-12 item">
-                                <a href="portfolio-detail/work-03.html" class="estate cbp-singlePage">
-                                    <figure>
-                                        <div class="imgout">
-                                            <span class="type">For Rent</span>
-                                            <span class="price">$800/mo</span>
-                                            <img src="/images/works/work-04.jpg" alt="" >
-                                        </div>
-                                        <figcaption>
-                                            <span class="title">Starcity Apartment</span><br/>
-                                            <span class="info"><i class="fa fa-map-marker" aria-hidden="true"></i> 77 Contry St. Panama City, FL</span>
-                                            <div class="features"><span>Area:</span> 140 m2 <span>Beds:</span> 2 <span>Baht:</span> 1</div>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                @if(2==4)
                 <div class="row">
                     <section class="services line col-md-12 padding_50 padbot_50">
                     <div class="section-title bottom_45"><span></span><h2>My Services</h2></div>
@@ -200,11 +130,12 @@
                     </div>
                 </section>
                 </div>
+                @endif
             </div>
             <div id="resume">
                 <div class="row">
                     <section class="education">
-                    <div class="section-title top_30"><span></span><h2>Resume</h2></div>
+                    <div class="section-title top_30"><span></span><h2>{{__('app.Resume')}}</h2></div>
                         <div class="row">
                             <div class="working-history col-md-6 padding_15 padbot_30">
                                 <ul class="timeline col-md-12 top_30">
@@ -227,175 +158,6 @@
                                     </li>
                                     @endforeach
                                 </ul>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="row">
-                    <section class="clients col-md-12 graybg padding_45 padbot_45">
-                        <div class="section-title bottom_30"><span></span><h2>Clients</h2></div>
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="client">
-                                    <img src="/images/client-01.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="client">
-                                    <img src="/images/client-02.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="client">
-                                    <img src="/images/client-03.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="client">
-                                    <img src="/images/client-04.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="row">
-                    <section class="testimonials bottom_30">
-                        <div class="section-title top_60 bottom_30"><span></span><h2>Testimonials</h2></div>
-                        <div class="owl-carousel row" data-items="3" data-autoplay="3000" data-pagination="true">
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-1.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">Jack Garratt</span>
-                                            <span class="job">Freelancer</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Great designer! he finished our work wonderfully and just in time. thanks for everything.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-2.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">April M. Griffin</span>
-                                            <span class="job">Founder</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Our logo and business card design look great. Thanks Henry</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-3.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">Larry M. Johnson</span>
-                                            <span class="job">Freelancer</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Henry is a very creative and talented designer. I do not hesitate to work again.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-1.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">Jack Garratt</span>
-                                            <span class="job">Freelancer</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Great designer! he finished our work wonderfully and just in time. thanks for everything.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-2.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">April M. Griffin</span>
-                                            <span class="job">Founder</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Our logo and business card design look great. Thanks Henry</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-3.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">Larry M. Johnson</span>
-                                            <span class="job">Freelancer</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Henry is a very creative and talented designer. I do not hesitate to work again.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-1.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">Jack Garratt</span>
-                                            <span class="job">Freelancer</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Great designer! he finished our work wonderfully and just in time. thanks for everything.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-2.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">April M. Griffin</span>
-                                            <span class="job">Founder</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Our logo and business card design look great. Thanks Henry</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 item">
-                                <div class="comment">
-                                    <div class="top-section">
-                                        <figure>
-                                            <img src="/images/testimonial-3.jpg" alt="">
-                                        </figure>
-                                        <div class="name-info">
-                                            <span class="name">Larry M. Johnson</span>
-                                            <span class="job">Freelancer</span>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p>Henry is a very creative and talented designer. I do not hesitate to work again.</p>
-                                </div>
                             </div>
                         </div>
                     </section>
@@ -518,116 +280,20 @@
                     </div>
                 </section>
             </div>
-            <div id="blog">
-                <div class="row">
-                    <section class="blog col-md-12 bottom_30">
-                        <div class="col-md-12 content-header">
-                            <div class="section-title top_30 bottom_15"><span></span><h2>Blog Posts</h2></div>
-                        </div>
-                        <div id="grid-blog" class="row">
-                            <div class="cbp-item">
-                                <a href="blog-posts/blog-1.html" class="blog-box">
-                                    <div class="blog-img">
-                                        <img src="/images/blogs/blog-6.jpg" alt="">
-                                    </div>
-                                    <div class="blog-box-info">
-                                        <span class="category">General</span>
-                                        <h2 class="title">See my current workspace</h2>
-                                        <p class="little-text">The first thing to remember about success is that it is a process.</p>
-                                        <span class="date">8 Nov 17</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="cbp-item">
-                                <a href="blog-posts/blog-video-version.html" class="blog-box">
-                                    <div class="blog-img">
-                                        <img src="/images/blogs/blog-2.jpg" alt="">
-                                    </div>
-                                    <div class="blog-box-info">
-                                        <span class="category">Web Design</span>
-                                        <h2 class="title">How to become a web designer?</h2>
-                                        <p class="little-text">He must have tried it a hundred times, shut his eyes so that he wouldn't have to look at the floundering.</p>
-                                        <span class="date">27 Oct 17</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="cbp-item">
-                                <a href="blog-posts/blog-music-version.html" class="blog-box">
-                                    <div class="blog-img">
-                                        <img src="/images/blogs/blog-3.jpg" alt="">
-                                    </div>
-                                    <div class="blog-box-info">
-                                        <span class="category">User İnterface</span>
-                                        <h2 class="title">Why is it better to work nights?</h2>
-                                        <p class="little-text">Legs, and only stopped when he began to feel a mild, dull pain there that he had never felt.</p>
-                                        <span class="date">19 Oct 17</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="cbp-item">
-                                <a href="blog-posts/blog-video-version.html" class="blog-box">
-                                    <div class="blog-img">
-                                        <img src="/images/blogs/blog-4.jpg" alt="">
-                                    </div>
-                                    <div class="blog-box-info">
-                                        <span class="category">Photography</span>
-                                        <h2 class="title">Can you work everywhere?</h2>
-                                        <p class="little-text">Drops of rain could be heard hitting the pane, which made him feel quite sad..</p>
-                                        <span class="date">28 Sep 17</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="cbp-item">
-                                <a href="blog-posts/blog-1.html" class="blog-box">
-                                    <div class="blog-img">
-                                        <img src="/images/blogs/blog-5.jpg" alt="">
-                                    </div>
-                                    <div class="blog-box-info">
-                                        <span class="category">Other</span>
-                                        <h2 class="title">How to connect your imac or macBook</h2>
-                                        <p class="little-text">However hard he threw himself onto his right, he always rolled back to where he was.</p>
-                                        <span class="date">19 Agu 17</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="cbp-item">
-                                <a href="blog-posts/blog-1.html" class="blog-box">
-                                    <div class="blog-img">
-                                        <img src="/images/blogs/blog-6.jpg" alt="">
-                                    </div>
-                                    <div class="blog-box-info">
-                                        <span class="category">Work Space</span>
-                                        <h2 class="title">I'm starting a new project</h2>
-                                        <p class="little-text">The first thing to remember about success is that it is a process...</p>
-                                        <span class="date">1 Jul 17</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div id="load-posts" class="cbp-l-loadMore-button top_60">
-                            <a href="load-more/blog-posts.html" class="cbp-l-loadMore-link site-btn" rel="nofollow">
-                                <span class="cbp-l-loadMore-defaultText">Load More (<span class="cbp-l-loadMore-loadItems">3</span>)</span>
-                                <span class="cbp-l-loadMore-loadingText">Loading...</span>
-                                <span class="cbp-l-loadMore-noMoreLoading">No More Works</span>
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            </div>
             <div id="contact">
                 <div class="row">
                     <section class="contact-form col-md-6 padding_30 padbot_45">
-                        <div class="section-title top_15 bottom_30"><span></span><h2>Contact Form</h2></div>
+                        <div class="section-title top_15 bottom_30"><span></span><h2>{{__('app.Contact')}}</h2></div>
                         <form class="site-form">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input class="site-input" placeholder="Name">
+                                    <input class="site-input" placeholder="{{__('app.Name')}}...">
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="site-input" placeholder="E-mail">
+                                    <input class="site-input" placeholder="{{__('app.Email')}}...">
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="site-area" placeholder="Message"></textarea>
+                                    <textarea class="site-area" placeholder="{{__('app.Message')}}..."></textarea>
                                 </div>
                                 <div class="col-md-12 top_15 bottom_30">
                                     <button class="site-btn" type="submit">{{__('app.Send')}}</button>

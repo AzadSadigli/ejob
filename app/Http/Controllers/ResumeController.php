@@ -65,6 +65,26 @@ class ResumeController extends Controller
       $res = Resume::find($id);
       return view('resume.resume',compact('res'));
     }
+    public function hideres(Request $req,$id){
+      $res = Resume::find($id);
+      if ($res->user_id == Auth::user()->id) {
+        $res->status = 0;
+        $res->update();
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }else{
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }
+    }
+    public function showres(Request $req,$id){
+      $res = Resume::find($id);
+      if ($res->user_id == Auth::user()->id) {
+        $res->status = 1;
+        $res->update();
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }else{
+        return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
+      }
+    }
     public function editresume(Request $req, $id){
       $res = Resume::find($id);
       if ($res->user_id == Auth::user()->id) {
@@ -77,7 +97,7 @@ class ResumeController extends Controller
         }
         if (empty($req->username)) {
           $num = rand(10000000,20000000);
-          while (Resume::where('username',$num)->where('user_id','!=',Auth::user()->id)->count() != 0) {
+          while (Resume::where('username',$num)->where('id','!=',$id)->count() != 0) {
             $num = rand(10000000,20000000);
           }
           $res->username = $num;
@@ -94,6 +114,16 @@ class ResumeController extends Controller
       return response()->json(['success'=>Lang::get('app.Added'),'error' => Lang::get('app.Failed')]);
     }
     public function addnewresume(Request $req){
+      $this->validate($req,[
+        'full_name' => 'required|string|min:2',
+        'username' => 'required|unique:resumes',
+        'title' => 'required|string',
+        'official_email' => 'required|string|min:5',
+        // 'about' => '',
+        'website' => 'string',
+        'location' => 'integer',
+        'phone_number' => 'string',
+      ]);
       $res = new Resume;
       $res->user_id = Auth::user()->id;
       $res->full_name = $req->full_name;

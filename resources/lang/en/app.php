@@ -153,5 +153,6 @@ return [
     'Education_History' => 'Education History',
     'Send' => 'Send',
     'Phone' => 'Phone',
+    'Show' => 'Show'
 
 ];
