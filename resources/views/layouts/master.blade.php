@@ -6,7 +6,7 @@
     <meta name="author" content="eJob">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/assets/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="/assets/css/line-icons.css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.css">

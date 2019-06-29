@@ -85,7 +85,7 @@
 
 </header>
 
-<section class="browse-catagories section">
+<!-- <section class="browse-catagories section">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Browse by Catagories</h2>
@@ -173,49 +173,54 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
-<section id="featured" class="section bg-cyan">
+<section id="featured" class="section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Featured Jobs</h2>
+            <h2 class="section-title">{{__('app.Latest_vacancies')}}</h2>
             <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p>
         </div>
         <div class="row">
             @foreach($vacs as $vac)
+            @for($i=0;$i<10;$i++)
             <div class="col-lg-4 col-md-6 col-xs-12">
                 <div class="job-featured">
                     <div class="icon">
-                        <img src="assets/img/features/img1.png" alt="">
+                        <img src="/img/dc.png" alt="">
                     </div>
                     <div class="content">
                         <h3><a href="/job/{{$vac->vac_id}}">{{$vac->title}}</a></h3>
                         <p class="brand">{{$vac->company}}</p>
                         <div class="tags">
-                            <span><i class="lni-map-marker"></i> {{$vac->location}}</span>
-                            <span><i class="lni-user"></i>John Smith</span>
+                            <span><i class="lni-map-marker"></i> {{App\Locations::find($vac->location)->location_az}}</span>
+                            <span><i class="lni-user"></i>{{App\User::find($vac->user_id)->name}} {{App\User::find($vac->user_id)->surname}}</span>
                         </div>
                         @if($vac->type == 1)
-                        <span class="part-time">{{__('app.Part_time')}}</span>
+                        <a class="job-type pt">{{__('app.Part_time')}}</a>
                         @elseif($vac->type == 3)
-                        <span class="full-time">{{__('app.Remote')}}</span>
+                        <a class="job-type rmt">{{__('app.Remote')}}</a>
                         @elseif($vac->type == 0)
-                        <span class="full-time">{{__('app.Intern')}}</span>
+                        <a class="job-type intr">{{__('app.Intern')}}</a>
                         @elseif($vac->type == 2)
-                        <span class="full-time">{{__('app.Full_time')}}</span>
+                        <a class="job-type ftm">{{__('app.Full_time')}}</a>
                         @endif
+                        <!-- <div class="col-lg-2 col-md-2 col-xs-12 text-right"> -->
+                            <a class="apply-btn">Apply Now</a>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
+            @endfor
             @endforeach
             <div class="col-12 text-center mt-4">
-                <a href="/jobs" class="btn btn-common">Browse All Jobs</a>
+                <a href="#" class="btn btn-common">{{__('app.Load_more')}}</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="featured-lis section">
+<section class="mylist section">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Top Hiring Companies</h2>
@@ -303,147 +308,6 @@
         </div>
     </div>
 </section>
-
-<section id="job-listings" class="section bg-cyan">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Recent Job Post</h2>
-            <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12">
-                <a class="job-listings" href="job-details.html">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <div class="job-company-logo">
-                                <img src="assets/img/features/img1.png" alt="">
-                            </div>
-                            <div class="job-details">
-                                <h3>App Developer</h3>
-                                <span class="company-neme">
-AmazeSoft
-</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-center">
-                            <span class="btn-open">
-7 Open Jobs
-</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <div class="location">
-                                <i class="lni-map-marker"></i> New Yourk, US
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-full-time">Full Time</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-apply">Apply Now</span>
-                        </div>
-                    </div>
-                </a>
-                <a class="job-listings" href="job-details.html">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <div class="job-company-logo">
-                                <img src="assets/img/features/img2.png" alt="">
-                            </div>
-                            <div class="job-details">
-                                <h3>App Developer</h3>
-                                <span class="company-neme">
-AmazeSoft
-</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-center">
-                            <span class="btn-open">
-7 Open Jobs
-</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <div class="location">
-                                <i class="lni-map-marker"></i> New Yourk, US
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-full-time">Full Time</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-apply">Apply Now</span>
-                        </div>
-                    </div>
-                </a>
-                <a class="job-listings" href="job-details.html">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <div class="job-company-logo">
-                                <img src="assets/img/features/img3.png" alt="">
-                            </div>
-                            <div class="job-details">
-                                <h3>App Developer</h3>
-                                <span class="company-neme">
-AmazeSoft
-</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-center">
-                            <span class="btn-open">
-7 Open Jobs
-</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <div class="location">
-                                <i class="lni-map-marker"></i> New Yourk, US
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-full-time">Full Time</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-apply">Apply Now</span>
-                        </div>
-                    </div>
-                </a>
-                <a class="job-listings" href="job-details.html">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <div class="job-company-logo">
-                                <img src="assets/img/features/img4.png" alt="">
-                            </div>
-                            <div class="job-details">
-                                <h3>App Developer</h3>
-                                <span class="company-neme">
-AmazeSoft
-</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-center">
-                            <span class="btn-open">
-7 Open Jobs
-</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <div class="location">
-                                <i class="lni-map-marker"></i> New Yourk, US
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-full-time">Full Time</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-apply">Apply Now</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 text-center mt-4">
-                <a href="#" class="btn btn-common">Load more listing</a>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="how-it-works section">
     <div class="container">
         <div class="section-header">
@@ -493,7 +357,7 @@ AmazeSoft
                         <h3>Recruiter</h3>
                         <p>Post a job to tell us about your project. We'll quickly match you with
                             <br> the right freelancers find place best.</p>
-                        <a href="#" class="btn btn-border-filled">Post a Job</a>
+                        <a href="/add-vacancy" class="btn btn-border-filled">Post a Job</a>
                     </div>
                     <div class="img-thumb">
                         <i class="lni-users"></i>
@@ -507,7 +371,7 @@ AmazeSoft
                         <h3>Jobseeker!</h3>
                         <p>Post a job to tell us about your project. We'll quickly match you with
                             <br> the right freelancers find place best.</p>
-                        <a href="#" class="btn btn-border-filled">Browser Jobs</a>
+                        <a href="/create-resume" class="btn btn-border-filled">Browser Jobs</a>
                     </div>
                     <div class="img-thumb">
                         <i class="lni-leaf"></i>
@@ -557,7 +421,7 @@ AmazeSoft
                     <div class="icon"><i class="lni-save"></i></div>
                     <div class="fact-count">
                         <h3><span class="counter">1200</span></h3>
-                        <p>Applications</p>
+                        <p>{{__('app.Applications')}}</p>
                     </div>
                 </div>
             </div>

@@ -42,11 +42,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="update-date">
+                        <div class="update-date" id="resume_act{{$resume->id}}">
                             <p class="status">
                                 {!! trans('app.Updated_on_resume',['date' => $resume->updated_at->format('M d, Y')]) !!}
                             </p>
-                            <div class="action-btn" id="resume_act{{$resume->id}}">
+                            <div class="action-btn">
                                 @if($resume->status == 1)
                                 <a class="btn btn-xs btn-gray" onclick="hide_my_res({{$resume->id}})"><span id="loading{{$resume->id}}"></span> {{__('app.Hide')}}</a>
                                 @else
@@ -96,7 +96,7 @@
                             <h3>{{$res->full_name}} <small style="text-transform:lowercase;"> ({{$res->email}}) </small> <span class="float-right"><a class="btn btn-common" href="/r/{{$res->username}}" title="{{__('app.Preview')}}"><i class="fa fa-eye"></i> </a>
                               <a class="btn btn-common" data-toggle="modal" data-target="#edit_res"><i class="fa fa-edit"></i></a></span></h3>
                             <p class="sub-title">{{$res->title}}</p>
-                            <p><span class="address"><i class="lni-map-marker"></i>{{$res->location}}</span> <span><i class="ti-phone"></i>{{$res->phone_number}}</span></p>
+                            <p><span class="address"><i class="lni-map-marker"></i>{{App\Locations::find($res->location)->location_az}}</span> <span><i class="ti-phone"></i>{{$res->phone_number}}</span></p>
                             <div class="social-link" id="social_link">
                                 @foreach($sns = App\Socnet::where('res_id',$res->id)->get() as $sn)
                                 <span class="dropdown">
@@ -282,7 +282,11 @@
                             <label class="control-label">{{__('app.Location')}}</label>
                               <div class="search-category-container">
                                 <label class="styled-select">
-                                  @include('layouts.az_districts')
+                                  <select class="dropdown-product selectpicker" name="location" id="location">
+                                    @foreach($locs = App\Locations::all() as $loc)
+                                    <option value="{{$loc->id}}" @if($res->location == $loc->id)selected @endif>{{$loc->location_az}}</option>
+                                    @endforeach
+                                  </select>
                                 </label>
                               </div>
                           </div>
@@ -404,8 +408,6 @@ jQuery(document).ready(function(){
       if(!$('#job_description').val()){jQuery('#job_description').css('border','1px solid red');}
     }
   });
-  jQuery('#editres').click(function(e){
-  });
 });
 function editres_f(){
   $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
@@ -448,7 +450,18 @@ function editres_f(){
     complete: function(){
       $('#loading-image').hide();
     }
-  });
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    var responseMsg = jQuery.parseJSON(jqXHR.responseText);
+    var errorMsg = 'There was a general problem with your request';
+    if (responseMsg.hasOwnProperty('email')) {
+        errorMsg = responseMsg.email;
+        console.log(errorMsg);
+    }
+    // This will help you debug the response
+    console.log(jqXHR);
+    console.log(textStatus);
+    console.log(errorThrown);
+});
 }
 function deleteedu_function(id){
   $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});

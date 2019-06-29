@@ -69,7 +69,11 @@
                           <label class="control-label">{{__('app.Location')}}</label>
                             <div class="search-category-container">
                               <label class="styled-select">
-                              @include('layouts.az_districts')
+                                <select class="dropdown-product selectpicker" name="location" id="location">
+                                  @foreach($locs = App\Locations::all() as $loc)
+                                  <option value="{{$loc->id}}">{{$loc->location_az}}</option>
+                                  @endforeach
+                                </select>
                               </label>
                             </div>
                         </div>

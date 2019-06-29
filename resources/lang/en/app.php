@@ -162,5 +162,8 @@ return [
     'Message_sent_successfully' => 'Message sent successfully',
     'Companies' => 'Companies',
     'Jobs' => 'Jobs',
+    'Load_more' => 'Load more',
+    'Applications' => 'Applications',
+    'Latest_vacancies' => 'Latest vacancies',
 
 ];

@@ -98,6 +98,13 @@ class ResumeController extends Controller
     }
     public function editresume(Request $req, $id){
       $res = Resume::find($id);
+      $this->validate($req,[
+        'username' => 'required|unique:resumes,username,'.$res->id,
+        'title' => 'required',
+        'full_name' => 'required',
+        'official_email' => 'required',
+        'about' => 'required',
+      ]);
       if ($res->user_id == Auth::user()->id) {
         $res->title = $req->title;
         $res->full_name = $req->full_name;

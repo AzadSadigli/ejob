@@ -289,14 +289,17 @@
                         <form class="site-form">
                           <div class="alert alert-success" id="mlsent" role="alert" style="display:none;">{{__('app.Message_sent_successfully')}}</div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" class="site-input" id="c_name" placeholder="{{__('app.Name')}}...">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="site-input" id="c_email" placeholder="{{__('app.Email')}}...">
-                                </div>
-                                <div class="col-md-12">
-                                    <textarea class="site-area" id="c_body" placeholder="{{__('app.Message')}}..." maxlength="500"></textarea>
+                                <span id="loading"></span>
+                                <div id="loadingcont">
+                                  <div class="col-md-6">
+                                      <input type="text" class="site-input" id="c_name" placeholder="{{__('app.Name')}}...">
+                                  </div>
+                                  <div class="col-md-6">
+                                      <input type="email" class="site-input" id="c_email" placeholder="{{__('app.Email')}}...">
+                                  </div>
+                                  <div class="col-md-12">
+                                      <textarea class="site-area" id="c_body" placeholder="{{__('app.Message')}}..." maxlength="500"></textarea>
+                                  </div>
                                 </div>
                                 <div class="col-md-12 top_15 bottom_30">
                                     <button class="site-btn" type="button" onclick="sendmess()">{{__('app.Send')}}</button>
@@ -346,6 +349,9 @@
 <script type="text/javascript">
 function sendmess(){
     if (jQuery('#c_name').val() != "" & jQuery('#official_email').val() != "" & jQuery('#c_email').val() != "" & jQuery('#c_body').val() != "") {
+      document.getElementById("loading").innerHTML = "<center><img id='loading-image' src='https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif' style='height:200px;display:none;'></center>"
+      $('#loading-image').show();
+      $('#loadingcont').hide();
       $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
       jQuery.ajax({
         url: "/send-resume-message",
@@ -366,7 +372,13 @@ function sendmess(){
             jQuery('#c_body').css('border-bottom','1px solid #dfdfdf').val("");
             $("#mlsent").css("display","");
             console.log('success');
-      }});
+        },
+        complete: function(){
+          $('#loading-image').hide();
+          $('#loadingcont').show();
+          document.getElementById("loading").innerHTML = "";
+        }
+      });
     }else{
           if(!$('#c_name').val()){jQuery('#c_name').css('border-bottom','2px solid red');}
           if(!$('#c_email').val()){jQuery('#c_email').css('border-bottom','2px solid red');}
