@@ -22,6 +22,15 @@ Route::post('/add-new-vacancy','JobController@addjob');
 Route::get('/r/{id}','ResumeController@getresume');
 Route::post('/send-resume-message','ResumeController@sendmess');
 
+Route::post('/filter-jobs','JobController@getjobsearchdata');
+Route::get('/location/{id}','JobController@location_jobs');
+Route::get('/job-type/{type}','JobController@jobtype');
+Route::get('/user/{us}/vacancies','JobController@user_vacancies');
+Route::get('/company/{comp}/vacancies','JobController@comp_vacancies');
+
+Route::post('/apply-for-job','JobController@applyforjob');
+Route::get('/myresumes-list','JobController@myres_list');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/all-resumes','ResumeController@allresumes');

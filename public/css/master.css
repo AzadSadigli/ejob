@@ -5631,6 +5631,7 @@ button.close {
 .modal-header {
     display: -ms-flexbox;
     display: flex;
+    height: 50px;
     -ms-flex-align: start;
     align-items: flex-start;
     -ms-flex-pack: justify;
@@ -7550,6 +7551,8 @@ button.bg-dark:hover {
 
 .fixed-top {
     position: fixed;
+    background: white;
+box-shadow: 0 1px 7px rgba(0, 0, 0, .06);
     top: 0;
     right: 0;
     left: 0;
@@ -15041,7 +15044,7 @@ box-shadow: 1px 2px 7px -2px rgba(0,0,0,0.5);
     line-height: 25px;
     /* border: 0; */
     border-radius: 30px;
-    height: 46px;
+    /* height: 46px; */
     /* border: 1px solid #ececec; */
     color: #495057;
     padding: 10px 20px;
@@ -16286,7 +16289,7 @@ box-shadow: 0px 0px 9px 2px rgba(28,196,247,0.5);
     box-shadow: 0 3px 9px rgba(96, 94, 94, .17)
 }
 
-.job-browse .wrap-search-filter {
+.wrap-search-filter {
     margin-bottom: 30px
 }
 
@@ -19154,11 +19157,43 @@ user-select: none; /* Standard */
   color: #1cc4f7 !important;
   border-bottom: 1px solid #1cc4f7;
 }
+.rmt{
+  color: #3700ff !important;
+  border-bottom: 1px solid #3700ff;
+}
+.intr{
+  color: #168e10 !important;
+  border-bottom: 1px solid #168e10;
+}
 .pt{
   color: red !important;
   border-bottom: 1px solid red;
 }
-.ftm:hover,.pt:hover{
+.ftm:hover,.pt:hover,.rmt:hover,.intr:hover{
   color: #f3af0a !important;
   border-bottom: 1px solid #f3af0a;
+}
+.vac-loc a, .vac-owner a{
+  color: gray;
+}
+.vac-loc a:hover, .vac-owner a:hover{
+  color: #1cc4f7;
+}
+ textarea.form-control{
+  border-radius: 10px !important;
+  resize: none;
+}
+.applied{
+  color: green !important;
+}
+.applied-btn{
+  background: #efa319;
+  font-size: 11px;
+  box-shadow: 0 3px 9px rgba(96, 94, 94, .17);
+  font-weight: 500;
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
 }

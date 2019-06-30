@@ -5,12 +5,87 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vacancy;
 use Auth;
+use App\Locations;
 use Lang;
+use Session;
+use App\User;
+use App\Resume;
+use App\Jobreq;
 class JobController extends Controller
 {
     public function jobdetails($id){
       $vac = Vacancy::where('vac_id',$id)->first();
       return view('job.jobdetails',compact('vac'));
+    }
+    public function applyforjob(Request $req){
+      $jr = new Jobreq;
+      $jr->vac_id = $req->vac_id;
+      $num = rand(100000,200000000);
+      while (Jobreq::where('application_id',$num)->count() != 0) {
+        $num = rand(100000,200000000);
+      }
+      $jr->application_id = $num;
+      $jr->description = $req->description;
+      if (Auth::check()) {
+        $jr->res_id = $req->res_id;
+      }else{
+        $jr->email = $req->email;
+        $jr->name = $req->name;
+      }
+      $jr->resume = $req->resume;
+      $jr->cover_letter = $req->cover_letter;
+      $jr->save();
+      return response()->json(['success'=>"Added"]);
+    }
+    public function location_jobs($id){
+      $loc = Locations::find($id);
+      $vacs = Vacancy::where('location',$loc->id)->get();
+      return view('job.joblist',compact('vacs'));
+    }
+    public function comp_vacancies($comp){
+      $vacs = Vacancy::where('company',$comp)->get();
+      return view('job.joblist',compact('vacs'));
+    }
+    public function myres_list(Request $req){
+      $res = Resume::where('user_id',Auth::user()->id)->get();
+      return response()->json($res);
+    }
+    public function user_vacancies($us){
+      $user = User::where('username',$us)->first();
+      if (!empty($user)) {
+        $vacs = Vacancy::where('user_id',$user->id)->get();
+        return view('job.joblist',compact('vacs'));
+      }else{
+        return redirect('/');
+      }
+    }
+    public function jobtype($type){
+      if ($type == "part-time") {
+        $vacs = Vacancy::where('type',1)->get();
+      }elseif($type == "full-time"){
+        $vacs = Vacancy::where('type',2)->get();
+      }elseif($type == "intern"){
+        $vacs = Vacancy::where('type',0)->get();
+      }elseif($type == "remote"){
+        $vacs = Vacancy::where('type',3)->get();
+      }else{
+        return redirect('/');
+      }
+      return view('job.joblist',compact('vacs'));
+    }
+    public function getjobsearchdata(Request $req){
+      if (!empty($req->word)) {
+        $vacs = Vacancy::where('title','LIKE','%' .$req->word. '%')->orWhere('description','LIKE','%'.$req->word.'%')->orWhere('requirements','LIKE','%'.$req->word.'%')->get();
+      }else{
+        $vacs = Vacancy::all();
+      }
+      Session::forget('joblist');
+      $list = array();
+      foreach ($vacs as $key => $vac) {
+        $list[] = array($vac->id);
+      }
+      Session::push('joblist', $list);
+      return response()->json(['success'=>$list]);
     }
     public function hideres(Request $req,$id){
       $vac = Vacancy::find($id);
@@ -40,7 +115,12 @@ class JobController extends Controller
       return view('job.addvacancy');
     }
     public function jobs(){
-      $vacs = Vacancy::orderBy('created_at','desc')->paginate(1);
+      if (Session::get('joblist') != null) {
+        $vacs = Vacancy::orderBy('created_at','desc')->get();
+      }else{
+        $vacs = Vacancy::whereIn('id',Session::get('joblist'))->orderBy('created_at','desc')->get();
+      }
+      // print_r(Session::get('joblist'));
       return view('job.joblist',compact('vacs'));
     }
     public function test(){
@@ -71,6 +151,7 @@ class JobController extends Controller
         $vac->user_id = Auth::user()->id;
       }else{
         $vac->user_id = 0;
+        $vac->user_name = $req->person_name;
       }
       $vac->lang = config('app.locale');
         $num = rand(10000000,20000000);
@@ -96,6 +177,10 @@ class JobController extends Controller
       $vac->salary = $req->salary;
       $vac->salary_type = $req->salary_type;
       $vac->save();
-      return redirect('/all-vacancies')->with('success',Lang::get('app.Added'));
+      if (Auth::check()) {
+        return redirect('/all-vacancies')->with('success',Lang::get('app.Added'));
+      }else{
+        return redirect('')->back()->with('success',Lang::get('app.Added'));
+      }
     }
 }

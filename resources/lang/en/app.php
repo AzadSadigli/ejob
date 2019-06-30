@@ -165,5 +165,8 @@ return [
     'Load_more' => 'Load more',
     'Applications' => 'Applications',
     'Latest_vacancies' => 'Latest vacancies',
+    'You_dont_have_resume' => "You don't have resume",
+    'Applied' => 'Applied',
+    'Your_name' => 'Your name',
 
 ];

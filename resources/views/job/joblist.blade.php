@@ -21,72 +21,102 @@
     </div>
 </div>
 
-<section class="job-browse section">
+<section id="featured" class="section">
     <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">{{__('app.Latest_vacancies')}} <span id="loading"></span></h2>
+            <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p>
+        </div>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12">
-                <div class="wrap-search-filter row">
-                    <div class="col-lg-5 col-md-5 col-xs-12">
-                        <input type="text" class="form-control" placeholder="Keyword: Name, Tag">
+          <div class="col-lg-12 col-md-12 col-xs-12">
+              <div class="wrap-search-filter row">
+                  <div class="col-lg-5 col-md-5 col-xs-12">
+                      <input type="text" class="form-control" id="word" placeholder="Keyword: Name, Tag">
+                  </div>
+                  <div class="col-lg-5 col-md-5 col-xs-12">
+                        <div class="search-category-container">
+                          <label class="styled-select">
+                            <select class="dropdown-product selectpicker" id="location">
+                              @foreach(App\Locations::all() as $loc)
+                              <option value="{{$loc->id}}">{{$loc->location_az}}</option>
+                              @endforeach
+                            </select>
+                          </label>
+                        </div>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-xs-12">
+                      <button class="btn btn-common float-right" onclick="filter_jobs()">Filter</button>
+                  </div>
+              </div>
+          </div>
+          <div class="row" id="filtered_jobs">
+            @foreach($vacs as $vac)
+            @for($i=0;$i<10;$i++)
+            <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="job-featured">
+                    <div class="icon">
+                        <img src="/img/dc.png" alt="">
                     </div>
-                    <div class="col-lg-5 col-md-5 col-xs-12">
-                        <input type="text" class="form-control" placeholder="Location: City, State, Zip">
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-xs-12">
-                        <button type="submit" class="btn btn-common float-right">Filter</button>
+                    <div class="content">
+                        <h3><a href="/job/{{$vac->vac_id}}">{{$vac->title}}</a></h3>
+                        <p class="brand">{{$vac->company}}</p>
+                        <div class="tags">
+                            <span><i class="lni-map-marker"></i> <a href="/location/{{App\Locations::find($vac->location)->id}}">{{App\Locations::find($vac->location)->location_az}}</a> </span>
+                            <span class="vac-owner"><i class="lni-user"></i><a href="/user/{{App\User::find($vac->user_id)->username}}/vacancies">{{App\User::find($vac->user_id)->name}} {{App\User::find($vac->user_id)->surname}}</a> </span>
+                        </div>
+                        @if($vac->type == 1)
+                        <a href="/job-type/part-time" class="job-type pt">{{__('app.Part_time')}}</a>
+                        @elseif($vac->type == 3)
+                        <a href="/job-type/remote" class="job-type rmt">{{__('app.Remote')}}</a>
+                        @elseif($vac->type == 0)
+                        <a href="/job-type/intern" class="job-type intr">{{__('app.Intern')}}</a>
+                        @elseif($vac->type == 2)
+                        <a href="/job-type/full-time" class="job-type ftm">{{__('app.Full_time')}}</a>
+                        @endif
+                        <!-- <div class="col-lg-2 col-md-2 col-xs-12 text-right"> -->
+                            <a class="apply-btn">Apply Now</a>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-xs-12">
-                @foreach($vacs as $vac)
-                <a class="job-listings" href="/job/{{$vac->id}}" title="{{$vac->title}}">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <div class="job-company-logo"><img src="/img/features/img4.png" alt="{{$vac->title}}"></div>
-                            <div class="job-details">
-                                <h3>{{$vac->title}}</h3>
-                                <span class="company-neme">{{$vac->company}}</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-center">
-                            <span class="btn-open">7 Open Jobs</span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <div class="location">
-                                <i class="lni-map-marker"></i> {{$vac->location}}
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            @if($vac->type == 1)
-                            <span class="btn-full-time">{{__('app.Part_time')}}</span>
-                            @elseif($vac->type == 3)
-                            <span class="btn-full-time">{{__('app.Remote')}}</span>
-                            @elseif($vac->type == 0)
-                            <span class="btn-full-time">{{__('app.Intern')}}</span>
-                            @elseif($vac->type == 2)
-                            <span class="btn-full-time">{{__('app.Full_time')}}</span>
-                            @endif
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-                            <span class="btn-apply">Apply Now</span>
-                        </div>
-                    </div>
-                </a>
-                @endforeach
-                {{$vacs->links()}}
-                <ul class="pagination">
-                    <li class="active"><a href="#" class="btn-prev"><i class="lni-angle-left"></i> prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li class="active"><a href="#" class="btn-next">Next <i class="lni-angle-right"></i></a></li>
-                </ul>
-
+            @endfor
+            @endforeach
+            <div class="col-12 text-center mt-4">
+                <a href="#" class="btn btn-common">{{__('app.Load_more')}}</a>
             </div>
+          </div>
         </div>
     </div>
 </section>
-
+@endsection
+@section('foot')
+<script type="text/javascript">
+function filter_jobs(){
+    // if ($('#word').val() != "" & $('#location').val() != "") {
+      $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+      document.getElementById("loading").innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:20px;display:none;'>"
+      $('#loading-image').show();
+      jQuery.ajax({
+        url: "/filter-jobs",
+        method: 'POST',
+        data: {
+          word: jQuery('#word').val(),
+          location: jQuery('#location').val(),
+        },
+        error: function(result){
+            if(!$('#word').val()){jQuery('#word').css('border','1px solid red');}
+            console.log("error");
+        },
+        success: function(result){
+            $("#filtered_jobs").load(location.href+" #filtered_jobs>*","");
+            console.log(result.success);
+        },
+        complete: function(){
+          $('#loading-image').hide();
+          document.getElementById("loading").innerHTML = "";
+        }
+      });
+    // }else{$('#word').css('border','1px solid #ccc').val("");}
+}
+</script>
 @endsection

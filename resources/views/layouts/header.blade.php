@@ -16,47 +16,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">{{__('app.Home')}} </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="about.html">About</a></li>
-                            <li><a class="dropdown-item" href="job-page.html">Job Page</a></li>
-                            <li><a class="dropdown-item" href="job-details.html">Job Details</a></li>
-                            <li><a class="dropdown-item" href="resume.html">Resume Page</a></li>
-                            <li><a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                            <li><a class="dropdown-item" href="pricing.html">Pricing Tables</a></li>
-                            <li><a class="dropdown-item" href="contact.html">Contact</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Candidates</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="browse-jobs.html">Browse Jobs</a></li>
-                            <li><a class="dropdown-item" href="browse-categories.html">Browse Categories</a></li>
-                            <li><a class="dropdown-item" href="add-resume.html">Add Resume</a></li>
-                            <li><a class="dropdown-item" href="manage-resumes.html">Manage Resumes</a></li>
-                            <li><a class="dropdown-item" href="job-alerts.html">Job Alerts</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employers</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="post-job.html">Add Job</a></li>
-                            <li><a class="dropdown-item" href="manage-jobs.html">Manage Jobs</a></li>
-                            <li><a class="dropdown-item" href="manage-applications.html">Manage Applications</a></li>
-                            <li><a class="dropdown-item" href="browse-resumes.html">Browse Resumes</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a></li>
-                            <li><a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
-                            <li><a class="dropdown-item" href="blog-full-width.html"> Blog full width</a></li>
-                            <li><a class="dropdown-item" href="single-post.html">Blog Single Post</a></li>
-                        </ul>
-                    </li>
                     @if(Auth::check())
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} {{Auth::user()->surname}}</a>

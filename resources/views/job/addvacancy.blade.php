@@ -31,6 +31,15 @@
                     @include('layouts.alerts')
                     <form class="form-ad" method="POST" action="/add-new-vacancy">
                       @csrf
+                        @if(Auth::guest())
+                          <div class="form-group">
+                              <label class="control-label">{{__('app.Your_name')}}</label>
+                              <input type="text" class="form-control" name="person_name" placeholder="{{__('app.Your_name')}}..." required>
+                              @error('person_name')
+                                <span class="warning-text" role="alert">{{ $message }} </span>
+                              @enderror
+                          </div>
+                        @endif
                         <div class="form-group">
                             <label class="control-label">{{__('app.Company')}}</label>
                             <input type="text" class="form-control" name="company" placeholder="{{__('app.Company')}}..." required>

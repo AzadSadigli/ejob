@@ -23,8 +23,8 @@
                                 <h2 class="wow fadeInRight" data-wow-delay="0.4s">Find the career you <br> deserve</h2>
                                 <p class="wow fadeInRight" data-wow-delay="0.6s">Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum.
                                     <br> Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet.</p>
-                                <a href="#" class="btn btn-lg btn-common btn-effect wow fadeInRight" data-wow-delay="0.9s">See our jobs</a>
-                                <a href="#" class="btn btn-lg btn-border wow fadeInRight" data-wow-delay="1.2s">Search jobs</a>
+                                <a href="/jobs" class="btn btn-lg btn-common btn-effect wow fadeInRight" data-wow-delay="0.9s">See our jobs</a>
+                                <a href="/jobs" class="btn btn-lg btn-border wow fadeInRight" data-wow-delay="1.2s">Search jobs</a>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="img-wrapper wow fadeInUp" data-wow-delay="0.6s">
@@ -42,7 +42,7 @@
                                 <h2 class="wow fadeInUp" data-wow-delay="0.4s">10000+ Jobs waiting <br>for you!</h2>
                                 <p class="wow fadeInUp" data-wow-delay="0.6s">Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum.
                                     <br> Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet.</p>
-                                <a href="#" class="btn btn-lg btn-common btn-effect wow fadeInUp" data-wow-delay="0.9s">See our jobs</a>
+                                <a href="/jobs" class="btn btn-lg btn-common btn-effect wow fadeInUp" data-wow-delay="0.9s">See our jobs</a>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="img-wrapper wow fadeInUp" data-wow-delay="0.6s">
@@ -60,8 +60,20 @@
                                 <h2 class="wow fadeInRight" data-wow-delay="0.4s">Post a job and hunt <br> amazing talents</h2>
                                 <p class="wow fadeInRight" data-wow-delay="0.6s">Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum.
                                     <br> Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet.</p>
-                                <a href="#" class="btn btn-lg btn-common btn-effect wow fadeInRight" data-wow-delay="0.9s">Create Account</a>
-                                <a href="#" class="btn btn-lg btn-border wow fadeInRight" data-wow-delay="1.2s">Post Job</a>
+                                @if(Auth::check())
+                                <a href="/start/resume/personal-information" class="btn btn-lg btn-common btn-effect wow fadeInRight" data-wow-delay="0.9s">{{__('app.Create_resume')}}</a>
+                                @else
+                                <a href="/register" class="btn btn-lg btn-common btn-effect wow fadeInRight" data-wow-delay="0.9s">{{__('app.Register')}}</a>
+                                @endif
+                                @if(Auth::check())
+                                  @if(Auth::user()->role_id == 1)
+                                  <a href="/add-vacancy" class="btn btn-lg btn-border wow fadeInRight" data-wow-delay="1.2s">{{__('app.Add_vacancy')}}</a>
+                                  @else
+                                  <a href="" class="btn btn-lg btn-border wow fadeInRight" data-wow-delay="1.2s">{{__('app.Add_vacancy')}}</a>
+                                  @endif
+                                @else
+                                <a href="/add-vacancy" class="btn btn-lg btn-border wow fadeInRight" data-wow-delay="1.2s">{{__('app.Add_vacancy')}}</a>
+                                @endif
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="img-wrapper wow fadeInUp" data-wow-delay="0.6s">
@@ -82,108 +94,16 @@
             </a>
         </div>
     </div>
-
 </header>
-
-<!-- <section class="browse-catagories section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Browse by Catagories</h2>
-            <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-xs-12">
-                <a href="browse-categories.html" class="img-box">
-                    <div class="img-box-content">
-                        <h4>Healthcare</h4>
-                        <span>3420 Jobs</span>
-                    </div>
-                    <div class="img-box-background">
-                        <img class="img-fluid" src="assets/img/catagories/img1.jpg" alt="">
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6 col-md-12 col-xs-12">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <a href="browse-categories.html" class="img-box">
-                            <div class="img-box-content">
-                                <h4>Education</h4>
-                                <span>2379 Jobs</span>
-                            </div>
-                            <div class="img-box-background">
-                                <img class="img-fluid" src="assets/img/catagories/img2.jpg" alt="">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <a href="browse-categories.html" class="img-box">
-                            <div class="img-box-content">
-                                <h4>Business</h4>
-                                <span>1560 Jobs</span>
-                            </div>
-                            <div class="img-box-background">
-                                <img class="img-fluid" src="assets/img/catagories/img3.jpg" alt="">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-xs-12">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <a href="browse-categories.html" class="img-box">
-                            <div class="img-box-content">
-                                <h4>Finance</h4>
-                                <span>2000 Jobs</span>
-                            </div>
-                            <div class="img-box-background">
-                                <img class="img-fluid" src="assets/img/catagories/img4.jpg" alt="">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <a href="browse-categories.html" class="img-box">
-                            <div class="img-box-content">
-                                <h4>Support</h4>
-                                <span>3340 Jobs</span>
-                            </div>
-                            <div class="img-box-background">
-                                <img class="img-fluid" src="assets/img/catagories/img5.jpg" alt="">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-xs-12">
-                <a href="browse-categories.html" class="img-box">
-                    <div class="img-box-content">
-                        <h4>Law</h4>
-                        <span>1200 Jobs</span>
-                    </div>
-                    <div class="img-box-background">
-                        <img class="img-fluid" src="assets/img/catagories/img6.jpg" alt="">
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 text-center mt-4">
-                <a href="#" class="btn btn-common">browse more</a>
-            </div>
-        </div>
-    </div>
-</section> -->
-
 <section id="featured" class="section">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">{{__('app.Latest_vacancies')}}</h2>
             <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p>
         </div>
-        <div class="row">
+        <div id="job_list" class="row">
+          @if(Auth::check())<input type="hidden" id="user_id" value="{{Auth::user()->id}}"> @endif
             @foreach($vacs as $vac)
-            @for($i=0;$i<10;$i++)
             <div class="col-lg-4 col-md-6 col-xs-12">
                 <div class="job-featured">
                     <div class="icon">
@@ -191,32 +111,40 @@
                     </div>
                     <div class="content">
                         <h3><a href="/job/{{$vac->vac_id}}">{{$vac->title}}</a></h3>
-                        <p class="brand">{{$vac->company}}</p>
+                        <p class="brand"><a href="/company/{{$vac->company}}/vacancies">{{$vac->company}}</a> </p>
                         <div class="tags">
-                            <span><i class="lni-map-marker"></i> {{App\Locations::find($vac->location)->location_az}}</span>
-                            <span><i class="lni-user"></i>{{App\User::find($vac->user_id)->name}} {{App\User::find($vac->user_id)->surname}}</span>
+                            <span class="vac-loc"><i class="lni-map-marker"></i> <a href="/location/{{App\Locations::find($vac->location)->id}}">{{App\Locations::find($vac->location)->location_az}}</a> </span>
+                            <span class="vac-owner"><i class="lni-user"></i>
+                              @if($vac->user_id == 0)
+                              {{$vac->user_name}}
+                              @else
+                              <a href="/user/{{App\User::find($vac->user_id)->username}}/vacancies">{{App\User::find($vac->user_id)->name}} {{App\User::find($vac->user_id)->surname}}</a>
+                              @endif
+                            </span>
                         </div>
                         @if($vac->type == 1)
-                        <a class="job-type pt">{{__('app.Part_time')}}</a>
+                        <a href="/job-type/part-time" class="job-type pt">{{__('app.Part_time')}}</a>
                         @elseif($vac->type == 3)
-                        <a class="job-type rmt">{{__('app.Remote')}}</a>
+                        <a href="/job-type/remote" class="job-type rmt">{{__('app.Remote')}}</a>
                         @elseif($vac->type == 0)
-                        <a class="job-type intr">{{__('app.Intern')}}</a>
+                        <a href="/job-type/intern" class="job-type intr">{{__('app.Intern')}}</a>
                         @elseif($vac->type == 2)
-                        <a class="job-type ftm">{{__('app.Full_time')}}</a>
+                        <a href="/job-type/full-time" class="job-type ftm">{{__('app.Full_time')}}</a>
                         @endif
-                        <!-- <div class="col-lg-2 col-md-2 col-xs-12 text-right"> -->
-                            <a class="apply-btn">Apply Now</a>
-                        <!-- </div> -->
+                        @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
+                        <a class="apply-btn" onclick="apply_job({{$vac->id}})" data-toggle="modal" data-target="#apply_popup">Apply Now</a>
+                        @else
+                        <a class="applied-btn" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                        @endif
                     </div>
                 </div>
             </div>
-            @endfor
             @endforeach
             <div class="col-12 text-center mt-4">
                 <a href="#" class="btn btn-common">{{__('app.Load_more')}}</a>
             </div>
         </div>
+        <div id="apply_popup" class="modal fade" role="dialog"></div>
     </div>
 </section>
 
@@ -318,28 +246,22 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                 <div class="work-process">
-                    <span class="process-icon">
-<i class="lni-user"></i>
-</span>
-                    <h4>Create an Account</h4>
+                    <span class="process-icon"><i class="lni-user"></i></span>
+                    <h4><a href="#">Create an Account</a> </h4>
                     <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="work-process step-2">
-                    <span class="process-icon">
-<i class="lni-search"></i>
-</span>
-                    <h4>Search Jobs</h4>
+                    <span class="process-icon"><i class="lni-search"></i></span>
+                    <h4><a href="#">Search Jobs</a></h4>
                     <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="work-process step-3">
-                    <span class="process-icon">
-<i class="lni-cup"></i>
-</span>
-                    <h4>Apply</h4>
+                    <span class="process-icon"><i class="lni-cup"></i></span>
+                    <h4><a href="#">Apply</a></h4>
                     <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
                 </div>
             </div>
@@ -429,4 +351,56 @@
         </div>
     </div>
 </section>
+@endsection
+@section('foot')
+<script type="text/javascript">
+// $(document).on('change','.country', function(){
+//   var count_id=$(this).val();
+//   var div=$(this).parent();
+//
+// });
+  function apply_job(id){
+    var op = "<option selected disabled>{{__('app.You_dont_have_resume')}}</option>";
+    $.ajax({
+      type:'GET',
+      url:'/myresumes-list',
+      data:{'id':$("#user_id").val()},
+      cache: false,
+      success:function(data){
+        for(var i=0; i < data.length; i++){
+          op+='<option value="'+data[i].id+'">'+data[i].title+'</option>';
+        }
+      },
+      error:function(data){console.log("error");}
+    });
+    document.getElementById("apply_popup").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Apply')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <span id='loading'></span> <div class='form-group'><label class='control-label'>{{__('app.My_resume')}}</label><div class='search-category-container' id='res_id_for_apply'><label class='styled-select'><select class='dropdown-product selectpicker' name='vac_id' required>"+op+"</select></label></div></div> <div class='form-group' id='hide-apply'><label class='control-label'>{{__('app.Description')}}</label><textarea maxlength='500' id='apply_description' class='form-control' placeholder='{{__('app.Description')}}...'></textarea></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='apply_for_job("+id+")'>{{__('app.Apply')}}</a></div></div></div>";
+
+  }
+  function apply_for_job(id){
+      document.getElementById("loading").innerHTML = "<center><img id='loading-image' src='https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif' style='height:200px;display:none;'></center>"
+      $('#loading-image').show();
+      $('#hide-apply').hide();
+      $('#res_id_for_apply').hide();
+      $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+      jQuery.ajax({
+        url: "/apply-for-job",
+        method: 'POST',
+        data: {
+          job_description: jQuery('#job_description').val(),
+          vac_id: id,
+        },
+        error: function(result){console.log(result);},
+        success: function(result){
+            console.log(result.success);
+        },
+        complete: function(){
+          $("#job_list").load(location.href+" #job_list>*","");
+          $('#loading-image').hide();
+          $('.modal-footer').hide();
+          $('.form-group').hide();
+          document.getElementById("loading").innerHTML = "<center><h2 class='applied'>{{__('app.Applied')}} <i class='fa fa-thumbs-up'></i> </h2></center>";
+        }
+      });
+  }
+</script>
 @endsection
