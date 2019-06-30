@@ -80,3 +80,120 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
 
 (function($){"use strict";var $main_window=$(window);$main_window.on("load",function(){$("#preloader").fadeOut("slow");});$main_window.on("scroll",function(){if($(this).scrollTop()>250){$(".back-to-top").fadeIn(200);}else{$(".back-to-top").fadeOut(200);}});$(".back-to-top").on("click",function(){$("html, body").animate({scrollTop:0},"slow");return false;});var logo_path=$('.mobile-menu').data('logo');$('#main-navbar').slicknav({appendTo:'.mobile-menu',removeClasses:false,label:'',closedSymbol:'<i class="lni-chevron-right"><i/>',openedSymbol:'<i class="lni-chevron-down"><i/>',brand:'<a href="index.html"><img src="'+logo_path+'" class="img-responsive" alt="logo"></a>'});$main_window.on('scroll',function(){var scroll=$(window).scrollTop();if(scroll>=100){$(".scrolling-navbar").addClass("top-nav-collapse");}else{$(".scrolling-navbar").removeClass("top-nav-collapse");}});if($(".fact-count").length>0){$(".counter").counterUp({delay:10,time:500});}
 var testiOwl=$("#testimonials");testiOwl.owlCarousel({autoplay:true,margin:30,dots:true,autoplayHoverPause:true,nav:false,loop:true,responsiveClass:true,responsive:{0:{items:1,},991:{items:1}}});var newproducts=$("#new-products");newproducts.owlCarousel({autoplay:true,nav:true,autoplayHoverPause:true,smartSpeed:350,dots:false,margin:30,loop:true,navText:['<i class="lni-chevron-left"></i>','<i class="lni-chevron-right"></i>'],responsiveClass:true,responsive:{0:{items:1,},575:{items:2,},991:{items:3,}}});})(jQuery);
+
+
+function apply_for_job(id){
+    if ($("#vac_id").val() != 0) {
+      document.getElementById("loading").innerHTML = "<center><img id='loading-image' src='https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif' style='height:200px;display:none;'></center>"
+      $('#loading-image').show();
+      $('#hide-apply').hide();
+      $('#res_id_for_apply').hide();
+      $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+      jQuery.ajax({
+        url: "/apply-for-job",
+        method: 'POST',
+        data: {
+          job_description: jQuery('#job_description').val(),
+          vac_id: id,
+        },
+        error: function(result){console.log(result);},
+        success: function(result){
+            console.log(result.success);
+        },
+        complete: function(){
+          $("#job_list").load(location.href+" #job_list>*","");
+          $('#loading-image').hide();
+          $('.modal-footer').hide();
+          $('.form-group').hide();
+          document.getElementById("loading").innerHTML = "<center><h2 class='applied'>"+document.getElementById('apply_popup').getAttribute('success')+" <i class='fa fa-thumbs-up'></i> </h2></center>";
+        }
+      });
+    }else{$("#vac_id").css('border','1px solid red;')}
+}
+function filter_jobs(){
+      $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+      document.getElementById("loading").innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:20px;display:none;'>"
+      $('#loading-image').show();
+      jQuery.ajax({
+        url: "/filter-jobs",
+        method: 'POST',
+        data: {
+          word: jQuery('#word').val(),
+          location: jQuery('#location').val(),
+        },
+        error: function(result){
+            if(!$('#word').val()){jQuery('#word').css('border','1px solid red');}
+            console.log("error");
+        },
+        success: function(result){
+            $("#job_list").load(location.href+" #job_list>*","");
+            console.log(result);
+        },
+        complete: function(){
+          $('#loading-image').hide();
+          document.getElementById("loading").innerHTML = "";
+        }
+      });
+}
+function activate_vacancy(id){
+    $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    document.getElementById("loading").innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:70px;display:none;'>"
+    $('#loading-image').show();
+    $('#loading-hide').hide();
+    jQuery.ajax({
+      url: "/activate-vacancy/" + id,
+      method: 'POST',
+      error: function(result){
+          console.log('error');
+      },
+      success: function(result){
+          $("#vac_body").load(location.href+" #vac_body>*","");
+          $('#verifiedvac').css('display','');
+      },
+      complete: function(){
+        document.getElementById("loading").innerHTML = "";
+        $('#loading-image').hide();
+        $('#loading-hide').show();
+      }
+    });
+}
+$("#verifiedvac").delay(10000).hide();
+function hide_my_res(id){
+    $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    document.getElementById("loading"+id).innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:15px;display:none;'>"
+    $('#loading-image').show();
+    jQuery.ajax({
+      url: "/hide-resume/"+id,
+      method: 'POST',
+        error: function(result){console.log("error");
+      },
+      success: function(result){
+        $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
+      },
+      complete: function(){
+        $('#loading-image').hide();
+        document.getElementById("loading"+id).innerHTML = ""
+      }
+    });
+}
+function show_my_res(id){
+  $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+  document.getElementById("loading"+id).innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:15px;display:none;'>"
+  $('#loading-image').show();
+  jQuery.ajax({
+    url: "/show-resume/"+id,
+    method: 'POST',
+      error: function(result){console.log("error");
+    },
+    success: function(result){
+      $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
+    },
+    complete: function(){
+      $('#loading-image').hide();
+      document.getElementById("loading"+id).innerHTML = ""
+    }
+  });
+}
+function get_more_jobs(){
+
+}

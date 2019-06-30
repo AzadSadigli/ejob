@@ -19197,3 +19197,33 @@ user-select: none; /* Standard */
   cursor: pointer;
   text-transform: uppercase;
 }
+.verif-btn{
+  border: none;
+  padding: 6px 10px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.verify-vacancy{
+  margin-bottom: 20px;
+  padding: 10px 10px;
+  background: rgba(255,0,0,0.5);
+  color: white;
+  -webkit-box-shadow: 0px 0px 6px 1px rgba(255,0,0,0.5);
+-moz-box-shadow: 0px 0px 6px 1px rgba(255,0,0,0.5);
+box-shadow: 0px 0px 6px 1px rgba(255,0,0,0.5);
+}
+.verified-vacancy{
+  margin-bottom: 20px;
+  padding: 10px 10px;
+  background: rgba(3,208,128,0.98);
+  color: white;
+  -webkit-box-shadow: 0px 0px 6px 1px rgba(3,208,128,0.98);
+-moz-box-shadow: 0px 0px 6px 1px rgba(3,208,128,0.98);
+box-shadow: 0px 0px 6px 1px rgba(3,208,128,0.98);
+}
+.verify-vacancy a{
+  margin-left: 10px;
+}

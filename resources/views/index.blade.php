@@ -102,7 +102,6 @@
             <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p>
         </div>
         <div id="job_list" class="row">
-          @if(Auth::check())<input type="hidden" id="user_id" value="{{Auth::user()->id}}"> @endif
             @foreach($vacs as $vac)
             <div class="col-lg-4 col-md-6 col-xs-12">
                 <div class="job-featured">
@@ -141,10 +140,10 @@
             </div>
             @endforeach
             <div class="col-12 text-center mt-4">
-                <a href="#" class="btn btn-common">{{__('app.Load_more')}}</a>
+                <a onclick="get_more_jobs()" class="btn btn-common">{{__('app.Load_more')}}</a>
             </div>
         </div>
-        <div id="apply_popup" class="modal fade" role="dialog"></div>
+        <div id="apply_popup" class="modal fade" role="dialog" success="{{__('app.Applied')}}"></div>
     </div>
 </section>
 
@@ -354,53 +353,21 @@
 @endsection
 @section('foot')
 <script type="text/javascript">
-// $(document).on('change','.country', function(){
-//   var count_id=$(this).val();
-//   var div=$(this).parent();
-//
-// });
-  function apply_job(id){
-    var op = "<option selected disabled>{{__('app.You_dont_have_resume')}}</option>";
-    $.ajax({
-      type:'GET',
-      url:'/myresumes-list',
-      data:{'id':$("#user_id").val()},
-      cache: false,
-      success:function(data){
+function apply_job(id){
+  $("#apply_popup").html("<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Apply')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <span id='loading'></span> <div class='form-group'><label class='control-label'>{{__('app.My_resume')}}</label><div class='search-category-container' id='res_id_for_apply'><label class='styled-select'><select class='dropdown-product selectpicker' id='disp_m_res' name='vac_id' required></select></label></div></div> <div class='form-group' id='hide-apply'><label class='control-label'>{{__('app.Description')}}</label><textarea maxlength='500' id='apply_description' class='form-control' placeholder='{{__('app.Description')}}...'></textarea></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='apply_for_job("+id+")'>{{__('app.Apply')}}</a></div></div></div>");
+  var op = "<option value='0' selected disabled>{{__('app.Choose_resume')}}</option>";
+  $.ajax({
+    type:'GET',
+    url:'/myresumes-list',
+    cache: false,
+    success:function(data){
         for(var i=0; i < data.length; i++){
-          op+='<option value="'+data[i].id+'">'+data[i].title+'</option>';
+          op +='<option value="'+data[i].id+'"> R'+(i+1)+': '+data[i].title+'</option>';
         }
-      },
-      error:function(data){console.log("error");}
-    });
-    document.getElementById("apply_popup").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Apply')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <span id='loading'></span> <div class='form-group'><label class='control-label'>{{__('app.My_resume')}}</label><div class='search-category-container' id='res_id_for_apply'><label class='styled-select'><select class='dropdown-product selectpicker' name='vac_id' required>"+op+"</select></label></div></div> <div class='form-group' id='hide-apply'><label class='control-label'>{{__('app.Description')}}</label><textarea maxlength='500' id='apply_description' class='form-control' placeholder='{{__('app.Description')}}...'></textarea></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='apply_for_job("+id+")'>{{__('app.Apply')}}</a></div></div></div>";
-
-  }
-  function apply_for_job(id){
-      document.getElementById("loading").innerHTML = "<center><img id='loading-image' src='https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif' style='height:200px;display:none;'></center>"
-      $('#loading-image').show();
-      $('#hide-apply').hide();
-      $('#res_id_for_apply').hide();
-      $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-      jQuery.ajax({
-        url: "/apply-for-job",
-        method: 'POST',
-        data: {
-          job_description: jQuery('#job_description').val(),
-          vac_id: id,
-        },
-        error: function(result){console.log(result);},
-        success: function(result){
-            console.log(result.success);
-        },
-        complete: function(){
-          $("#job_list").load(location.href+" #job_list>*","");
-          $('#loading-image').hide();
-          $('.modal-footer').hide();
-          $('.form-group').hide();
-          document.getElementById("loading").innerHTML = "<center><h2 class='applied'>{{__('app.Applied')}} <i class='fa fa-thumbs-up'></i> </h2></center>";
-        }
-      });
-  }
+        $("#disp_m_res").append(op);
+    },
+    error:function(data){console.log("error");}
+  });
+}
 </script>
 @endsection

@@ -26,13 +26,16 @@
             </div>
             <div class="col-lg-4 col-md-6 col-xs-12">
                 <div class="month-price">
-                    <span class="year">@if($vac->salary_type == 1) {{__('app.Hourly')}}
-                    @elseif($vac->salary_type == 2) {{__('app.Daily')}}
-                    @elseif($vac->salary_type == 3) {{__('app.Weekly')}}
-                    @elseif($vac->salary_type == 4) {{__('app.Monthly')}}
-                    @else {{__('app.Annual')}}
-                    @endif</span>
-                    <div class="price">{{number_format($vac->salary)}}AZN</div>
+                    <div id="loading-hide">
+                      <span class="year">@if($vac->salary_type == 1) {{__('app.Hourly')}}
+                      @elseif($vac->salary_type == 2) {{__('app.Daily')}}
+                      @elseif($vac->salary_type == 3) {{__('app.Weekly')}}
+                      @elseif($vac->salary_type == 4) {{__('app.Monthly')}}
+                      @else {{__('app.Annual')}}
+                      @endif</span>
+                      <div class="price">{{number_format($vac->salary)}}AZN </div>
+                    </div>
+                    <span id="loading"></span>
                 </div>
             </div>
         </div>
@@ -41,9 +44,20 @@
 
 <section class="job-detail section">
     <div class="container">
-        <div class="row justify-content-between">
+        <div class="row justify-content-between" id="vac_body">
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="content-area">
+                  @if($vac->status == 0)
+                  <div class="verify-vacancy">
+                    {{__('app.Active_your_vacancy')}}
+                    <a href="/delete-job/{{$vac->token}}" class="verif-btn btn-danger">{{__('app.Delete')}} </a>
+                    <a onclick="activate_vacancy({{$vac->id}})" class="verif-btn btn-success">{{__('app.Confirm')}} </a>
+                  </div>
+                  @else
+                  <div class="verified-vacancy" id="verifiedvac" style="display:none;">
+                    <center>{{__('app.Successfully_started')}}</center>
+                  </div>
+                  @endif
                     <h4>{{__('app.Description')}}</h4>
                     {!! $vac->description !!}
                     <h4>{{__('app.Job_requirements')}}</h4>

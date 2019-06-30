@@ -13,6 +13,9 @@
 
 Route::get('/test','JobController@test');
 
+
+Route::get('/unregistered/my-vacancy/{token}','JobController@unreg_jobs');
+Route::get('/delete-job/{token}','JobController@deletejob');
 Route::get('/','Controller@index');
 Route::get('/contact','Controller@contact');
 Route::get('/job/{id}','JobController@jobdetails');
@@ -21,6 +24,8 @@ Route::get('/add-vacancy','JobController@addvacancy');
 Route::post('/add-new-vacancy','JobController@addjob');
 Route::get('/r/{id}','ResumeController@getresume');
 Route::post('/send-resume-message','ResumeController@sendmess');
+Route::post('/activate-vacancy/{id}','JobController@act_job');
+
 
 Route::post('/filter-jobs','JobController@getjobsearchdata');
 Route::get('/location/{id}','JobController@location_jobs');

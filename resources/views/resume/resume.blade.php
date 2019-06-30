@@ -619,41 +619,6 @@ function add_new_sn_close(){
   document.getElementById("add_new_id").style.display = "";
   document.getElementById("add_new_id_close").style.display = "none";
 }
-function hide_my_res(id){
-    $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-    document.getElementById("loading"+id).innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:15px;display:none;'>"
-    $('#loading-image').show();
-    jQuery.ajax({
-      url: "/hide-resume/"+id,
-      method: 'POST',
-        error: function(result){console.log("error");
-      },
-      success: function(result){
-        $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
-      },
-      complete: function(){
-        $('#loading-image').hide();
-        document.getElementById("loading"+id).innerHTML = ""
-      }
-    });
-}
-function show_my_res(id){
-  $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-  document.getElementById("loading"+id).innerHTML = "<img id='loading-image' src='https://www.motorcoachjobs.com/Images/LoaderGIF/blue-original-loading-animation-large.gif' style='height:15px;display:none;'>"
-  $('#loading-image').show();
-  jQuery.ajax({
-    url: "/show-resume/"+id,
-    method: 'POST',
-      error: function(result){console.log("error");
-    },
-    success: function(result){
-      $("#resume_act"+id).load(location.href+" #resume_act"+id+">*","");
-    },
-    complete: function(){
-      $('#loading-image').hide();
-      document.getElementById("loading"+id).innerHTML = ""
-    }
-  });
-}
+
 </script>
 @endsection

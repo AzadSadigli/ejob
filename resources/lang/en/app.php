@@ -168,5 +168,14 @@ return [
     'You_dont_have_resume' => "You don't have resume",
     'Applied' => 'Applied',
     'Your_name' => 'Your name',
-
+    'My_resume' => "My resume",
+    'Choose_resume' => 'Choose resume',
+    'All_regions' => 'All regions',
+    'Vac_verify_text' => 'Please, verify your email at :url',
+    'Active_your_vacancy' => 'Active your vacancy',
+    'Confirm' => 'Confirm',
+    'You_have_deleted_your_vacancy' => 'You have deleted your vacancy',
+    'Added_Confirmation_email_sent' => 'Added, confirmation link was sent to you email address',
+    'Vacancy_started_successfully' => 'Vacancy started successfully',
+    'Successfully_started' => 'Successfully started',
 ];
