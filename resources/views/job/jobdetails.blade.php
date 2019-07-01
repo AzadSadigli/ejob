@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('head')
 <title>{{$vac->title}} </title>
+<meta name="description" content="{{$vac->description}}">
+<meta name="keywords" content="{{$vac->title}}">
 @endsection
 @section('body')
 <header id="home" class="hero-area">
@@ -64,11 +66,52 @@
                     {!! $vac->requirements !!}
                     <h5>How To Apply</h5>
                     <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
-                    <a href="#" class="btn btn-common" data-toggle="modal" data-target="#myModal">{{__('app.Apply')}}</a>
+                    @if(Auth::check())
+                      @if(Auth::user()->role_id == 0)
+                        @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
+                          <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
+                        @else
+                        <a href="#" class="btn btn-common">{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                        @endif
+                      @endif
+                    @else
+                      @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
+                      <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
+                      @else
+                      <a href="#" class="btn btn-common">{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                      @endif
+                    @endif
                 </div>
             </div>
-            <div id="myModal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
+            <div id="apply_popup" class="modal fade" role="dialog" success="{{__('app.Applied')}}">
+              <div class='modal-dialog'>
+                <div class='modal-content'>
+                  <div class='modal-header'>
+                    <h5>{{__('app.Apply')}}</h5>
+                    <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                  </div>
+                  <div class='modal-body'> <span id='loading'></span>
+                    <div class='form-group'>
+                      <label class='control-label'>{{__('app.My_resume')}}</label>
+                      <div class='search-category-container' id='res_id_for_apply'>
+                        <label class='styled-select'>
+                          <select class='dropdown-product selectpicker' id='disp_m_res' name='vac_id' required>
+                          </select>
+                        </label>
+                      </div>
+                    </div>
+                    <div class='form-group' id='hide-apply'>
+                      <label class='control-label'>{{__('app.Description')}}</label>
+                      <textarea maxlength='500' id='apply_description' class='form-control' placeholder="{{__('app.Description')}}..."></textarea>
+                    </div>
+                  </div>
+                  <div class='modal-footer'>
+                    <button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button>
+                    <a class='btn btn-primary' onclick='apply_for_job({{$vac->id}})'>{{__('app.Apply')}}</a>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -82,7 +125,7 @@
                   </div>
                 </div>
 
-              </div>
+              </div> -->
             </div>
             <div class="col-lg-4 col-md-12 col-xs-12">
                 <div class="sideber">
@@ -122,4 +165,21 @@
     </div>
 </section>
 @include('layouts.similarjobs')
+<script type="text/javascript">
+function apply_job(){
+  var op = "<option value='0' selected disabled>{{__('app.Choose_resume')}}</option>";
+  $.ajax({
+    type:'GET',
+    url:'/myresumes-list',
+    cache: false,
+    success:function(data){
+        for(var i=0; i < data.length; i++){
+          op +='<option value="'+data[i].id+'"> R'+(i+1)+': '+data[i].title+'</option>';
+        }
+        $("#disp_m_res").append(op);
+    },
+    error:function(data){console.log("error");}
+  });
+}
+</script>
 @endsection

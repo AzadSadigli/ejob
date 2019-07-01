@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('head')
+<title>{{__('app.Contact')}} - eJob</title>
 @endsection
 @section('body')
     <header id="home" class="hero-area">
