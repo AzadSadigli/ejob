@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/all-resumes','ResumeController@allresumes');
     Route::get('/my-resume/{id}','ResumeController@myresume');
+    Route::get('/job-applications','JobController@jobapps');
+    Route::get('/my-requests','ResumeController@myreqs');
     Route::get('/start/resume/personal-information','ResumeController@addresume');
     Route::get('/start/resume/education','ResumeController@addresume');
     Route::get('/start/resume/experience','ResumeController@addresume');
@@ -49,8 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/change-password','UserController@changepassword');
     Route::post('/change-pass','UserController@changepass');
 
+    Route::post('/upload-resume-image','ResumeController@addresimg');
     Route::post('/edit-resume/{id}','ResumeController@editresume');
 
+    Route::get('/job-request/cancel/{id}','JobController@deletejob_request');
     Route::post('/hide-resume/{id}','ResumeController@hideres');
     Route::post('/show-resume/{id}','ResumeController@showres');
 

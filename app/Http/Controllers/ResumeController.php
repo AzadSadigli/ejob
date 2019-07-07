@@ -13,12 +13,33 @@ use DB;
 use Hash;
 use App\Socnet;
 use App\Skill;
+use App\Jobreq;
 use App\Mail\Contact;
 use Mail;
 class ResumeController extends Controller
 {
     public function addresume(){
       return view('resume.add-resume');
+    }
+    public function myreqs(){
+      $reqs = DB::select("SELECT * FROM jobreq WHERE res_id IN (SELECT res_id FROM resumes WHERE user_id = ".Auth::user()->id.") ORDER BY created_at DESC");
+      return view('home',compact('reqs'));
+    }
+    public function addresimg(Request $req){
+     // $this->valiate($req,[
+     //      'res_avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+     // ]);
+     if ($files = $req->file('res_avatar')) {
+        $path = 'public/img/resume/';
+        $img->resize(250,125);
+        $img = $ImageUpload->save($path.time().'-'.rand(100000,200000).$files->getClientOriginalName());
+
+        // $res = Resume::find($req->res_id);
+        // $res->avatar = time().'-'.rand(100000,200000).$files->getClientOriginalName();
+        // $res->update();
+      }
+      // $ress = Resume::latest()->first(['res_avatar']);
+      return Response()->json($img);
     }
     public function sendmess(Request $req){
       $data = array(

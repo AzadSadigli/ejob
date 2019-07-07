@@ -16,26 +16,26 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                    <img src="assets/img/slider/bg-1.jpg" alt="">
+                    <img src="/img/slider/bg-1.jpg" alt="">
                     <div class="carousel-caption text-left">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <h2 class="wow fadeInRight" data-wow-delay="0.4s">Find the career you <br> deserve</h2>
                                 <p class="wow fadeInRight" data-wow-delay="0.6s">Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum.
                                     <br> Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet.</p>
-                                <a href="/jobs" class="btn btn-lg btn-common btn-effect wow fadeInRight" data-wow-delay="0.9s">See our jobs</a>
-                                <a href="/jobs" class="btn btn-lg btn-border wow fadeInRight" data-wow-delay="1.2s">Search jobs</a>
+                                <a href="/jobs" class="btn btn-lg btn-common btn-effect wow fadeInRight">See our jobs</a>
+                                <a href="/jobs" class="btn btn-lg btn-common btn-effect wow fadeInRight">Search jobs</a>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="img-wrapper wow fadeInUp" data-wow-delay="0.6s">
-                                    <img src="assets/img/slider/img-1.png" alt="">
+                                    <img src="/img/slider/img-1.png" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/img/slider/bg-1.jpg" alt="">
+                    <img src="/img/slider/bg-1.jpg" alt="">
                     <div class="carousel-caption text-left">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -46,14 +46,14 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="img-wrapper wow fadeInUp" data-wow-delay="0.6s">
-                                    <img src="assets/img/slider/img-2.png" alt="">
+                                    <img src="/img/slider/img-2.png" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/img/slider/bg-1.jpg" alt="">
+                    <img src="/img/slider/bg-1.jpg" alt="">
                     <div class="carousel-caption text-left">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="img-wrapper wow fadeInUp" data-wow-delay="0.6s">
-                                    <img src="assets/img/slider/img-3.png" alt="">
+                                    <img src="/img/slider/img-3.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -132,18 +132,14 @@
                         @endif
                         @if(Auth::check())
                           @if(Auth::user()->role_id == 0)
-                            @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
+                            @if(App\Jobreq::where('vac_id',$vac->id)->where('applier_id',Auth::user()->id)->count() == 0)
                               <a class="apply-btn" onclick="apply_job({{$vac->id}})" data-toggle="modal" data-target="#apply_popup">Apply Now</a>
                             @else
                               <a class="applied-btn" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
                             @endif
                           @endif
                         @else
-                          @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
                           <a class="apply-btn" onclick="apply_job({{$vac->id}})" data-toggle="modal" data-target="#apply_popup">Apply Now</a>
-                          @else
-                          <a class="applied-btn" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
-                          @endif
                         @endif
                     </div>
                 </div>
@@ -169,7 +165,7 @@
                 <div class="item">
                     <div class="product-item">
                         <div class="icon-thumb">
-                            <img src="assets/img/product/img1.png" alt="">
+                            <img src="/img/product/img1.png" alt="">
                         </div>
                         <div class="product-content">
                             <h3 class="product-title"><a href="#">AmazeTech</a></h3>
@@ -184,7 +180,7 @@
                 <div class="item">
                     <div class="product-item">
                         <div class="icon-thumb">
-                            <img src="assets/img/product/img2.png" alt="">
+                            <img src="/img/product/img2.png" alt="">
                         </div>
                         <div class="product-content">
                             <h3 class="product-title"><a href="#">MagNews</a></h3>
@@ -199,7 +195,7 @@
                 <div class="item">
                     <div class="product-item">
                         <div class="icon-thumb">
-                            <img src="assets/img/product/img3.png" alt="">
+                            <img src="/img/product/img3.png" alt="">
                         </div>
                         <div class="product-content">
                             <h3 class="product-title"><a href="#">Facebook</a></h3>
@@ -214,7 +210,7 @@
                 <div class="item">
                     <div class="product-item">
                         <div class="icon-thumb">
-                            <img src="assets/img/product/img1.png" alt="">
+                            <img src="/img/product/img1.png" alt="">
                         </div>
                         <div class="product-content">
                             <h3 class="product-title"><a href="#">Play Store</a></h3>
@@ -229,7 +225,7 @@
                 <div class="item">
                     <div class="product-item">
                         <div class="icon-thumb">
-                            <img src="assets/img/product/img2.png" alt="">
+                            <img src="/img/product/img2.png" alt="">
                         </div>
                         <div class="product-content">
                             <h3 class="product-title"><a href="#">MagNews</a></h3>
@@ -351,7 +347,7 @@
                 <div class="counter-box">
                     <div class="icon"><i class="lni-save"></i></div>
                     <div class="fact-count">
-                        <h3><span class="counter">1200</span></h3>
+                        <h3><span class="counter">{{App\Jobreq::all()->count()}}</span></h3>
                         <p>{{__('app.Applications')}}</p>
                     </div>
                 </div>
@@ -362,9 +358,17 @@
 </section>
 @endsection
 @section('foot')
+@if(Auth::guest())
 <script type="text/javascript">
 function apply_job(id){
-  $("#apply_popup").html("<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Apply')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <span id='loading'></span> <div class='form-group'><label class='control-label'>{{__('app.My_resume')}}</label><div class='search-category-container' id='res_id_for_apply'><label class='styled-select'><select class='dropdown-product selectpicker' id='disp_m_res' name='vac_id' required></select></label></div></div> <div class='form-group' id='hide-apply'><label class='control-label'>{{__('app.Description')}}</label><textarea maxlength='500' id='apply_description' class='form-control' placeholder='{{__('app.Description')}}...'></textarea></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='apply_for_job("+id+")'>{{__('app.Apply')}}</a></div></div></div>");
+  $("#apply_popup").html("<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Apply')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <span id='loading'></span> <div class='form-group'><div class='upload-btn-wrapper'><button id='upbtn'><span>{{__('app.Upload_a_resume')}}</span></button><input type='file' name='myfile' id='fileup'/></div></div> </div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='apply_for_job("+id+")'>{{__('app.Apply')}}</a></div></div></div>");
+}
+
+</script>
+@else
+<script type="text/javascript">
+function apply_job(id){
+  $("#apply_popup").html("<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Apply')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <span id='loading'></span> <div class='form-group'><label class='control-label'>{{__('app.My_resume')}}</label><div class='search-category-container' id='res_id_for_apply'><label class='styled-select'><select class='dropdown-product selectpicker' id='disp_m_res' required></select></label></div></div></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='apply_for_job("+id+")'>{{__('app.Apply')}}</a></div></div></div>");
   var op = "<option value='0' selected disabled>{{__('app.Choose_resume')}}</option>";
   $.ajax({
     type:'GET',
@@ -380,4 +384,5 @@ function apply_job(id){
   });
 }
 </script>
+@endif
 @endsection

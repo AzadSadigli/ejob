@@ -24,9 +24,9 @@
             <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="job-alerts-item">
                   @if(Request::is('account-settings'))
-                    <h3 class="alerts-title">   {{__('app.Account_settings')}} </h3>
+                    <p class="sec-title">   {{__('app.Account_settings')}} </p>
                       @include('layouts.alerts')
-                    <form action="/edit-user-profile" method="POST" class="form">
+                    <form action="/edit-user-profile" method="POST" class="form" enctype="multipart/form-data">
                       @csrf
                         <div class="form-group is-empty">
                             <label class="control-label">{{__('app.Name')}}*</label>
@@ -63,10 +63,17 @@
                               <span class="help-block red"> {{$errors->first('birthdate')}} </span>
                             @endif
                         </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">{{__('app.Profile_picture')}}*</label>
+                            <input type="file" class="form-control" name="user_avatar">
+                            @if ($errors->has('user_avatar'))
+                              <span class="help-block red"> {{$errors->first('user_avatar')}} </span>
+                            @endif
+                        </div>
                         <button type="submit" class="btn btn-common">{{__('app.Update')}}</button>
                     </form>
                   @else
-                    <h3 class="alerts-title">   {{__('app.Change_password')}} </h3>
+                    <p class="sec-title">   {{__('app.Change_password')}} </p>
                       @include('layouts.alerts')
                     <form action="/change-pass" method="POST" class="form">
                       @csrf

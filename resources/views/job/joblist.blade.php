@@ -81,10 +81,16 @@
                         @elseif($vac->type == 2)
                         <a href="/job-type/full-time" class="job-type ftm">{{__('app.Full_time')}}</a>
                         @endif
-                        @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
-                        <a class="apply-btn" onclick="apply_job({{$vac->id}})" data-toggle="modal" data-target="#apply_popup">Apply Now</a>
+                        @if(Auth::check())
+                          @if(Auth::user()->role_id == 0)
+                            @if(App\Jobreq::where('vac_id',$vac->id)->where('applier_id',Auth::user()->id)->count() == 0)
+                              <a class="apply-btn" onclick="apply_job({{$vac->id}})" data-toggle="modal" data-target="#apply_popup">Apply Now</a>
+                            @else
+                              <a class="applied-btn" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                            @endif
+                          @endif
                         @else
-                        <a class="applied-btn" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                          <a class="apply-btn" onclick="apply_job({{$vac->id}})" data-toggle="modal" data-target="#apply_popup">Apply Now</a>
                         @endif
                     </div>
                 </div>

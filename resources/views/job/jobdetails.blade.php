@@ -11,7 +11,7 @@
 <div class="page-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-6 col-xs-12">
+            <div class="col-lg-8 col-md-6 col-xs-12 main-job-det">
                 <div class="breadcrumb-wrapper">
                     <div class="img-wrapper">
                         <img src="/img/about/company-logo.png" alt="">
@@ -49,7 +49,7 @@
         <div class="row justify-content-between" id="vac_body">
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="content-area">
-                  @if($vac->status == 0)
+                  @if($vac->status == 0 && substr(Request::url(), strrpos(Request::url(), '/') + 1) == $vac->token)
                   <div class="verify-vacancy">
                     {{__('app.Active_your_vacancy')}}
                     <a href="/delete-job/{{$vac->token}}" class="verif-btn btn-danger">{{__('app.Delete')}} </a>
@@ -68,18 +68,14 @@
                     <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
                     @if(Auth::check())
                       @if(Auth::user()->role_id == 0)
-                        @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
-                          <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
+                        @if(App\Jobreq::where('vac_id',$vac->id)->where('applier_id',Auth::user()->id)->count() == 0)
+                          <a href="#" class="appy-btn-large" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
                         @else
-                        <a href="#" class="btn btn-common">{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                        <a class="appy-btn-large" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
                         @endif
                       @endif
                     @else
-                      @if(App\Jobreq::where('vac_id',$vac->id)->count() == 0)
                       <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
-                      @else
-                      <a href="#" class="btn btn-common">{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
-                      @endif
                     @endif
                 </div>
             </div>

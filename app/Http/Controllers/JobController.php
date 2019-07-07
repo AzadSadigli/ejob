@@ -13,12 +13,25 @@ use App\Resume;
 use App\Jobreq;
 use App\Mail\Contact;
 use Mail;
-
+use DB;
 class JobController extends Controller
 {
     public function jobdetails($id){
       $vac = Vacancy::where('vac_id',$id)->first();
       return view('job.jobdetails',compact('vac'));
+    }
+    public function deletejob_request($id){
+      $jb = Jobreq::find($id);
+      if ($jb->applier_id == Auth::user()->id) {
+        $jb->delete($id);
+        return response()->json(['success'=>Lang::get('app.Canceled')]);
+      }else{
+        return response()->json(['success'=>Lang::get('app.Canceled')]);
+      }
+    }
+    public function jobapps(){
+      $reqs = DB::select("SELECT * FROM jobreq WHERE vac_id IN (SELECT id FROM vacancies WHERE user_id = ".Auth::user()->id.") ORDER BY created_at DESC");
+      return view('home',compact('reqs'));
     }
     public function applyforjob(Request $req){
       $this->validate($req,[
@@ -34,7 +47,9 @@ class JobController extends Controller
       $jr->description = $req->description;
       if (Auth::check()) {
         $jr->res_id = $req->res_id;
+        $jr->applier_id = Auth::user()->id;
       }else{
+        $jr->applier_id = 0;
         $jr->email = $req->email;
         $jr->name = $req->name;
       }
@@ -176,7 +191,7 @@ class JobController extends Controller
         'contact_email' => 'string|required',
         'contact_number' => 'required',
         'salary' => 'required',
-        'salary_type' => 'required',
+        'salary_type' => 'required|integer',
       ]);
       $vac = new Vacancy;
       if (Auth::check()) {
@@ -191,6 +206,11 @@ class JobController extends Controller
           $num = rand(10000000,20000000);
         }
       $vac->vac_id = $num;
+      if ($req->accept_by_email == 1) {
+        $vac->accept_by_email = 1;
+      }else{
+        $vac->accept_by_email = 0;
+      }
       $token = md5(microtime());
       $vac->token = $token;
       $vac->title = $req->title;
@@ -209,6 +229,12 @@ class JobController extends Controller
       $vac->description = $req->description;
       $vac->requirements = $req->requirements;
       $vac->company = $req->company;
+      $curr = $req->salary_currency;
+      if ($curr == 1 | $curr == 2 | $curr == 3 | $curr == 4) {
+        $vac->currency = $curr;
+      }else{
+        $vac->currency = 1;
+      }
       $vac->type = $req->type;
       $vac->location = $req->location;
       $vac->category = $req->category;
@@ -218,8 +244,11 @@ class JobController extends Controller
       $vac->contact_type = $req->contact_type;
       $vac->contact_email = $req->contact_email;
       $vac->contact_number = $req->contact_number;
+      $stp = $req->salary_type;
+      if ($stp == 1 | $stp == 2 | $stp == 3 | $stp == 4 | $stp == 5) {
+        $vac->salary_type = $stp;
+      }else{$vac->salary_type = 4;}
       $vac->salary = $req->salary;
-      $vac->salary_type = $req->salary_type;
       $vac->save();
       if (Auth::check()) {
         return redirect('/all-vacancies')->with('success',Lang::get('app.Vacancy_started_successfully'));

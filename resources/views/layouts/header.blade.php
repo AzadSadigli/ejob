@@ -18,7 +18,7 @@
                     </li>
                     @if(Auth::check())
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} {{Auth::user()->surname}}</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{Auth::user()->name}} {{Auth::user()->surname}} <img class="us_av-header" src="/img/profile/{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} {{Auth::user()->surname}}"></a>
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="/home">Profile</a></li>
                           <li><a class="dropdown-item" href="/add-vacancy">Add vacancy</a></li>
@@ -50,5 +50,5 @@
             </div>
         </div>
     </div>
-    <div class="mobile-menu" data-logo="/assets/img/logo-mobile.png"></div>
+    <div class="mobile-menu" data-logo="/img/logo-mobile.png"></div>
 </nav>

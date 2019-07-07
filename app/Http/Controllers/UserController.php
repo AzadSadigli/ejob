@@ -7,6 +7,8 @@ use App\User;
 use Auth;
 use Hash;
 use Lang;
+use File;
+use Image;
 class UserController extends Controller
 {
     public function changepassword(){
@@ -24,6 +26,21 @@ class UserController extends Controller
         'birthdate' => 'date|required',
       ]);
       $user = User::find(Auth::user()->id);
+      if ($req->hasFile('user_avatar')) {
+          $this->validate($req,[
+            'user_avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          ]);
+          $image = $req->file('user_avatar');
+          $name = time().rand(100000,200000).'.'.$image->getClientOriginalExtension();
+          $image_resize = Image::make($image->getRealPath());
+          $image_resize->resize(262.5, 262.5);
+          $image_resize->save(public_path('/img/profile/'.$name));
+          $usersImage = public_path("/img/profile/".$user->avatar);
+          if (File::exists($usersImage) && $user->avatar != 'default.png') {
+              unlink($usersImage);
+          }
+          $user->avatar = $name;
+      }
       $user->name = $req->name;
       $user->surname = $req->surname;
       $user->username = $req->username;

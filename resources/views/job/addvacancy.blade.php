@@ -94,14 +94,14 @@
                                 <option value="1">{{__('app.Hourly')}}</option>
                                 <option value="2">{{__('app.Daily')}}</option>
                                 <option value="3">{{__('app.Weekly')}}</option>
-                                <option value="4">{{__('app.Monthly')}}</option>
+                                <option value="4" selected>{{__('app.Monthly')}}</option>
                                 <option value="5">{{__('app.Annual')}}</option>
                               </select>
                             </div>
                             <input type="number" class="form-control" name="salary" min="0" placeholder="{{__('app.Salary')}}..." required>
                             <div class="input-group-prepend">
                               <select class="curr" name="salary_currency" required>
-                                <option value="1">AZN</option>
+                                <option value="1" selected>AZN</option>
                                 <option value="2">USD</option>
                                 <option value="3">EURO</option>
                                 <option value="4">RUBL</option>
@@ -187,11 +187,13 @@
                               <span class="warning-text" role="alert">{{ $message }} </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Job Tags <span>({{__('app.optional')}})</span></label>
-                            <input type="text" class="form-control" placeholder="e.g.PHP,Social Media,Management">
-                        </div>
                         @if(Auth::check())
+                        <div class="form-group">
+                          <label class="check-box-container">{{__('app.Accept_resumes_by_email')}}
+                            <input type="checkbox" checked="checked" id="accept_by_email">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
                         @else
                         <div class="form-group">
                           <label class="control-label">{{__('app.Company_logo')}} <span>({{__('app.Allowed_images_formats')}})</span></label>

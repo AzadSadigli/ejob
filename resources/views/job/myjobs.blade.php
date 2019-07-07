@@ -26,16 +26,16 @@
             @if(Request::is('all-vacancies'))
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="job-alerts-item candidates">
-                    <h3 class="alerts-title">{{__('app.Manage_Vacancies')}}</h3>
+                    <p class="sec-title">{{__('app.Manage_Vacancies')}}</p>
                     @include('layouts.alerts')
                     @foreach($vacs as $vac)
                     <div class="manager-resumes-item">
                         <div class="manager-content">
-                            <a href="/my-resume/{{$vac->id}}"><img class="resume-thumb" src="/img/jobs/avatar-1.jpg" alt=""></a>
+                            <a href="/my-resume/{{$vac->id}}"><img class="resume-thumb" src="/img/dvp.png" alt=""></a>
                             <div class="manager-info">
                                 <div class="manager-name">
                                     <h4><a href="/job/{{$vac->vac_id}}">{{$vac->title}}</a> </h4>
-                                    <h5>{{$vac->company}}</h5>
+                                    <h5 class="company_cl">{{$vac->company}}</h5>
                                 </div>
                                 <div class="manager-meta">
                                     <span class="location"><i class="lni-map-marker"></i> {{$vac->title}}</span>
@@ -48,11 +48,11 @@
                             </p>
                             <div class="action-btn" id="vac_act{{$vac->id}}">
                                 @if($vac->status == 1)
-                                <a class="btn btn-xs btn-gray" onclick="hide_my_res({{$vac->id}})"><span id="loading{{$vac->id}}"></span> {{__('app.Hide')}}</a>
+                                <a class="hide-show-btn" onclick="hide_my_res({{$vac->id}})"><span id="loading{{$vac->id}}"></span> {{__('app.Hide')}}</a>
                                 @else
-                                <a class="btn btn-xs btn-gray" onclick="show_my_res({{$vac->id}})"><span id="loading{{$vac->id}}"></span> {{__('app.Show')}}</a>
+                                <a class="hide-show-btn" onclick="show_my_res({{$vac->id}})"><span id="loading{{$vac->id}}"></span> {{__('app.Show')}}</a>
                                 @endif
-                                <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteresume{{$vac->id}}">{{__('app.Delete')}}</a>
+                                <a class="dlt-btn" data-toggle="modal" data-target="#deleteresume{{$vac->id}}">{{__('app.Delete')}}</a>
                             </div>
                         </div>
                     </div>

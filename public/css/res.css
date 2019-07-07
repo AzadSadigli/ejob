@@ -44,6 +44,7 @@ template {
 }
 a {
   background-color: transparent;
+  cursor: pointer;
 }
 a:active,
 a:hover {
@@ -5102,9 +5103,9 @@ a.thumbnail.active {
   color: inherit;
 }
 .alert-success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  color: white;
+  background-color: #1cc4f7;
+  border-color: #1cc4f7;
 }
 .alert-success hr {
   border-top-color: #c9e2b3;
@@ -7218,10 +7219,6 @@ h6{
 .padbot_60{
     padding-bottom: 60px;
 }
-
-
-/*Spinner*/
-
 #preloader {
     background-color:#fff;
     position: fixed;
@@ -7263,11 +7260,8 @@ h6{
     margin-top: -25px;
     margin-left: -25px;
     border-radius: 50px;
-    background: url(../images/spinner.jpg) center center;
+    background: url(../img/default.png) center center;
 }
-
-/*------------------------ 2 Profile Section ------------------------*/
-
 .profile{
     background: #fff;
     border-radius: 6px;
@@ -7276,14 +7270,15 @@ h6{
     -o-border-radius: 6px;
     width: 100%;
     display: inline-block;
-    box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.07);
-    -webkit-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.07);
-    -moz-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.07);
+    -webkit-box-shadow: 2px 2px 5px 1px rgba(0,153,255,0.2);
+    -moz-box-shadow: 2px 2px 5px 1px rgba(0,153,255,0.2);
+    box-shadow: 2px 2px 5px 1px rgba(0,153,255,0.2);
 }
 
 .profile-name{
     line-height: 18px;
     padding: 20px;
+    margin-bottom: 20px;
 }
 
 .profile .name{
@@ -7294,13 +7289,13 @@ h6{
 
 .profile .job{
     font-size: 13px;
-    color: #777777;
+    color: #1cc4f7;
 }
 
 .profile-image {
-    margin-top: -18px;
-    -webkit-clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
-    clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
+    margin-top: 30px;
+    /* -webkit-clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%); */
+    /* clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%); */
 }
 
 .profile-image img{
@@ -8251,7 +8246,7 @@ ul.timeline{
 /*------------------------ 10 Footer ------------------------*/
 
 footer .footer{
-    background: #1e1e1e;
+    background: #05246b;
     min-height: 70px;
     color: #fff;
     border-radius: 8px;
@@ -8401,19 +8396,9 @@ footer .footer .copyright a:hover{
     color: #989898;
     line-height: 25px;
 }
-
-.details ul li span{
-    color: #000;
-}
-
-.other-features.details ul li{
-    color: #000;
-}
-
-.other-features.details ul li i{
-    color: #1cc4f7;
-}
-
+.details ul li span{color: #000;}
+.other-features.details ul li{color: #000;}
+.other-features.details ul li i{color: #1cc4f7;}
 .map iframe{
     width: 100%;
     border-radius: 6px;
@@ -8422,22 +8407,9 @@ footer .footer .copyright a:hover{
     overflow: hidden;
   box-shadow: 0px 0px 48px 0px rgba(4, 6, 4, 0.08);
 }
-
-
-/*------------------------ 12 Photo Gallery Widget ------------------------*/
-
-#widget-gallery{
-    margin-left: -15px;
-}
-
-#widget-gallery .cbp-item img{
-    width: 100%;
-}
-
-#widget-gallery .cbp-item{
-    padding: 15px;
-}
-
+#widget-gallery{margin-left: -15px;}
+#widget-gallery .cbp-item img{width: 100%;}
+#widget-gallery .cbp-item{padding: 15px;}
 #widget-gallery .cbp-item a{
     display: block;
     border-radius: 5px;
@@ -8809,6 +8781,11 @@ ul.profile-information li:before{
 .site-btn:hover, header nav a.home-btn:hover, .section-title span{
    background-color: #1cc4f7 !important;
 }
+.hmbtn:hover{
+  border: 1px solid #1cc4f7 !important;
+  background: white !important;
+  color: #1cc4f7 !important;
+}
 #portfolio .cbp-item .portfolio-image .icon i, #portfolio .cbp-item figure .icon i{
    background: rgb(81, 191, 2);
 }
@@ -8822,4 +8799,28 @@ ul.profile-information li:before{
 
 .tab.active a, #blog-post .post-list ul li a, #blog-post .post-comment ul li .comment-content a{
 	color: #1cc4f7;
+}
+.skills {
+  display: inline-block;
+  width: 100px;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid rgba(4, 123, 248, 0.1);
+  cursor: pointer;
+}
+.skills:hover{
+  box-shadow: 0px 0px 5px 1px rgba(0,153,255,0.3);
+}
+.skills-list{
+  margin-left: 25px;
+}
+.shead{
+  margin-left: 25px;
+  margin-bottom: 40px;
+}
+.scnet{
+  display: inline;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
 }

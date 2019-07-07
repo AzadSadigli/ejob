@@ -26,19 +26,19 @@
             @if(Request::is('all-resumes'))
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="job-alerts-item candidates">
-                    <h3 class="alerts-title">{{__('app.Manage_Resumes')}}</h3>
+                    <p class="sec-title">{{__('app.Manage_Resumes')}}</p>
                     @include('layouts.alerts')
                     @foreach($resumes as $resume)
                     <div class="manager-resumes-item">
                         <div class="manager-content">
-                            <a href="/my-resume/{{$resume->id}}"><img class="resume-thumb" src="/img/default.png" alt="{{$resume->full_name}}"></a>
+                            <a href="/my-resume/{{$resume->id}}"><img class="resume-thumb" src="/img/profile/{{Auth::user()->avatar}}" alt="{{$resume->full_name}}"></a>
                             <div class="manager-info">
                                 <div class="manager-name">
                                     <h4><a href="/my-resume/{{$resume->id}}">{{$resume->full_name}}</a> </h4>
                                     <h5>{{$resume->title}}</h5>
                                 </div>
                                 <div class="manager-meta">
-                                    <span class="location"><i class="lni-map-marker"></i> {{$resume->location}}</span>
+                                    <span class="location"><i class="lni-map-marker"></i><a href="/location/{{App\Locations::find($resume->location)->id}}"> {{App\Locations::find($resume->location)->location_az}}</a></span>
                                 </div>
                             </div>
                         </div>
@@ -48,11 +48,11 @@
                             </p>
                             <div class="action-btn">
                                 @if($resume->status == 1)
-                                <a class="btn btn-xs btn-gray" onclick="hide_my_res({{$resume->id}})"><span id="loading{{$resume->id}}"></span> {{__('app.Hide')}}</a>
+                                <a class="hide-show-btn" onclick="hide_my_res({{$resume->id}})"><span id="loading{{$resume->id}}"></span> {{__('app.Hide')}}</a>
                                 @else
-                                <a class="btn btn-xs btn-gray" onclick="show_my_res({{$resume->id}})"><span id="loading{{$resume->id}}"></span> {{__('app.Show')}}</a>
+                                <a class="hide-show-btn" onclick="show_my_res({{$resume->id}})"><span id="loading{{$resume->id}}"></span> {{__('app.Show')}}</a>
                                 @endif
-                                <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteresume{{$resume->id}}">{{__('app.Delete')}}</a>
+                                <a class="dlt-btn" data-toggle="modal" data-target="#deleteresume{{$resume->id}}">{{__('app.Delete')}}</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                   @include('layouts.alerts')
                     <div class="author-resume" id="myResCh">
                         <div class="thumb">
-                            <img src="/img/default.png" alt="{{$res->full_name}}">
+                            <img src="/img/profile/{{Auth::user()->avatar}}" alt="{{$res->full_name}}">
                         </div>
                         <div class="author-info">
                             <h3>{{$res->full_name}} <small style="text-transform:lowercase;"> ({{$res->email}}) </small> <span class="float-right"><a class="btn btn-common" href="/r/{{$res->username}}" title="{{__('app.Preview')}}"><i class="fa fa-eye"></i> </a>
@@ -190,7 +190,6 @@
                                 <button type="button" class="btn btn-primary" id="addnewexp">{{__('app.Add')}}</button>
                               </div>
                             </div>
-
                           </div>
                         </div>
                     </div>
@@ -608,16 +607,6 @@ function skilleditfunc(id){
 function getskilldelete(e_id){
   document.getElementById("deleteskillpop").innerHTML = "<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Delete_skill')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'><p>{{__('app.Are_you_sure_to_delete')}}</p></div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.No')}}</button><a class='btn btn-primary' onclick='deleteskill_function("+e_id+")'>{{__('app.Yes')}}</a></div></div></div>";
   console.log(e_id);
-}
-function add_new_sn(){
-  document.getElementById("add_sn").innerHTML = "<div class='input-group-prepend'><select class='type' id='socnet_site'><option value='facebook'>Facebook</option><option value='instagram'>Instagram</option><option value='linkedin'>LinkedIn</option><option value='google-plus'>Google Plus</option><option value='twitter'>Twitter</option></select></div><input type='text' class='form-control' id='socnet_url' placeholder='URL...'><button type='button' onclick='add_new_socnet()'>{{__('app.Add')}}</button>";
-  document.getElementById("add_new_id").style.display = "none";
-  document.getElementById("add_new_id_close").style.display = "";
-}
-function add_new_sn_close(){
-  document.getElementById("add_sn").innerHTML = "";
-  document.getElementById("add_new_id").style.display = "";
-  document.getElementById("add_new_id_close").style.display = "none";
 }
 
 </script>
