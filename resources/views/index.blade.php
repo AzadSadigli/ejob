@@ -99,7 +99,7 @@
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">{{__('app.Latest_vacancies')}}</h2>
-            <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p>
+            <!-- <p>As the world's #1 job site, with over 200 million unique visitors every month from over 60 different countries</p> -->
         </div>
         <div id="job_list" class="row">
             @foreach($vacs as $vac)
@@ -139,7 +139,6 @@
                             @endif
                           @endif
                         @else
-                          <a class="apply-btn" onclick="apply_job({{$vac->id}})" data-toggle="modal" data-target="#apply_popup">Apply Now</a>
                         @endif
                     </div>
                 </div>
@@ -161,86 +160,29 @@
                 <br> metus effici turac fringilla lorem facilisis.</p>
         </div>
         <div class=" wow fadeIn" data-wow-delay="0.5s">
-            <div id="new-products" class="owl-carousel">
+            <div id="mscompanies" class="owl-carousel">
+                @foreach($vacs = App\Vacancy::where('status',1)->get() as $vac)
                 <div class="item">
                     <div class="product-item">
                         <div class="icon-thumb">
                             <img src="/img/product/img1.png" alt="">
                         </div>
                         <div class="product-content">
-                            <h3 class="product-title"><a href="#">AmazeTech</a></h3>
+                            <h3 class="product-title"><a href="#">{{$vac->company}}</a></h3>
                             <div class="tags">
-                                <span><i class="lni-briefcase"></i> Software Company</span>
-                                <span><i class="lni-map-marker"></i> New York</span>
+                                <!-- <span><i class="lni-briefcase"></i> {{$vac->company}}</span> -->
+                                <span><i class="lni-map-marker"></i> {{App\Locations::find($vac->location)->location_az}}</span>
                             </div>
                             <a href="#" class="btn btn-common">5 Open Job</a>
                         </div>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="product-item">
-                        <div class="icon-thumb">
-                            <img src="/img/product/img2.png" alt="">
-                        </div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#">MagNews</a></h3>
-                            <div class="tags">
-                                <span><i class="lni-briefcase"></i> Software Company</span>
-                                <span><i class="lni-map-marker"></i> New York</span>
-                            </div>
-                            <a href="#" class="btn btn-common">5 Open Job</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="product-item">
-                        <div class="icon-thumb">
-                            <img src="/img/product/img3.png" alt="">
-                        </div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#">Facebook</a></h3>
-                            <div class="tags">
-                                <span><i class="lni-briefcase"></i> Software Company</span>
-                                <span><i class="lni-map-marker"></i> New York</span>
-                            </div>
-                            <a href="#" class="btn btn-common">5 Open Job</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="product-item">
-                        <div class="icon-thumb">
-                            <img src="/img/product/img1.png" alt="">
-                        </div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#">Play Store</a></h3>
-                            <div class="tags">
-                                <span><i class="lni-briefcase"></i> Software Company</span>
-                                <span><i class="lni-map-marker"></i> New York</span>
-                            </div>
-                            <a href="#" class="btn btn-common">5 Open Job</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="product-item">
-                        <div class="icon-thumb">
-                            <img src="/img/product/img2.png" alt="">
-                        </div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#">MagNews</a></h3>
-                            <div class="tags">
-                                <span><i class="lni-briefcase"></i> Software Company</span>
-                                <span><i class="lni-map-marker"></i> New York</span>
-                            </div>
-                            <a href="#" class="btn btn-common">5 Open Job</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 </section>
+@if(2==4)
 <section class="how-it-works section">
     <div class="container">
         <div class="section-header">
@@ -273,7 +215,7 @@
         </div>
     </div>
 </section>
-
+@endif
 <div id="apply">
     <div class="container-fulid">
         <div class="row">
@@ -359,12 +301,7 @@
 @endsection
 @section('foot')
 @if(Auth::guest())
-<script type="text/javascript">
-function apply_job(id){
-  $("#apply_popup").html("<div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5>{{__('app.Apply')}}</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body'> <span id='loading'></span> <div class='form-group'><div class='upload-btn-wrapper'><button id='upbtn'><span>{{__('app.Upload_a_resume')}}</span></button><input type='file' name='myfile' id='fileup'/></div></div> </div><div class='modal-footer'><button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button><a class='btn btn-primary' onclick='apply_for_job("+id+")'>{{__('app.Apply')}}</a></div></div></div>");
-}
 
-</script>
 @else
 <script type="text/javascript">
 function apply_job(id){

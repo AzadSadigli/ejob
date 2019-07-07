@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/test','JobController@test');
+Route::get('/test',function(){
+  return view('email.sendres');
+});
 
-
+Route::post('/apply-as-ur-user','JobController@applyas_uruser');
 Route::get('/unregistered/my-vacancy/{token}','JobController@unreg_jobs');
 Route::get('/delete-job/{token}','JobController@deletejob');
 Route::get('/','Controller@index');

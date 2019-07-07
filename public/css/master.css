@@ -5144,9 +5144,9 @@ input[type=submit].btn-block {
 }
 
 .alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb
+    color: white;
+    background-color: #1cc4f7;
+    border-color: #1cc4f7;
 }
 
 .alert-success hr {
@@ -5186,9 +5186,9 @@ input[type=submit].btn-block {
 }
 
 .alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb
+    color: white;
+    background-color: #ff2f42;
+    border-color: #ff2f42;
 }
 
 .alert-danger hr {
@@ -15736,7 +15736,9 @@ box-shadow: 1px 0px 6px 4px rgba(28,196,247,0.46);
     display: block;
     position: relative
 }
+.icon-thumb img{
 
+}
 .product-item .product-content {
     padding: 10px 0;
     position: relative
@@ -19425,6 +19427,16 @@ text-transform: uppercase;
     position: absolute;
     right: 50px;
     font-size: 20px;
+  }
+  .month-price{
+    margin-top: 20px;
+    float: right !important;
+  }
+  #carousel-area{
+    display: none;
+  }
+  .section-header{
+    margin-top: 20px;
   }
 }
 @media (max-width:478px) {

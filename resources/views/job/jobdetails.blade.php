@@ -49,6 +49,7 @@
         <div class="row justify-content-between" id="vac_body">
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="content-area">
+                  @include('layouts.alerts')
                   @if($vac->status == 0 && substr(Request::url(), strrpos(Request::url(), '/') + 1) == $vac->token)
                   <div class="verify-vacancy">
                     {{__('app.Active_your_vacancy')}}
@@ -75,12 +76,13 @@
                         @endif
                       @endif
                     @else
-                      <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
+                      <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup">{{__('app.Apply')}}</a>
                     @endif
                 </div>
             </div>
             <div id="apply_popup" class="modal fade" role="dialog" success="{{__('app.Applied')}}">
               <div class='modal-dialog'>
+                @if(Auth::check())
                 <div class='modal-content'>
                   <div class='modal-header'>
                     <h5>{{__('app.Apply')}}</h5>
@@ -106,6 +108,28 @@
                     <a class='btn btn-primary' onclick='apply_for_job({{$vac->id}})'>{{__('app.Apply')}}</a>
                   </div>
                 </div>
+                @else
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5>{{__('app.Apply')}}</h5>
+                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                    </div>
+                    <form action='/apply-as-ur-user' method='POST' enctype='multipart/form-data'>
+                      @csrf
+                        <div class='modal-body'>
+                            <input type='hidden' name='vac_id' value="{{$vac->id}}" required/>
+                            <div class='form-group'>
+                                <label>{{__('app.Upload_a_resume')}}</label>
+                                <input type='file' class='form-control' name='resume' required/>
+                            </div>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-danger' data-dismiss='modal'>{{__('app.Close')}}</button>
+                            <button class='btn btn-primary' type='submit'>{{__('app.Apply')}}</button>
+                        </div>
+                    </form>
+                </div>
+                @endif
               </div>
               <!-- <div class="modal-dialog">
                 <div class="modal-content">
@@ -161,6 +185,7 @@
     </div>
 </section>
 @include('layouts.similarjobs')
+@if(Auth::check())
 <script type="text/javascript">
 function apply_job(){
   var op = "<option value='0' selected disabled>{{__('app.Choose_resume')}}</option>";
@@ -178,4 +203,7 @@ function apply_job(){
   });
 }
 </script>
+@else
+
+@endif
 @endsection

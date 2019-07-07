@@ -12,6 +12,7 @@ use App\User;
 use App\Resume;
 use App\Jobreq;
 use App\Mail\Contact;
+use App\Mail\Sendres;
 use Mail;
 use DB;
 class JobController extends Controller
@@ -28,6 +29,31 @@ class JobController extends Controller
       }else{
         return response()->json(['success'=>Lang::get('app.Canceled')]);
       }
+    }
+    public function applyas_uruser(Request $req){
+      if (Auth::check()) {
+          return $this->respondBadRequest('Phone Number Exists');
+       }else{
+           if (Vacancy::find($req->vac_id)->count() != 0) {
+             $vac = Vacancy::find($req->vac_id);
+             if($req->hasFile('resume')) {
+               $data = array(
+                 'document' => $req->resume,
+                 'message' => 'Message',
+                 'company' => $vac->company,
+                 'website' => $vac->website,
+                 'title' => $vac->title,
+                 'email' => $vac->contact_email,
+                 'contact_number' => $vac->contact_number,
+                 'job_url' => 'http://localhost:8000/job/'.$vac->vac_id
+               );
+             }
+             Mail::to($vac->contact_email)->send(new Sendres($data));
+             return redirect()->back()->with('success', Lang::get('app.Resume_sent_successfully'));
+           }else{
+             return redirect()->back()->with('danger', Lang::get('app.Failed_to_send_resume'));
+           }
+       }
     }
     public function jobapps(){
       $reqs = DB::select("SELECT * FROM jobreq WHERE vac_id IN (SELECT id FROM vacancies WHERE user_id = ".Auth::user()->id.") ORDER BY created_at DESC");

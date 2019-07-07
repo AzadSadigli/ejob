@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Lang;
-class Contact extends Mailable
+class Sendres extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,12 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return $this->from(config("settings.contact_email"))->subject(Lang::get("app.Contact_via_resume"))->view("email/contact")->with("data",$this->data  );
+        return $this->view('email/sendres')->from(config("settings.contact_email"))
+                 ->subject(Lang::get("app.User_resume_for",['title'=>$this->data['title']]))
+                 ->attach($this->data['document']->getRealPath(),
+                 [
+                     'as' => $this->data['document']->getClientOriginalName(),
+                     'mime' => $this->data['document']->getClientMimeType(),
+                 ]);
     }
 }

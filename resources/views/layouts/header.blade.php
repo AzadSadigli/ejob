@@ -20,11 +20,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{Auth::user()->name}} {{Auth::user()->surname}} <img class="us_av-header" src="/img/profile/{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} {{Auth::user()->surname}}"></a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="/home">Profile</a></li>
-                          <li><a class="dropdown-item" href="/add-vacancy">Add vacancy</a></li>
-                          <li><a class="dropdown-item" href="/start/resume/personal-information">Add resume</a></li>
-                          <li><a class="dropdown-item" href="/all-resumes">My resumes</a></li>
-                          <li><a class="dropdown-item" href="/account-settings">Account settings</a></li>
+                          <li><a class="dropdown-item" href="/home">{{__('app.My_profile')}}</a></li>
+                          <li><a class="dropdown-item" href="/add-vacancy">{{__('app.Post_a_Job')}}</a></li>
+                          <li><a class="dropdown-item" href="/start/resume/personal-information">{{__('app.Create_resume')}}</a></li>
+                          <li><a class="dropdown-item" href="/all-resumes">{{__('app.My_resumes')}}</a></li>
+                          <li><a class="dropdown-item" href="/account-settings">{{__('app.Account_settings')}}</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                                document.getElementById('logout-form').submit();">
@@ -37,13 +37,13 @@
                     </li>
                     @else
                     <li class="nav-item active">
-                        <a class="nav-link" href="login">Sign In</a>
+                        <a class="nav-link" href="/login">{{__('app.Sign_in')}}</a>
                     </li>
                     @endif
                     @if(Auth::check() && Auth::user()->role_id != 2)
                     @else
                     <li class="button-group">
-                        <a href="/add-vacancy" class="button btn btn-common">Post a Job</a>
+                        <a href="/add-vacancy" class="button btn btn-common">{{__('app.Post_a_Job')}}</a>
                     </li>
                     @endif
                 </ul>
