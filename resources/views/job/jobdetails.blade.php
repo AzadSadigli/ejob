@@ -65,19 +65,19 @@
                     {!! $vac->description !!}
                     <h4>{{__('app.Job_requirements')}}</h4>
                     {!! $vac->requirements !!}
-                    <h5>How To Apply</h5>
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
-                    @if(Auth::check())
-                      @if(Auth::user()->role_id == 0)
-                        @if(App\Jobreq::where('vac_id',$vac->id)->where('applier_id',Auth::user()->id)->count() == 0)
-                          <a href="#" class="appy-btn-large" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
-                        @else
-                        <a class="appy-btn-large" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                    <div class="app-btn-div">
+                      @if(Auth::check())
+                        @if(Auth::user()->role_id == 0)
+                          @if(App\Jobreq::where('vac_id',$vac->id)->where('applier_id',Auth::user()->id)->count() == 0)
+                            <a href="#" class="appy-btn-large" data-toggle="modal" data-target="#apply_popup" onclick="apply_job()">{{__('app.Apply')}}</a>
+                          @else
+                          <a class="appy-btn-large" disabled>{{__('app.Applied')}} <i class="fa fa-check"></i> </a>
+                          @endif
                         @endif
+                      @else
+                        <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup">{{__('app.Apply')}}</a>
                       @endif
-                    @else
-                      <a href="#" class="btn btn-common" data-toggle="modal" data-target="#apply_popup">{{__('app.Apply')}}</a>
-                    @endif
+                    </div>
                 </div>
             </div>
             <div id="apply_popup" class="modal fade" role="dialog" success="{{__('app.Applied')}}">
@@ -97,10 +97,6 @@
                           </select>
                         </label>
                       </div>
-                    </div>
-                    <div class='form-group' id='hide-apply'>
-                      <label class='control-label'>{{__('app.Description')}}</label>
-                      <textarea maxlength='500' id='apply_description' class='form-control' placeholder="{{__('app.Description')}}..."></textarea>
                     </div>
                   </div>
                   <div class='modal-footer'>

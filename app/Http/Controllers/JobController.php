@@ -25,9 +25,9 @@ class JobController extends Controller
       $jb = Jobreq::find($id);
       if ($jb->applier_id == Auth::user()->id) {
         $jb->delete($id);
-        return response()->json(['success'=>Lang::get('app.Canceled')]);
+        return response()->json(['success'=>Lang::get('app.Canceled'),'failed' => Lang::get('app.Failed'),'type' => '']);
       }else{
-        return response()->json(['success'=>Lang::get('app.Canceled')]);
+        return response()->json(['success'=>Lang::get('app.Failed'),'type' => '-danger']);
       }
     }
     public function applyas_uruser(Request $req){
@@ -82,16 +82,21 @@ class JobController extends Controller
       $jr->resume = $req->resume;
       $jr->cover_letter = $req->cover_letter;
       $jr->save();
-      return response()->json(['success'=>"Added"]);
+      return response()->json(['success'=>Lang::get('app.Applied_for_job'),'failed' => Lang::get('app.Failed_to_apply_job')]);
     }
-    public function location_jobs($id){
+    public function location_jobs($id,$reg = null){
       $loc = Locations::find($id);
+      $region = $loc->location_az;
       $vacs = Vacancy::where('location',$loc->id)->where('status',1)->get();
-      return view('job.joblist',compact('vacs'));
+      return view('job.joblist',compact('vacs','region'));
+    }
+    public function getmorejob(Request $req){
+      Session::put('number',$req->number);
+      return response()->json(['failed' => 'Failed here','success' => 'Successed']);
     }
     public function comp_vacancies($comp){
       $vacs = Vacancy::where('company',$comp)->where('status',1)->get();
-      return view('job.joblist',compact('vacs'));
+      return view('job.joblist',compact('vacs','comp'));
     }
     public function myres_list(Request $req){
       $res = Resume::where('user_id',Auth::user()->id)->get();
@@ -101,7 +106,7 @@ class JobController extends Controller
       $user = User::where('username',$us)->first();
       if (!empty($user)) {
         $vacs = Vacancy::where('user_id',$user->id)->where('status',1)->get();
-        return view('job.joblist',compact('vacs'));
+        return view('job.joblist',compact('vacs','us'));
       }else{
         return redirect('/');
       }
@@ -119,36 +124,6 @@ class JobController extends Controller
         return redirect('/');
       }
       return view('job.joblist',compact('vacs'));
-    }
-    public function getjobsearchdata(Request $req){
-      if (!empty($req->word)) {
-        $word = $req->word;
-        if ($req->location != 0) {
-          $vacs = Vacancy::where('location',$req->location)->where('status',1)
-                          ->where(function ($query) use ($word,$req){
-                            $query->where('title','LIKE','%' .$req->word. '%')
-                                  ->orWhere('company','LIKE','%'.$req->word.'%')
-                                  ->orWhere('description','LIKE','%'.$req->word.'%')
-                                  ->orWhere('requirements','LIKE','%'.$req->word.'%');
-                          })->get();
-        }else{
-          $vacs = Vacancy::where('status',1)->where(function ($query) use ($word, $req){
-                            $query->where('title','LIKE','%' .$req->word. '%')
-                                  ->orWhere('description','LIKE','%'.$req->word.'%')
-                                  ->orWhere('requirements','LIKE','%'.$req->word.'%');
-                                })->get();
-        }
-      }else{
-        $vacs = Vacancy::where('status',1)->orderBy('created_at','desc')->get();
-      }
-      // Session::forget('joblist');
-      // $list = array();
-      // foreach ($vacs as $key => $vac) {
-      //   $list[] = array($vac->id);
-      // }
-      // Session::push('joblist', $list);
-      $this->jobs($vacs);
-      return response()->json(['success'=>$vacs]);
     }
     public function hideres(Request $req,$id){
       $vac = Vacancy::find($id);
@@ -174,18 +149,36 @@ class JobController extends Controller
       $vacs = Vacancy::where('user_id',Auth::user()->id)->get();
       return view('job.myjobs',compact('vacs'));
     }
-    public function addvacancy(){
-      return view('job.addvacancy');
-    }
-    public function jobs($vacs = null){
-      if ($vacs == null) {
-        $vacs = Vacancy::orderBy('created_at','desc')->get();
+    public function addvacancy(){return view('job.addvacancy');}
+    public function jobs($vacs = null){return view('job.searchjobs',compact('vacs'));}
+    public function searchjobs(Request $req){
+      if (!empty(Session::get('number'))) {
+        $numb = Session::get('number');
       }else{
-        // $vacs = Vacancy::whereIn('id',$vacs)->orderBy('created_at','desc')->get();
+        $numb = 2;
       }
-      // print_r(Session::get('joblist'));
-      echo $vacs;
-      // return view('job.joblist',compact('vacs'));
+      $location = $req->location;
+      if (isset($req->word) | isset($req->location)) {
+        $word = $req->word;
+        if ($req->location != 0) {
+          $vacs = Vacancy::where('location',$req->location)->where('status',1)
+                          ->where(function ($query) use ($word,$req){
+                            $query->where('title','LIKE','%' .$req->word. '%')
+                                  ->orWhere('company','LIKE','%'.$req->word.'%')
+                                  ->orWhere('description','LIKE','%'.$req->word.'%')
+                                  ->orWhere('requirements','LIKE','%'.$req->word.'%');
+                          })->get();
+        }else{
+          $vacs = Vacancy::where('status',1)->where(function ($query) use ($word, $req){
+                            $query->where('title','LIKE','%' .$req->word. '%')
+                                  ->orWhere('description','LIKE','%'.$req->word.'%')
+                                  ->orWhere('requirements','LIKE','%'.$req->word.'%');
+                                })->get();
+        }
+      }else{
+        $vacs = Vacancy::where('status',1)->orderBy('created_at','desc')->take($numb)->get();
+      }
+      return view('job.searchjobs',compact('vacs','word','location'));
     }
     public function unreg_jobs($token){
       $vac = Vacancy::where('token',$token)->first();

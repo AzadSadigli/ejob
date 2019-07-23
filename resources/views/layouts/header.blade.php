@@ -20,15 +20,15 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{Auth::user()->name}} {{Auth::user()->surname}} <img class="us_av-header" src="/img/profile/{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} {{Auth::user()->surname}}"></a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="/home">{{__('app.My_profile')}}</a></li>
-                          <li><a class="dropdown-item" href="/add-vacancy">{{__('app.Post_a_Job')}}</a></li>
-                          <li><a class="dropdown-item" href="/start/resume/personal-information">{{__('app.Create_resume')}}</a></li>
-                          <li><a class="dropdown-item" href="/all-resumes">{{__('app.My_resumes')}}</a></li>
-                          <li><a class="dropdown-item" href="/account-settings">{{__('app.Account_settings')}}</a></li>
+                          <li><a class="dropdown-item" href="/home">{{__('app.My_profile')}} <i class="fa fa-chevron-right"></i> </a></li>
+                          <li><a class="dropdown-item" href="/add-vacancy">{{__('app.Post_a_Job')}}  <i class="fa fa-chevron-right"></i> </a></li>
+                          <li><a class="dropdown-item" href="/start/resume/personal-information">{{__('app.Create_resume')}}  <i class="fa fa-chevron-right"></i> </a></li>
+                          <li><a class="dropdown-item" href="/all-resumes">{{__('app.My_resumes')}}  <i class="fa fa-chevron-right"></i> </a></li>
+                          <li><a class="dropdown-item" href="/account-settings">{{__('app.Account_settings')}}  <i class="fa fa-chevron-right"></i> </a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                                document.getElementById('logout-form').submit();">
-                                  {{ __('Logout') }}
+                                  {{ __('Logout') }}  <i class="fa fa-sign-out"></i> 
                               </a>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                   @csrf

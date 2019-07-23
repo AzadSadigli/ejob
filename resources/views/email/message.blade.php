@@ -244,7 +244,7 @@
                             <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
                                 <div class="col num12" data-body-width-son="650" rel="col-num-container-box-son" style="min-width: 320px; max-width: 650px; display: table-cell; vertical-align: top;">
                                     <div style="width:100% !important;">
-                                        <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
+                                        <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:20px; padding-right: 0px; padding-left: 0px;">
                                             <table border="0" cellpadding="0" cellspacing="0" class="divider" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;" valign="top" width="100%">
                                                 <tbody>
                                                     <tr style="vertical-align: top;" valign="top">
@@ -271,7 +271,7 @@
                             <div style="border-collapse: collapse;display: table;width: 100%;background-color:#FFFFFF;margin-bottom:40px">
                                 <div class="col num12" data-body-width-son="634" rel="col-num-container-box-son" style="min-width: 320px; max-width: 650px; display: table-cell; vertical-align: top;">
                                     <div style="background-color:#FFFFFF;width:100% !important;">
-                                        <div style="border-top:0px solid transparent; border-left:8px solid #F1F3F3; border-bottom:0px solid transparent; border-right:8px solid #F1F3F3; padding-top:50px; padding-bottom:5px; padding-right: 50px; padding-left: 50px;">
+                                        <div style="border-top:0px solid transparent; border-left:8px solid #F1F3F3; border-bottom:0px solid transparent; border-right:8px solid #F1F3F3; padding-top:50px; padding-bottom:20px; padding-right: 50px; padding-left: 50px;">
                                             <div class="mobile_hide">
                                                 <div style="color:#1cc4f7;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                                     <div style="font-size: 12px; line-height: 14px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1cc4f7;">
@@ -289,17 +289,8 @@
                                             </div>
                                             <div style="color:#CFCFCF;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                                 <div style="font-size: 12px; line-height: 14px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #CFCFCF;">
-                                                  @if(!empty($data['company']))
-                                                  <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong> <b style="color:black;">{{__('app.Company')}}:</b> {{$data['company']}} </strong></p>
-                                                  @endif
-                                                  <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong> <b style="color:black;">{{__('app.Job_title')}}:</b> {{$data['title']}} </strong></p>
-                                                  @if(!empty($data['contact_number']))
-                                                  <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong> <b style="color:black;">{{__('app.Contact_number')}}:</b> {{$data['contact_number']}} </strong></p>
-                                                  @endif
-                                                  @if(!empty($data['website']))
-                                                  <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong> <b style="color:black;">{{__('app.Company_website')}}:</b> {{$data['website']}} </strong></p>
-                                                  @endif
-                                                  <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong> <b style="color:black;">{{__('app.Job_url')}}:</b> {{$data['job_url']}} </strong></p>
+                                                  <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong> <b style="color:black;">{{__('app.Contact_name')}}:</b> {{$data['name']}}</strong></p>
+                                                    <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong> <b style="color:black;">{{__('app.Contact_email')}}:</b> {{$data['email']}} </strong></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,8 +303,5 @@
             </tr>
         </tbody>
     </table>
-    <footer>
-    {{__('app.Copyright_website')}}
-  </footer>
 </body>
 </html>

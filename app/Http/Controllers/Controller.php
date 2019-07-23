@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index(){
-      $vacs = Vacancy::where('status',1)->get();
+      $vacs = Vacancy::where('status',1)->take(24)->get();
       return view('index',compact('vacs'));
     }
     public function contact(){

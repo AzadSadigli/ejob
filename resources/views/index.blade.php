@@ -112,7 +112,7 @@
                         <h3><a href="/job/{{$vac->vac_id}}">{{$vac->title}}</a></h3>
                         <p class="brand"><a href="/company/{{$vac->company}}/vacancies">{{$vac->company}}</a> </p>
                         <div class="tags">
-                            <span class="vac-loc"><i class="lni-map-marker"></i> <a href="/location/{{App\Locations::find($vac->location)->id}}">{{App\Locations::find($vac->location)->location_az}}</a> </span>
+                            <span class="vac-loc"><i class="lni-map-marker"></i> <a href="/location/{{App\Locations::find($vac->location)->id}}/{{App\Locations::find($vac->location)->location_az}}/vacancies">{{App\Locations::find($vac->location)->location_az}}</a> </span>
                             <span class="vac-owner"><i class="lni-user"></i>
                               @if($vac->user_id == 0)
                               {{$vac->user_name}}
@@ -144,9 +144,11 @@
                 </div>
             </div>
             @endforeach
+            @if(count($vacs) > 24)
             <div class="col-12 text-center mt-4">
-                <a onclick="get_more_jobs()" class="btn btn-common">{{__('app.Load_more')}}</a>
+                <a href="/jobs" class="btn btn-common">{{__('app.Load_more')}}</a>
             </div>
+            @endif
         </div>
         <div id="apply_popup" class="modal fade" role="dialog" success="{{__('app.Applied')}}"></div>
     </div>
@@ -156,8 +158,8 @@
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Top Hiring Companies</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et
-                <br> metus effici turac fringilla lorem facilisis.</p>
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et -->
+                <!-- <br> metus effici turac fringilla lorem facilisis.</p> -->
         </div>
         <div class=" wow fadeIn" data-wow-delay="0.5s">
             <div id="mscompanies" class="owl-carousel">
@@ -216,6 +218,7 @@
     </div>
 </section>
 @endif
+@if(Auth::guest())
 <div id="apply">
     <div class="container-fulid">
         <div class="row">
@@ -250,7 +253,7 @@
         </div>
     </div>
 </div>
-
+@endif
 <section id="counter" class="section bg-gray">
     <div class="container">
         <div class="row">

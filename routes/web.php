@@ -12,16 +12,19 @@
 */
 
 Route::get('/test',function(){
-  return view('email.sendres');
+  return view('email.message');
 });
 
+// Route::get('/job','JobController@searchjobs');
+Route::get('/jobs','JobController@searchjobs');
+
+Route::post('/send-message','UserController@sendmessage');
 Route::post('/apply-as-ur-user','JobController@applyas_uruser');
 Route::get('/unregistered/my-vacancy/{token}','JobController@unreg_jobs');
 Route::get('/delete-job/{token}','JobController@deletejob');
 Route::get('/','Controller@index');
 Route::get('/contact','Controller@contact');
 Route::get('/job/{id}','JobController@jobdetails');
-Route::get('/jobs','JobController@jobs');
 Route::get('/add-vacancy','JobController@addvacancy');
 Route::post('/add-new-vacancy','JobController@addjob');
 Route::get('/r/{id}','ResumeController@getresume');
@@ -29,8 +32,12 @@ Route::post('/send-resume-message','ResumeController@sendmess');
 Route::post('/activate-vacancy/{id}','JobController@act_job');
 
 
-Route::post('/filter-jobs','JobController@getjobsearchdata');
-Route::get('/location/{id}','JobController@location_jobs');
+// Route::post('/filter-jobs','JobController@getjobsearchdata');
+Route::post('/get-more-jobs','JobController@getmorejob');
+Route::post('/check-res-un-avaliability','ResumeController@checkresus');
+
+
+Route::get('/location/{id}/{reg}/vacancies','JobController@location_jobs');
 Route::get('/job-type/{type}','JobController@jobtype');
 Route::get('/user/{us}/vacancies','JobController@user_vacancies');
 Route::get('/company/{comp}/vacancies','JobController@comp_vacancies');

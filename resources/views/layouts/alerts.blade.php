@@ -1,10 +1,5 @@
 @if(session('primary'))
-<div class="alert alert-dismissible alert-primary" role="alert">
-  {{Session::get('primary')}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+<div class='notify'><span>{{Session::get('primary')}}</span><a onclick='closenot()'>X</a></div>
 @endif
 @if(session('secondary'))
 <div class="alert alert-dismissible alert-secondary" role="alert">
@@ -15,20 +10,10 @@
 </div>
 @endif
 @if(session('success'))
-<div class="alert alert-dismissible alert-success" role="alert">
-  {{Session::get('success')}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+<div class='notify'><span>{{Session::get('success')}}</span><a onclick='closenot()'>X</a></div>
 @endif
 @if(session('danger'))
-<div class="alert alert-dismissible alert-danger" role="alert">
-  {{Session::get('danger')}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+<div class='notify-danger'><span>{{Session::get('danger')}}</span><a onclick='closenot()'>X</a></div>
 @endif
 @if(session('warning'))
 <div class="alert alert-dismissible alert-warning" role="alert">

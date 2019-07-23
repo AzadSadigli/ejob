@@ -246,7 +246,8 @@ label {
 }
 
 button {
-    border-radius: 0
+    border-radius: 0;
+    cursor: pointer;
 }
 
 button:focus {
@@ -1926,9 +1927,9 @@ pre code {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #80bdff;
+    /* border-color: #80bdff; */
     outline: 0;
-    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+    box-shadow: 0px 0px 7px 1px rgba(28,196,247,0.5);
 }
 
 .form-control::-webkit-input-placeholder {
@@ -2462,10 +2463,10 @@ select.form-control-lg:not([size]):not([multiple]) {
 }
 
 .btn:focus,
-.btn:hover {
+/* .btn:hover {
     text-decoration: none;
     background-image: linear-gradient(to right top, #1cc4f7, #00b5f2, #00a6ec, #1597e4, #2c87da);
-}
+} */
 
 .btn.focus,
 .btn:focus {
@@ -3350,7 +3351,8 @@ input[type=submit].btn-block {
 .dropdown-item {
     display: block;
     width: 100%;
-    /* padding: .25rem 1.5rem; */
+    padding: 5px;
+    padding-left: 10px;
     clear: both;
     font-weight: 400;
     color: #212529;
@@ -14787,17 +14789,22 @@ box-shadow: 1px 2px 7px -2px rgba(0,0,0,0.5);
     -o-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out
 }
-
+#social_link .dropdown-item {
+  padding-bottom: 35px;
+}
 .dropdown .dropdown-item.active,
 .dropdown .dropdown-item:focus,
 .dropdown .dropdown-item:hover {
-    background: white;
-    /* font-size: 16px; */
+    color: white !important;
     font-weight: bold;
-    color: #1cc4f7 !important;
-    border-bottom: 2px solid #1cc4f7;
+    background: #1cc4f7;
+    border-radius: 5px;
 }
-
+.dropdown-item .fa-chevron-right, .dropdown-item .fa-sign-out{
+  padding-top: 3px;
+  color: white;
+  float: right;
+}
 .dropdown-item.active,
 .dropdown-item:active {
     background: 0 0
@@ -15113,9 +15120,14 @@ box-shadow: 1px 2px 7px -2px rgba(0,0,0,0.5);
 
 .job-featured-search {
     padding: 15px 0;
-    border-radius: 6px
+    border-radius: 6px;
+    background: #1dc4f7;
+    opacity: 0.8;
 }
-
+.job-featured-search .button{
+  color: #1dc4f7;
+  background: white;
+}
 .about-content h3 {
     font-size: 24px;
     font-weight: 500;
@@ -17801,7 +17813,7 @@ blockquote p a:hover {
 .form-control:focus {
     border: 1px solid #1cc4f7;
     outline: 0;
-    box-shadow: none
+    /* box-shadow: none */
 }
 
 .btn.disabled,
@@ -19407,14 +19419,15 @@ box-shadow: 0px 0px 11px 2px rgba(167, 167, 167, 0.5);
 }
 .btn-add-res,.appy-btn-large{
   font-size: 14px;
-padding: 10px 30px;
-border-radius: 30px;
-letter-spacing: 1px;
-font-weight: 400;
-color: #fff;
-border: none;
-background: #1cc4f7;
-text-transform: uppercase;
+  padding: 10px 30px;
+  border-radius: 30px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  color: #fff;
+  border: none;
+  background: #1cc4f7;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 .btn-add-res{
   float: right;
@@ -19478,7 +19491,7 @@ text-transform: uppercase;
   cursor: pointer;
   text-transform: uppercase;
 }
-.apply-btn:hover,.btn-add-res:hover,.appy-btn-large:hover{
+.apply-btn:hover,.btn-add-res:hover,.appy-btn-large:hover,.btn:hover{
   background: white;
   color: #1cc4f7 !important;
   box-shadow: 0 3px 9px rgba(96, 94, 94, .17);
@@ -19491,4 +19504,58 @@ text-transform: uppercase;
   background: #fff;
   padding: 20px;
   box-shadow: 0 3px 9px rgba(96, 94, 94, .17);
+}
+.app-btn-div{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.notify{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 5px;
+  background: #2bceff;
+  color: white;
+  padding: 20px;
+  z-index: 100;
+  box-shadow: 0px 0px 5px 2px rgba(141,141,141,0.5);
+}
+.notify-danger{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 5px;
+  background: #ea2b2b;
+  color: white;
+  padding: 20px;
+  z-index: 100;
+}
+.notify a,.notify-danger a{
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  color: white;
+  cursor: pointer;
+}
+button[onclick="add_new_socnet()"]:hover{
+  background: #1cc4f7;
+  color: white;
+}
+.appy-btn-large[disabled],.appy-btn-large[disabled]:hover{
+  border: 1px solid #efa319;
+  background-color: #efa319;
+  color: white !important;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.inner-header{
+  background: white;
+  padding: 10px;
+  padding-top: 19px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, .1);
+}
+.inner-header h2,
+.inner-header h3
+{
+  color: #1cc4f7 !important;
 }

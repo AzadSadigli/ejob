@@ -21,6 +21,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="http://chittagongit.com/download/328250">
 </head>
 <body>
+    <div id="notalert"></div>
     @section('body')
     @show
     <footer>
@@ -40,6 +41,7 @@
                             <h3 class="block-title">{{__('app.Quick_Links')}}</h3>
                             <ul class="menu">
                                 <li><a href="/about-us">{{__('app.About_Us')}}</a></li>
+                                <li><a href="/faq">{{__('app.Faq')}}</a></li>
                                 <li><a href="/contact">{{__('app.Contact')}}</a></li>
                             </ul>
                             <ul class="menu">
