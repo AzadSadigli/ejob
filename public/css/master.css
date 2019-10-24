@@ -14094,11 +14094,7 @@ p {
     margin-bottom: 0
 }
 
-a:focus,
-a:hover {
-    color: #1cc4f7
-}
-
+a:focus,a:hover {color: #1cc4f7}
 a {
     color: #1cc4f7;
     -webkit-transition: all .3s ease-in-out;
@@ -14107,24 +14103,17 @@ a {
     transition: all .3s ease-in-out
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1,h2,h3,h4,h5 {
     font-family: rubik, sans-serif;
     /* font-size: 40px; */
     font-weight: 700;
     color: #191c1e
 }
-
-ul {
-    margin: 0;
-    padding: 0
-}
-
-ul li {
-    list-style: none
+ul {margin: 0;padding: 0}
+ul li {list-style: none;}
+#vac_body ul li{
+  max-width: 99%;
+  word-break: break-all;
 }
 
 a:focus,
