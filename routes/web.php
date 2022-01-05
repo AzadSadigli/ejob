@@ -14,7 +14,7 @@
 Route::get('/test',function(){
   return view('email.message');
 });
-
+Route::get('/testing','Controller@testing');
 // Route::get('/job','JobController@searchjobs');
 Route::get('/jobs','JobController@searchjobs');
 
